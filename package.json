@@ -8,7 +8,7 @@
   "bin": {
     "cli": "bin/run.js"
   },
-  "repository": "https://gitlab.tailored-apps.com/cenk1cenk2/oclif-boilerplate",
+  "repository": "https://github.com/cenk1cenk2/oclif-boilerplate",
   "scripts": {
     "start": "bin/run.js $command",
     "start:debug": "yarn start $command --debug",
