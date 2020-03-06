@@ -19,6 +19,16 @@
     "release": "yarn lint && yarn readme",
     "readme": "oclif-dev readme"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn dev:lint"
+    }
+  },
+  "lint-staged": {
+    "src/*.{ts,js,json}": [
+      "yarn lint",
+    ]
+  },
   "files": [
     "bin/",
     "config/",
@@ -41,17 +51,6 @@
   "warn-if-update-available": {
     "timeoutInDays": 7,
     "message": "<%= config.name %> update available from <%= chalk.greenBright(config.version) %> to <%= chalk.greenBright(latest) %>."
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn dev:lint"
-    }
-  },
-  "lint-staged": {
-    "src/*.{ts,js,json}": [
-      "yarn lint",
-      "git add"
-    ]
   },
   "engines": {
     "node": ">=10.0.0"
