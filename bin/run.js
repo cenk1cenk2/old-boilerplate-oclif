@@ -25,6 +25,7 @@ if (silent !== -1) {
 }
 
 // typescript paths register on development
+// process.env.TS_NODE_PROJECT = path.resolve('../tsconfig.json')
 if (process.env.TS_PATHS) {
   const tsConfigPaths = require('tsconfig-paths')
 

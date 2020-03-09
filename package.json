@@ -17,7 +17,8 @@
     "lint": "eslint --ext .json,.ts,.js --fix src/",
     "dev:lint": "lint-staged",
     "release": "yarn lint && yarn readme",
-    "readme": "oclif-dev readme"
+    "readme": "yarn oclif-dev readme",
+    "oclif-dev": "node -r tsconfig-paths/register node_modules/@oclif/dev-cli/bin/run"
   },
   "husky": {
     "hooks": {
@@ -26,7 +27,7 @@
   },
   "lint-staged": {
     "src/*.{ts,js,json}": [
-      "yarn lint",
+      "yarn lint"
     ]
   },
   "files": [
