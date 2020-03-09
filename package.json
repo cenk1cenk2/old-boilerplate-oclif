@@ -10,7 +10,7 @@
   },
   "repository": "https://github.com/cenk1cenk2/oclif-boilerplate",
   "scripts": {
-    "start": "bin/run.js $command",
+    "start": "TS_NODE=1 bin/run.js $command",
     "start:debug": "yarn start $command --debug",
     "start:inspect": "yarn start $command --inspect",
     "build": "tsc -p tsconfig.json && tscpaths -p tsconfig.paths.json -s ./dist -o ./dist",
