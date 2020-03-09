@@ -27,14 +27,16 @@ if (silent !== -1) {
 }
 
 // typescript paths register on development
-const tsConfigPaths = require('tsconfig-paths')
+if (process.env.TS_NODE === '1') {
+  const tsConfigPaths = require('tsconfig-paths')
 
-const tsConfig = require('../tsconfig.json')
+  const tsConfig = require('../tsconfig.json')
 
-tsConfigPaths.register({
-  baseUrl: path.join(path.dirname(require.main.filename), `../${tsConfig.compilerOptions.baseUrl}`),
-  paths: tsConfig.compilerOptions.paths
-})
+  tsConfigPaths.register({
+    baseUrl: path.join(path.dirname(require.main.filename), `../${tsConfig.compilerOptions.baseUrl}`),
+    paths: tsConfig.compilerOptions.paths
+  })
+}
 
 // initiate config directory for npm plugin config
 // config module jumps on top of anything so we have to initate it before running
