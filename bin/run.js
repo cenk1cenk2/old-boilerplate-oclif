@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 
+// eslint-disable-next-line import/order
 const inspector = require('inspector')
+// eslint-disable-next-line import/order
 const path = require('path')
 
 // overwrite debug and silent logger and listr through config
@@ -25,17 +27,14 @@ if (silent !== -1) {
 }
 
 // typescript paths register on development
-// process.env.TS_NODE_PROJECT = path.resolve('../tsconfig.json')
-if (process.env.TS_PATHS) {
-  const tsConfigPaths = require('tsconfig-paths')
+const tsConfigPaths = require('tsconfig-paths')
 
-  const tsConfig = require('../tsconfig.json')
+const tsConfig = require('../tsconfig.json')
 
-  tsConfigPaths.register({
-    baseUrl: path.join(path.dirname(require.main.filename), `../${tsConfig.compilerOptions.baseUrl}`),
-    paths: tsConfig.compilerOptions.paths
-  })
-}
+tsConfigPaths.register({
+  baseUrl: path.join(path.dirname(require.main.filename), `../${tsConfig.compilerOptions.baseUrl}`),
+  paths: tsConfig.compilerOptions.paths
+})
 
 // initiate config directory for npm plugin config
 // config module jumps on top of anything so we have to initate it before running
