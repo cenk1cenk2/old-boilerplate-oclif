@@ -1,4 +1,4 @@
-import { ObjectLiteral } from '@src/interfaces/object-literal.interface'
+import { ObjectLiteral } from '@interfaces/object-literal.interface'
 
 // TODO: extract data from path is it impossible?
 export interface ILockData extends Partial<IUnlockData> {
@@ -9,4 +9,5 @@ export interface ILockData extends Partial<IUnlockData> {
 export interface IUnlockData {
   path: string
   enabled?: boolean
+  root?: boolean
 }

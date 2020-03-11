@@ -2,12 +2,12 @@ import config from 'config'
 import objectPath from 'object-path'
 
 import { ILockData, IUnlockData } from './locker.interface'
-import { ILockFile } from '@src/interfaces/lock-file.interface'
-import { ILogger } from '@src/interfaces/logger.interface'
-import { ObjectLiteral } from '@src/interfaces/object-literal.interface'
-import { Logger } from '@src/lib/extend/logger'
-import { mergeObjects } from '@src/utils/custom.util'
-import { checkExists, readFile, writeFile } from '@src/utils/file-tools.util'
+import { Logger } from '@extend/logger'
+import { ILockFile } from '@interfaces/lock-file.interface'
+import { ILogger } from '@interfaces/logger.interface'
+import { ObjectLiteral } from '@interfaces/object-literal.interface'
+import { mergeObjects } from '@utils/custom.util'
+import { checkExists, readFile, writeFile } from '@utils/file-tools.util'
 
 export class Locker {
   private toLock: ILockData[] = []
@@ -20,19 +20,26 @@ export class Locker {
   }
 
   public async lock (data: ILockData[]): Promise<void> {
-    const currentLock = (await this.getLockFile()) || {}
+    const currentLock = await this.getLockFile() || {}
 
     await Promise.all(data.map(async (lock) => {
-      const lockPath = lock?.path ? `${this.module}.${lock.path}` : this.module
+      let lockPath: string
+      if (lock.root !== true) {
+        lockPath = lock?.path ? `${this.module}.${lock.path}` : this.module
+      } else {
+        lockPath = lock.path
+      }
 
       // enabled flag for not if checkking everytime
       if (lock?.enabled === false) {
         return
       }
+
       // check if data is empty
-      if (!lock?.data || (Array.isArray(lock?.data) && lock.data.length === 0) || (Object?.keys?.length === 0)) {
+      if (!lock?.data || Array.isArray(lock?.data) && lock.data.length === 0 || Object?.keys?.length === 0) {
         return
       }
+
       // set lock
       if (lock?.merge) {
         let parsedLockData: [] | ObjectLiteral
@@ -41,8 +48,11 @@ export class Locker {
         if (Array.isArray(lock?.data)) {
           const arrayLock = objectPath.get(currentLock, lockPath) || []
           parsedLockData = [ ...arrayLock, ...lock.data ]
-        } else {
+        } else if (typeof lock.data === 'object') {
           parsedLockData = mergeObjects(objectPath.get(currentLock, lockPath) || {}, lock.data)
+        } else {
+          this.logger.debug(`"${typeof lock.data}" is not mergable.`)
+          parsedLockData = [ lock.data ]
         }
 
         // set lock data
@@ -60,8 +70,6 @@ export class Locker {
   }
 
   public add (data: ILockData | ILockData[]): void {
-    // @review: array spreading
-    // TODO: does array spreading work with string, i could not manage it
     this.toLock = this.toLock.concat(data)
   }
 
@@ -87,7 +95,13 @@ export class Locker {
     // option to delete all, or specific locks
     if (data && Object.keys(data).length > 0) {
       await Promise.all(data.map(async (lock) => {
-        const lockPath = `${this.module}.${lock.path}`
+        let lockPath: string
+
+        if (lock.root !== true) {
+          lockPath = `${this.module}.${lock.path}`
+        } else {
+          lockPath = lock.path
+        }
 
         // enabled flag for not if checkking everytime
         if (lock?.enabled === false) {
@@ -98,8 +112,10 @@ export class Locker {
         objectPath.del(currentLock, lockPath)
         this.logger.debug(`Unlocked: ${lockPath}`)
       }))
+
     } else {
       objectPath.del(currentLock, this.module)
+      this.logger.debug(`Unlocked module: ${this.module}`)
     }
 
     // write data
@@ -138,5 +154,13 @@ export class Locker {
 
     // write data
     await writeFile(lockFile, data)
+  }
+
+  public hasLock (): boolean {
+    return this.toLock.length > 0
+  }
+
+  public hasUnlock (): boolean {
+    return this.toUnlock.length > 0
   }
 }

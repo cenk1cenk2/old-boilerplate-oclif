@@ -1,8 +1,8 @@
 import { flags } from '@oclif/command'
 
-import Command from '@src/lib/base/base.command'
+import Command from '@base/base.command'
 
-export default class Index extends Command {
+export default class Empty extends Command {
   static description = 'describe the command here'
 
   static flags = {

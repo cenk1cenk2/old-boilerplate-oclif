@@ -1,5 +1,5 @@
 import Command from './base.command'
-import { checkExists, writeFile } from '@src/utils/file-tools.util'
+import { checkExists, writeFile } from '@utils/file-tools.util'
 
 export default abstract class extends Command {
   abstract baseFile: string

@@ -1,14 +1,15 @@
 import Command from '@oclif/command'
+import cliCursor from 'cli-cursor'
 import config from 'config'
 import { ListrRendererValue, Manager } from 'listr2'
 import path from 'path'
 
-import { IDefaultConfig } from '@src/interfaces/default-config.interface'
-import { ILogger } from '@src/interfaces/logger.interface'
-import { ObjectLiteral, ObjectLiteralString } from '@src/interfaces/object-literal.interface'
-import { Locker } from '@src/lib/extend/locker'
-import { Logger } from '@src/lib/extend/logger'
-import { checkExists, createDirIfNotExists, readFile, writeFile } from '@src/utils/file-tools.util'
+import { Locker } from '@extend/locker'
+import { Logger } from '@extend/logger'
+import { IDefaultConfig } from '@interfaces/default-config.interface'
+import { ILogger } from '@interfaces/logger.interface'
+import { ObjectLiteral, ObjectLiteralString } from '@interfaces/object-literal.interface'
+import { checkExists, createDirIfNotExists, readFile, writeFile } from '@utils/file-tools.util'
 
 export default class extends Command {
   public logger: ILogger
@@ -17,11 +18,13 @@ export default class extends Command {
   public shortId: string
   public locker: Locker = new Locker(this.id)
 
+  /** Every command needs to implement run for running the command itself. */
   // make run non-abstract for other classes
   public async run (): Promise<void> {
     throw new Error('This is the default output. This should not be here. Please define run() inside the extended command class.')
   }
 
+  /** Initial functions / constructor */
   // can not override constructor, init function is defined by oclif
   public async init (): Promise<void> {
     // initiate all utilities used
@@ -36,12 +39,14 @@ export default class extends Command {
     this.logger.module(`Executing ${this.id.toUpperCase()} command.`)
   }
 
+  /** Tasks to run before end of the command. */
   public async finally (): Promise<void> {
     // run anything in the task queue at the end
     await this.runTasks()
 
   }
 
+  /** Run all tasks from task manager. */
   public async runTasks <Ctx> (): Promise<Ctx> {
     try {
       const ctx = await this.tasks.runAll<Ctx>()
@@ -49,29 +54,35 @@ export default class extends Command {
       return ctx
 
     } catch (e) {
+      cliCursor.show()
       this.logger.critical(e.message)
-      this.logger.debug(e.trace)
+      this.logger.debug(e.stack)
       process.exit(127)
     }
   }
 
+  /** Catch any error occured during command. */
   // catch all those errors, not verbose
-  public catch (err: Error): Promise<void> {
+  public catch (e: Error): Promise<void> {
+    cliCursor.show()
+
     if (this.constants.loglevel === 'debug') {
-      this.logger.debug(err.stack, { custom: 'crash' })
+      this.logger.debug(e.stack, { custom: 'crash' })
     } else {
-      this.logger.critical(err.message)
+      this.logger.critical(e.message)
     }
 
     process.exit(127)
   }
 
+  /** To reset local/default configuration directly from the command itself.
+   * Mainly used for initiating local config from getConfig. */
   // embed configuration functions
   public async resetConfig (configName: string, defaults: ObjectLiteral = {}): Promise<void> {
     // we expect do config file to be a yaml file
     const ext = path.extname(configName)
 
-    if (!([ '.yaml', '.yml' ].includes(ext))) {
+    if (![ '.yaml', '.yml' ].includes(ext)) {
       this.logger.critical('Configuration file must be a yml file!')
       process.exit(40)
     }
@@ -85,6 +96,7 @@ export default class extends Command {
     await writeFile(localConfigPath, defaults)
   }
 
+  /** To get local/default configuration directly from the command itself. */
   public async getConfig (configName: string, init = false): Promise<IDefaultConfig> {
     const localConfigPath = path.join(this.config.configDir, configName)
     const defaultConfigPath = path.join(this.config.root, 'config', 'defaults', configName)
@@ -104,7 +116,7 @@ export default class extends Command {
 
       // initiate a lock configuration if specified from the default values
       if (init) {
-        this.resetConfig(localConfigPath, defaultConfig)
+        await this.resetConfig(localConfigPath, defaultConfig)
       }
 
       // return module default configuration
@@ -112,6 +124,7 @@ export default class extends Command {
     }
   }
 
+  /** Returns a listr renderer defending on the configuration. */
   private getListrRenderer (): ListrRendererValue<any> {
     if (this.constants?.loglevel === 'silent') {
       return 'silent'

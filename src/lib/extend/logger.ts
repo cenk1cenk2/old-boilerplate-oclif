@@ -6,11 +6,12 @@ import { createLogger, format, transports } from 'winston'
 
 import { logLevels } from './logger.constants'
 import { ILoggerFormat } from './logger.interface'
-import { ILogger } from '@src/interfaces/logger.interface'
+import { ILogger } from '@interfaces/logger.interface'
 
 export class Logger {
   static readonly levels = {
     [logLevels.silent]: 0,
+    [logLevels.direct]: 1,
     [logLevels.critical]: 1,
     [logLevels.fail]: 2,
     [logLevels.warn]: 3,
@@ -47,7 +48,7 @@ export class Logger {
 
     return createLogger({
       level: loglevel || 'module',
-      silent: (loglevel === 'silent'),
+      silent: loglevel === 'silent',
       format: format.combine(logFormat),
       levels: Logger.levels,
       transports: [ new transports.Console() ]
@@ -104,6 +105,11 @@ export class Logger {
       break
     }
 
-    return coloring(`${icon} ${pad(context.toUpperCase(), 10)} | ${message}`)
+    if (level === logLevels.direct) {
+      return message
+    } else {
+      return coloring(`${icon} ${pad(context.toUpperCase(), 10)} | ${message}`)
+    }
+
   }
 }

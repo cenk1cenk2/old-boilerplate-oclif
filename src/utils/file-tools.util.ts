@@ -4,8 +4,8 @@ import path from 'path'
 import { parse as yamlParse, stringify as convertToYaml } from 'yaml'
 
 import { jsonExtensions, yamlExtensions } from './file-tools.constants'
-import { ObjectLiteral } from '@src/interfaces/object-literal.interface'
-import { Logger } from '@src/lib/extend/logger'
+import { Logger } from '@extend/logger'
+import { ObjectLiteral } from '@interfaces/object-literal.interface'
 
 // TODO: the `.log` looks not really nice, maybe u can do that in an other way
 // TODO: if u want to use logger with the same `module` name in different files, it would be generated more times
@@ -13,6 +13,7 @@ import { Logger } from '@src/lib/extend/logger'
 
 const logger = new Logger('file').log
 
+/** Prompt for overwrite. */
 export async function promptOverwrite (file: string): Promise<void> {
   // return if file does not already exists
   if (!checkExists(file)) {
@@ -31,6 +32,8 @@ export async function promptOverwrite (file: string): Promise<void> {
   }
 }
 
+/** Prompt for overwrite inside a Listr2 task.
+ *  This needs it to be wrapped around a task object since the output will be pushed through Listr2 itself. */
 export async function tasksOverwritePrompt (file: string, task: ListrTaskWrapper): Promise<void> {
   // return if file does not already exists
   if (!checkExists(file)) {
@@ -50,10 +53,12 @@ export async function tasksOverwritePrompt (file: string, task: ListrTaskWrapper
 
 }
 
+/** Check file exists. The shortest way to do it still is with the legacy one. */
 export function checkExists (file: string): boolean {
   return fs.existsSync(file)
 }
 
+/** Creates a directory if not already exists. */
 export async function createDirIfNotExists (directory: string): Promise<void> {
   try {
     // get directory path from given string
@@ -72,6 +77,8 @@ export async function createDirIfNotExists (directory: string): Promise<void> {
   }
 }
 
+/** Get a directory name from a path.
+ * Must be careful with while using a filename with no extension, because it relies on extension to find path. */
 export function getDirectoryFromPath (directory: string): string | void {
   // if does not have extension return immediately
   if (!path.extname(directory)) {
@@ -88,16 +95,21 @@ export function getDirectoryFromPath (directory: string): string | void {
   }
 }
 
-export async function readFile (file: string): Promise<ObjectLiteral> {
+/** Just to read YAML or JSON files. */
+export async function readFile <T extends ObjectLiteral> (file: string): Promise<T> {
+  if (!checkExists(file)) {
+    throw new Error(`File:"${file}" does not exists, or insufficient permissions.`)
+  }
+
   const ext = path.extname(file)
   const fileContents = await readRaw(file)
-  let parsedFile: ObjectLiteral
+  let parsedFile: T
 
   try {
     if (jsonExtensions.includes(ext)) {
       parsedFile = JSON.parse(fileContents)
     } else if (yamlExtensions.includes(ext)) {
-      parsedFile = parseYaml(fileContents)
+      parsedFile = parseYaml<T>(fileContents)
     }
 
     return parsedFile
@@ -107,6 +119,7 @@ export async function readFile (file: string): Promise<ObjectLiteral> {
   }
 }
 
+/** Directly read files without parsing. */
 export function readRaw (file: string): Promise<string> {
   try {
     return fs.readFile(file, 'utf-8')
@@ -117,6 +130,7 @@ export function readRaw (file: string): Promise<string> {
   }
 }
 
+/** Write to a file. */
 export async function writeFile (file: string, data: string | string[] | ObjectLiteral, append = false, parse = true): Promise<void> {
   try {
     // parse if send as json or yaml form
@@ -152,6 +166,7 @@ export async function writeFile (file: string, data: string | string[] | ObjectL
   }
 }
 
+/** Delete a file. */
 export async function deleteFile (file: string): Promise<void> {
   try {
     if (fs.existsSync(file)) {
@@ -166,12 +181,14 @@ export async function deleteFile (file: string): Promise<void> {
   }
 }
 
+/** Stringfy a object to JSON. */
 export function toJson (data: string | string[] | ObjectLiteral): string {
   return JSON.stringify(data, null, 2)
 }
 
+/** Parses a YAML input. */
 // these are exposed to maybe later change the yaml parser
-export function parseYaml (data: string | ObjectLiteral): ObjectLiteral {
+export function parseYaml <T extends ObjectLiteral> (data: string | ObjectLiteral): T {
   try {
     return yamlParse(data)
   } catch (e) {
@@ -181,10 +198,12 @@ export function parseYaml (data: string | ObjectLiteral): ObjectLiteral {
   }
 }
 
+/** Stringfy a object to yaml. */
 export function toYaml (data: string | string[] | ObjectLiteral): string {
-  return convertToYaml(data)
+  return convertToYaml(data, {})
 }
 
+/** To leave spaces between comment charachters in the given long string. */
 export function spacesBetweenComments <T extends string | string[]> (data: T, comment: string): T extends string ? string : string[] {
   let parsedData: string
 
@@ -211,3 +230,6 @@ export function spacesBetweenComments <T extends string | string[]> (data: T, co
   }
 
 }
+
+/** To clean comments given the name. */
+// export function clearCommentsFromFiles

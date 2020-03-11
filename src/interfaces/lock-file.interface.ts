@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
-import { ObjectLiteral, ObjectLiteralString } from '@src/interfaces/object-literal.interface'
+import { ObjectLiteral, ObjectLiteralString } from '@interfaces/object-literal.interface'
 
 export interface ILockFile {
 }

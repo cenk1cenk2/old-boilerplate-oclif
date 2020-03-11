@@ -1,10 +1,10 @@
 
 import Command from './base.command'
-import { ObjectLiteral } from '@src/interfaces/object-literal.interface'
-import { Locker } from '@src/lib/extend/locker'
-import { createTable, mergeObjects } from '@src/utils/custom.util'
-import { checkExists, deleteFile, readFile } from '@src/utils/file-tools.util'
-import { promptUser } from '@src/utils/prompt.util'
+import { Locker } from '@extend/locker'
+import { ObjectLiteral } from '@interfaces/object-literal.interface'
+import { createTable, mergeObjects } from '@utils/custom.util'
+import { checkExists, deleteFile, readFile } from '@utils/file-tools.util'
+import { promptUser } from '@utils/prompt.util'
 
 export default abstract class extends Command {
   protected configLock: Locker = new Locker(this.id, 'local')
@@ -55,7 +55,7 @@ export default abstract class extends Command {
     if (this.configType === 'general') {
       await this.resetConfig(this.configName, desiredConfig)
     } else if (this.configType === 'local') {
-      this.configLock.lock([ { data: desiredConfig, merge: true } ])
+      await this.configLock.lock([ { data: desiredConfig, merge: true } ])
     }
 
     this.logger.module('New configurations added to the file.')
@@ -74,7 +74,7 @@ export default abstract class extends Command {
     if (this.configType === 'general') {
       await this.resetConfig(this.configName, editedConfig)
     } else if (this.configType === 'local') {
-      this.configLock.lock([ { data: editedConfig } ])
+      await this.configLock.lock([ { data: editedConfig } ])
     }
 
     this.logger.module('Editted config file.')
@@ -122,7 +122,7 @@ export default abstract class extends Command {
     if (this.configType === 'general') {
       await this.resetConfig(this.configName, desiredConfig)
     } else if (this.configType === 'local') {
-      this.configLock.lock([ { data: desiredConfig } ])
+      await this.configLock.lock([ { data: desiredConfig } ])
     }
     this.logger.module(`Removed entries "${userInput.toString()}" from local config file.`)
   }
@@ -179,7 +179,7 @@ export default abstract class extends Command {
     if (this.configType === 'general') {
       await this.resetConfig(this.configName, desiredConfig)
     } else if (this.configType === 'local') {
-      this.configLock.lock([ { data: desiredConfig } ])
+      await this.configLock.lock([ { data: desiredConfig } ])
     }
     this.logger.module(`Imported configuration file from "${userInput.importPath}".`)
   }
@@ -199,7 +199,7 @@ export default abstract class extends Command {
       return
     }
 
-    deleteFile(path)
+    await deleteFile(path)
     this.logger.module(`Deleted local config file at "${path}".`)
   }
 
