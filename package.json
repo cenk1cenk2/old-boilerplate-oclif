@@ -18,11 +18,12 @@
     "dev:lint": "lint-staged",
     "release": "yarn lint && yarn readme",
     "readme": "yarn oclif-dev readme",
+    "oclif": "oclif $command",
     "oclif-dev": "node -r tsconfig-paths/register node_modules/@oclif/dev-cli/bin/run"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn dev:lint"
+      "pre-commit": "yarn dev:lint && yarn readme"
     }
   },
   "lint-staged": {
