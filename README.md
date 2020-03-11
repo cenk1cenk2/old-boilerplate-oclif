@@ -10,10 +10,17 @@ An empty and extended oclif boilerplate.
 <!-- toc -->
 * [Description](#description)
 * [Navigation](#navigation)
+* [Further Development](#further-development)
 * [Usage](#usage)
 * [Commands](#commands)
-* [Further Development](#further-development)
 <!-- tocstop -->
+
+# Further Development
+For further development you can clone this repository.
+
+While developing you must use `export TS_NODE=1` environment variable, since I did not want to directly extend OCLIF's classes for detecting TS-Node.
+
+`--debug` enables verbose mode, while `--inspect` creates a new inspector.
 
 # Usage
 
@@ -34,21 +41,30 @@ USAGE
 # Commands
 
 <!-- commands -->
-* [`cenk1cenk2 [FILE]`](#cenk1cenk2-file)
+* [`cenk1cenk2 config`](#cenk1cenk2-config)
+* [`cenk1cenk2 empty [FILE]`](#cenk1cenk2-empty-file)
 * [`cenk1cenk2 help [COMMAND]`](#cenk1cenk2-help-command)
 
-## `cenk1cenk2 [FILE]`
+## `cenk1cenk2 config`
+
+Various ways to edit default configuration.
+
+```
+USAGE
+  $ cenk1cenk2 config
+```
+
+## `cenk1cenk2 empty [FILE]`
 
 describe the command here
 
 ```
 USAGE
-  $ cenk1cenk2 [FILE]
+  $ cenk1cenk2 empty [FILE]
 
 OPTIONS
   -f, --force
-  -h, --help       show CLI help
-  -n, --name=name  name to print
+  -h, --help   show CLI help
 ```
 
 ## `cenk1cenk2 help [COMMAND]`
