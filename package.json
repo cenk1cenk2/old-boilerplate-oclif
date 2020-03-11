@@ -23,7 +23,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn dev:lint && yarn readme"
+      "pre-commit": "yarn dev:lint",
+      "pre-push": "yarn readme"
     }
   },
   "lint-staged": {
