@@ -104,10 +104,11 @@ export default class extends Command {
 
     // return if local configuration exists
     if (checkExists(localConfigPath)) {
+      const localConfig = await readFile(localConfigPath)
       this.logger.debug('Found local configuration file.')
 
       return {
-        config: await readFile(localConfigPath), local: true, path: localConfigPath
+        config: localConfig, local: true, path: localConfigPath
       }
 
     } else if (checkExists(defaultConfigPath)) {
@@ -117,7 +118,7 @@ export default class extends Command {
 
       // initiate a lock configuration if specified from the default values
       if (init) {
-        await this.resetConfig(localConfigPath, defaultConfig)
+        await this.resetConfig(configName, defaultConfig)
       }
 
       // return module default configuration
@@ -126,7 +127,7 @@ export default class extends Command {
     } else {
       this.logger.debug('Neither local nor default configuration exists. Initiating a new local one.')
 
-      await this.resetConfig(localConfigPath, {})
+      await this.resetConfig(configName, {})
 
       return { config: {}, local: true }
     }

@@ -30,7 +30,7 @@ $ npm install -g @cenk1cenk2/oclif-boilerplate
 $ cenk1cenk2 COMMAND
 running command...
 $ cenk1cenk2 (-v|--version|version)
-@cenk1cenk2/oclif-boilerplate/1.0.0 linux-x64 node-v13.9.0
+@cenk1cenk2/oclif-boilerplate/1.0.0 linux-x64 node-v13.11.0
 $ cenk1cenk2 --help [COMMAND]
 USAGE
   $ cenk1cenk2 COMMAND
