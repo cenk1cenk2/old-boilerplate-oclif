@@ -9,6 +9,7 @@ import { Logger } from '@extend/logger'
 import { IDefaultConfig } from '@interfaces/default-config.interface'
 import { ILogger } from '@interfaces/logger.interface'
 import { ObjectLiteral, ObjectLiteralString } from '@interfaces/object-literal.interface'
+import { yamlExtensions } from '@src/utils/file-tools.constants'
 import { checkExists, createDirIfNotExists, readFile, writeFile } from '@utils/file-tools.util'
 
 export default class extends Command {
@@ -82,7 +83,7 @@ export default class extends Command {
     // we expect do config file to be a yaml file
     const ext = path.extname(configName)
 
-    if (![ '.yaml', '.yml' ].includes(ext)) {
+    if (!yamlExtensions.includes(ext)) {
       this.logger.critical('Configuration file must be a yml file!')
       process.exit(40)
     }
@@ -109,7 +110,7 @@ export default class extends Command {
         config: await readFile(localConfigPath), local: true, path: localConfigPath
       }
 
-    } else {
+    } else if (checkExists(defaultConfigPath)) {
       // read default module configuration
       const defaultConfig = await readFile(defaultConfigPath)
       this.logger.debug('No local configuration file found. Using the defaults.')
@@ -121,6 +122,13 @@ export default class extends Command {
 
       // return module default configuration
       return { config: defaultConfig, local: false }
+
+    } else {
+      this.logger.debug('Neither local nor default configuration exists. Initiating a new local one.')
+
+      await this.resetConfig(localConfigPath, {})
+
+      return { config: {}, local: true }
     }
   }
 
