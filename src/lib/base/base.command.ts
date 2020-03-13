@@ -4,12 +4,12 @@ import config from 'config'
 import { ListrRendererValue, Manager } from 'listr2'
 import path from 'path'
 
+import { yamlExtensions } from './../../utils/file-tools.constants'
 import { Locker } from '@extend/locker'
 import { Logger } from '@extend/logger'
 import { IDefaultConfig } from '@interfaces/default-config.interface'
 import { ILogger } from '@interfaces/logger.interface'
 import { ObjectLiteral, ObjectLiteralString } from '@interfaces/object-literal.interface'
-import { yamlExtensions } from '@src/utils/file-tools.constants'
 import { checkExists, createDirIfNotExists, readFile, writeFile } from '@utils/file-tools.util'
 
 export default class extends Command {

@@ -19,12 +19,19 @@ export class Locker {
     this.logger = new Logger(this.constructor.name).log
   }
 
-  public async lock (data: ILockData[]): Promise<void> {
+  public async lock (data: ILockData | ILockData[]): Promise<void> {
+    // cast to array
+    if (!Array.isArray(data)) {
+      data = [ data ]
+    }
+
     const currentLock = await this.getLockFile() || {}
 
     await Promise.all(data.map(async (lock) => {
       let lockPath: string
-      if (lock.root !== true) {
+
+      // you can designate using the module from root instead of this.module
+      if (lock?.root !== true) {
         lockPath = lock?.path ? `${this.module}.${lock.path}` : this.module
       } else {
         lockPath = lock.path
@@ -41,7 +48,7 @@ export class Locker {
       }
 
       // set lock
-      if (lock?.merge) {
+      if (lock?.merge === true) {
         let parsedLockData: [] | ObjectLiteral
 
         // check if array else merge as object
@@ -70,11 +77,19 @@ export class Locker {
   }
 
   public add (data: ILockData | ILockData[]): void {
-    this.toLock = this.toLock.concat(data)
+    if (Array.isArray(data)) {
+      this.toLock = [ ...this.toLock, ...data ]
+    } else {
+      this.toLock = [ ...this.toLock, data ]
+    }
   }
 
-  public addUnlock (data: IUnlockData | IUnlockData[]): void {
-    this.toUnlock = this.toUnlock.concat(data)
+  public addUnlock (data?: IUnlockData | IUnlockData[]): void {
+    if (Array.isArray(data)) {
+      this.toUnlock = [ ...this.toUnlock, ...data ]
+    } else {
+      this.toUnlock = [ ...this.toUnlock, data ]
+    }
   }
 
   public async lockAll (): Promise<void> {
@@ -82,7 +97,12 @@ export class Locker {
     this.toLock = []
   }
 
-  public async unlock (data?: IUnlockData[]): Promise<void> {
+  public async unlock (data?: IUnlockData | IUnlockData[]): Promise<void> {
+    // cast to array
+    if (data && !Array.isArray(data)) {
+      data = [ data ]
+    }
+
     // get lock file
     const currentLock = await this.getLockFile()
 
@@ -93,11 +113,11 @@ export class Locker {
     }
 
     // option to delete all, or specific locks
-    if (data && Object.keys(data).length > 0) {
+    if (Array.isArray(data) && data.length > 0) {
       await Promise.all(data.map(async (lock) => {
         let lockPath: string
 
-        if (lock.root !== true) {
+        if (lock?.root !== true) {
           lockPath = `${this.module}.${lock.path}`
         } else {
           lockPath = lock.path

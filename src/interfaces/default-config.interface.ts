@@ -1,4 +1,4 @@
-import { ObjectLiteral } from '@interfaces/object-literal.interface'
+import { ObjectLiteral } from './object-literal.interface'
 
 export interface IDefaultConfig {
   local: boolean

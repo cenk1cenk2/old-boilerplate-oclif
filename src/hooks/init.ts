@@ -1,8 +1,10 @@
 import { Hook } from '@oclif/config'
 import config from 'config'
 
+import { DockerCommand } from '@commands/docker'
+import { GitMergeCommand } from '@commands/git/merge'
 import { Logger } from '@extend/logger'
-import { logo } from '@templates/logo.template'
+import { getLogo } from '@templates/logo.template'
 
 const hook: Hook<'init'> = async (opts): Promise<void> => {
   // initiate logger
@@ -10,19 +12,18 @@ const hook: Hook<'init'> = async (opts): Promise<void> => {
 
   // print logo
   if (config.get('loglevel') !== 'silent') {
-    logger.direct(logo(opts.config.version))
+    logger.direct(getLogo(opts.config.version))
   }
 
   // run default command
   if (!opts.id) {
     try {
-      logger.warn('No specific task is defined running the default task.', { custom: config.get('cli') })
-      // DEFAULT COMMAND CAN GO HERE
-      //  IMPORT IT AND RUN OR RUN BY OCLIF
+      logger.warn('No specific task is defined running the default task which is to git-merge and create docker-compose file.', { custom: 'brownie' })
 
+      await GitMergeCommand.run(opts.argv)
+      await DockerCommand.run(opts.argv)
     } finally {
       process.exit(0)
-
     }
   }
 }

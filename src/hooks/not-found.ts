@@ -10,7 +10,7 @@ const hook: Hook<'command_not_found'> = async (opts) => {
   logger.critical('Command not found. Take a look at help. You can also use -[h]elp flag for subcommands.', { custom: opts.config.name })
   logger.direct('')
 
-  // show help itself
+  // show help
   const help = new Help(opts.config)
   help.showHelp([ '--all' ])
 
