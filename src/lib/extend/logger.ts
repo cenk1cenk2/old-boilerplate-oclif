@@ -22,12 +22,24 @@ export class Logger {
   }
 
   public log: ILogger
+  public id: string
 
   constructor (module?: string) {
-    this.log = this.initiateLogger(module)
+    this.id = module
+    this.log = this.initiateLogger()
   }
 
-  private initiateLogger (module?: string): ILogger {
+  public getInstance (module?: string): ILogger {
+    if (!this.log) {
+      this.id = module
+      this.log = this.initiateLogger()
+    }
+
+    this.id = module
+    return this.log
+  }
+
+  private initiateLogger (): ILogger {
     const loglevel: string = config.get('loglevel')
     const logFormat = format.printf(({ level, message, custom }: ILoggerFormat) => {
       // parse multi line messages
@@ -36,7 +48,7 @@ export class Logger {
         multiLineMessage = multiLineMessage.map((msg) => {
         // format messages
           return this.logColoring({
-            level, message: msg, module, custom
+            level, message: msg, module: this.id, custom
           })
         })
         // join back multi line messages

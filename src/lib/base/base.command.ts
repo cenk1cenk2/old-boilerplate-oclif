@@ -10,6 +10,7 @@ import { Logger } from '@extend/logger'
 import { IDefaultConfig } from '@interfaces/default-config.interface'
 import { ILogger } from '@interfaces/logger.interface'
 import { ObjectLiteral, ObjectLiteralString } from '@interfaces/object-literal.interface'
+import { removeObjectOtherKeys } from '@src/utils/custom.util'
 import { checkExists, createDirIfNotExists, readFile, writeFile } from '@utils/file-tools.util'
 
 export default class extends Command {
@@ -31,7 +32,7 @@ export default class extends Command {
     // initiate all utilities used
     this.shortId = this.id.split(':').pop()
     this.constants = config.util.toObject()
-    this.logger = new Logger(this.shortId).log
+    this.logger = Logger.prototype.getInstance(this.shortId)
     this.config.configDir = path.join(this.config.home, config.get('configDir'))
     // initiate manager
     this.tasks = new Manager({ renderer: this.getListrRenderer() })
@@ -58,7 +59,7 @@ export default class extends Command {
       cliCursor.show()
       this.logger.critical(e.message)
       this.logger.debug(e.stack)
-      process.exit(127)
+      process.exit(126)
     }
   }
 
@@ -73,19 +74,47 @@ export default class extends Command {
       this.logger.critical(e.message)
     }
 
-    process.exit(127)
+    process.exit(126)
+  }
+
+  /**
+   * Clean up unnecassary flags which might throw an error when passing them between commands, say no to parsing errors!
+   * The function will find the second arguments in the first one and match them.abs
+   * But the first one must be a valid set arguments because it will get parsed from the command.
+  */
+  public cleanUpFlags (base: ObjectLiteral | typeof Command, from: ObjectLiteral | typeof Command): string[] {
+    if (typeof base === typeof Command) {
+      base = this.parse(base).flags
+    }
+    if (typeof from === typeof Command) {
+      from = from.flags
+    }
+
+    const strippedFlags = removeObjectOtherKeys(base, from)
+
+    const argv: string[] = []
+
+    Object.entries(strippedFlags).forEach(([ key, value ]) => {
+      argv.push(`--${key}`)
+
+      // it goes crazy when setting the argument boolean, will throw a parsing error
+      if (typeof value !== 'boolean' && typeof value !== 'undefined') {
+        argv.push(value)
+      }
+    })
+
+    return argv
   }
 
   /** To reset local/default configuration directly from the command itself.
    * Mainly used for initiating local config from getConfig. */
-  // embed configuration functions
   public async resetConfig (configName: string, defaults: ObjectLiteral = {}): Promise<void> {
     // we expect do config file to be a yaml file
     const ext = path.extname(configName)
 
     if (!yamlExtensions.includes(ext)) {
       this.logger.critical('Configuration file must be a yml file!')
-      process.exit(40)
+      process.exit(20)
     }
 
     // if local config directory does not exists

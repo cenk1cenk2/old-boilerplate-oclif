@@ -6,7 +6,7 @@ import { createInterface } from 'readline'
 import { Logger } from '@extend/logger'
 
 const hook: Hook<'prerun'> = async (opts) => {
-  const logger = new Logger(opts.config.name).log
+  const logger = Logger.prototype.getInstance(opts.config.name)
 
   // graceful terminate
   if (os.platform() === 'win32') {

@@ -27,7 +27,7 @@ export default abstract class extends Command {
 
     } else {
       this.logger.critical('Config type to edit is wrong this should not have happened.')
-      process.exit(127)
+      process.exit(126)
 
     }
 
@@ -156,7 +156,7 @@ export default abstract class extends Command {
 
     if (!checkExists(userInput.importPath)) {
       this.logger.fail(`Import file can not be found at path "${userInput.importPath}".`)
-      process.exit(40)
+      process.exit(21)
     }
 
     const { local, config } = await this.getConfig(this.configName)

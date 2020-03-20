@@ -16,7 +16,7 @@ export class Locker {
 
   constructor (private module: string, private type: 'lock' | 'local' = 'lock') {
     this.module = module
-    this.logger = new Logger(this.constructor.name).log
+    this.logger = Logger.prototype.getInstance(this.constructor.name)
   }
 
   public async lock (data: ILockData | ILockData[]): Promise<void> {
@@ -155,7 +155,7 @@ export class Locker {
       return config.get('localConfig')
     } else {
       this.logger.critical('Lock type is not correct. This should not happenned.')
-      process.exit(127)
+      process.exit(126)
     }
   }
 

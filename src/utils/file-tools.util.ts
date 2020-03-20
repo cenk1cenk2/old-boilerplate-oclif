@@ -7,11 +7,7 @@ import { jsonExtensions, yamlExtensions } from './file-tools.constants'
 import { Logger } from '@extend/logger'
 import { ObjectLiteral } from '@interfaces/object-literal.interface'
 
-// TODO: the `.log` looks not really nice, maybe u can do that in an other way
-// TODO: if u want to use logger with the same `module` name in different files, it would be generated more times
-//          mayne any kind of singleton handling could be nice
-
-const logger = new Logger('file').log
+const logger = Logger.prototype.getInstance('file')
 
 /** Prompt for overwrite. */
 export async function promptOverwrite (file: string): Promise<void> {
@@ -194,7 +190,7 @@ export function parseYaml <T extends ObjectLiteral> (data: string | ObjectLitera
   } catch (e) {
     logger.critical('Can not read yaml file.')
     logger.debug(e)
-    process.exit(100)
+    process.exit(21)
   }
 }
 
@@ -230,6 +226,3 @@ export function spacesBetweenComments <T extends string | string[]> (data: T, co
   }
 
 }
-
-/** To clean comments given the name. */
-// export function clearCommentsFromFiles
