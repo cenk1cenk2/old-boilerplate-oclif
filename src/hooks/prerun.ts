@@ -13,10 +13,8 @@ const hook: Hook<'prerun'> = async (opts) => {
     createInterface({
       input: process.stdin,
       output: process.stdout
-
     }).on('SIGINT', () => {
       process.kill(process.pid, 'SIGINT')
-
     })
   }
 

@@ -30,7 +30,7 @@ $ npm install -g @cenk1cenk2/oclif-boilerplate
 $ cenk1cenk2 COMMAND
 running command...
 $ cenk1cenk2 (-v|--version|version)
-@cenk1cenk2/oclif-boilerplate/0.0.0 linux-x64 node-v13.11.0
+@cenk1cenk2/oclif-boilerplate/0.0.0 linux-x64 node-v13.12.0
 $ cenk1cenk2 --help [COMMAND]
 USAGE
   $ cenk1cenk2 COMMAND
@@ -82,5 +82,5 @@ OPTIONS
   --all  see all commands in CLI
 ```
 
-_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.2.3/src/commands/help.ts)_
+_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.0.1/src/commands/help.ts)_
 <!-- commandsstop -->

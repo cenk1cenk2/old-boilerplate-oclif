@@ -46,14 +46,17 @@ export class Logger {
       try {
         let multiLineMessage = message.split('\n')
         multiLineMessage = multiLineMessage.map((msg) => {
-        // format messages
+          // format messages
           return this.logColoring({
-            level, message: msg, module: this.id, custom
+            level,
+            message: msg,
+            module: this.id,
+            custom
           })
         })
         // join back multi line messages
         message = multiLineMessage.join('\n')
-      // eslint-disable-next-line no-empty
+        // eslint-disable-next-line no-empty
       } catch {}
       return message
     })
@@ -122,6 +125,5 @@ export class Logger {
     } else {
       return coloring(`${icon} ${pad(context.toUpperCase(), 10)} | ${message}`)
     }
-
   }
 }

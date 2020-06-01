@@ -1,7 +1,3 @@
-export const jsonExtensions = [
-  '.json'
-]
+export const jsonExtensions = [ '.json' ]
 
-export const yamlExtensions = [
-  '.yaml', '.yml', '.lock'
-]
+export const yamlExtensions = [ '.yaml', '.yml', '.lock' ]

@@ -27,50 +27,52 @@ export class Locker {
 
     const currentLock = await this.getLockFile() || {}
 
-    await Promise.all(data.map(async (lock) => {
-      let lockPath: string
+    await Promise.all(
+      data.map(async (lock) => {
+        let lockPath: string
 
-      // you can designate using the module from root instead of this.module
-      if (lock?.root !== true) {
-        lockPath = lock?.path ? `${this.module}.${lock.path}` : this.module
-      } else {
-        lockPath = lock.path
-      }
-
-      // enabled flag for not if checkking everytime
-      if (lock?.enabled === false) {
-        return
-      }
-
-      // check if data is empty
-      if (!lock?.data || Array.isArray(lock?.data) && lock.data.length === 0 || Object?.keys?.length === 0) {
-        return
-      }
-
-      // set lock
-      if (lock?.merge === true) {
-        let parsedLockData: [] | ObjectLiteral
-
-        // check if array else merge as object
-        if (Array.isArray(lock?.data)) {
-          const arrayLock = objectPath.get(currentLock, lockPath) || []
-          parsedLockData = [ ...arrayLock, ...lock.data ]
-        } else if (typeof lock.data === 'object') {
-          parsedLockData = mergeObjects(objectPath.get(currentLock, lockPath) || {}, lock.data)
+        // you can designate using the module from root instead of this.module
+        if (lock?.root !== true) {
+          lockPath = lock?.path ? `${this.module}.${lock.path}` : this.module
         } else {
-          this.logger.debug(`"${typeof lock.data}" is not mergable.`)
-          parsedLockData = [ lock.data ]
+          lockPath = lock.path
         }
 
-        // set lock data
-        objectPath.set(currentLock, lockPath, parsedLockData)
-        this.logger.debug(`Merge lock: "${lockPath}"`)
-      } else {
-        // dont merge directly set the data
-        objectPath.set(currentLock, lockPath, lock.data)
-        this.logger.debug(`Override lock: "${lockPath}"`)
-      }
-    }))
+        // enabled flag for not if checkking everytime
+        if (lock?.enabled === false) {
+          return
+        }
+
+        // check if data is empty
+        if (!lock?.data || Array.isArray(lock?.data) && lock.data.length === 0 || Object?.keys?.length === 0) {
+          return
+        }
+
+        // set lock
+        if (lock?.merge === true) {
+          let parsedLockData: [] | ObjectLiteral
+
+          // check if array else merge as object
+          if (Array.isArray(lock?.data)) {
+            const arrayLock = objectPath.get(currentLock, lockPath) || []
+            parsedLockData = [ ...arrayLock, ...lock.data ]
+          } else if (typeof lock.data === 'object') {
+            parsedLockData = mergeObjects(objectPath.get(currentLock, lockPath) || {}, lock.data)
+          } else {
+            this.logger.debug(`"${typeof lock.data}" is not mergable.`)
+            parsedLockData = [ lock.data ]
+          }
+
+          // set lock data
+          objectPath.set(currentLock, lockPath, parsedLockData)
+          this.logger.debug(`Merge lock: "${lockPath}"`)
+        } else {
+          // dont merge directly set the data
+          objectPath.set(currentLock, lockPath, lock.data)
+          this.logger.debug(`Override lock: "${lockPath}"`)
+        }
+      })
+    )
 
     // write data
     await this.writeLockFile(currentLock)
@@ -114,25 +116,26 @@ export class Locker {
 
     // option to delete all, or specific locks
     if (Array.isArray(data) && data.length > 0) {
-      await Promise.all(data.map(async (lock) => {
-        let lockPath: string
+      await Promise.all(
+        data.map(async (lock) => {
+          let lockPath: string
 
-        if (lock?.root !== true) {
-          lockPath = `${this.module}.${lock.path}`
-        } else {
-          lockPath = lock.path
-        }
+          if (lock?.root !== true) {
+            lockPath = `${this.module}.${lock.path}`
+          } else {
+            lockPath = lock.path
+          }
 
-        // enabled flag for not if checkking everytime
-        if (lock?.enabled === false) {
-          return
-        }
+          // enabled flag for not if checkking everytime
+          if (lock?.enabled === false) {
+            return
+          }
 
-        // set unlock
-        objectPath.del(currentLock, lockPath)
-        this.logger.debug(`Unlocked: ${lockPath}`)
-      }))
-
+          // set unlock
+          objectPath.del(currentLock, lockPath)
+          this.logger.debug(`Unlocked: ${lockPath}`)
+        })
+      )
     } else {
       objectPath.del(currentLock, this.module)
       this.logger.debug(`Unlocked module: ${this.module}`)

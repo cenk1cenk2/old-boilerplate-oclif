@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
 import { ObjectLiteral, ObjectLiteralString } from '@interfaces/object-literal.interface'
 
-export interface ILockFile {
-}
+export interface ILockFile {}
 
 export interface ILockEntityString {
   [name: string]: string

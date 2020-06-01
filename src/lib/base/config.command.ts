@@ -1,4 +1,3 @@
-
 import Command from './base.command'
 import { Locker } from '@extend/locker'
 import { ObjectLiteral } from '@interfaces/object-literal.interface'
@@ -21,23 +20,18 @@ export default abstract class extends Command {
 
     if (this.configType === 'general') {
       choices = [ 'Show', 'Add', 'Remove', 'Edit', 'Init', 'Import', 'Delete' ]
-
     } else if (this.configType === 'local') {
       choices = [ 'Show', 'Add', 'Remove', 'Edit', 'Import', 'Delete' ]
-
     } else {
       this.logger.critical('Config type to edit is wrong this should not have happened.')
       process.exit(126)
-
     }
 
     // prompt user for the action
-    const response: string = await promptUser('Select',
-      {
-        message: 'What do you want to do with the skeleton config?',
-        choices
-      }
-    )
+    const response: string = await promptUser('Select', {
+      message: 'What do you want to do with the skeleton config?',
+      choices
+    })
 
     if (this[`${response.toLowerCase()}Config`]) {
       this[`${response.toLowerCase()}Config`]()
@@ -99,12 +93,10 @@ export default abstract class extends Command {
     }
 
     // get prompts for which one to remote
-    const userInput: string[] = await promptUser('MultiSelect',
-      {
-        message: 'Please select configuration to delete. [space to select, a to select all]',
-        choices: Object.keys(config)
-      }
-    )
+    const userInput: string[] = await promptUser('MultiSelect', {
+      message: 'Please select configuration to delete. [space to select, a to select all]',
+      choices: Object.keys(config)
+    })
 
     // if nothing selected in the prompt
     if (userInput.length === 0) {
@@ -163,7 +155,9 @@ export default abstract class extends Command {
 
     if (local && Object.keys(config)?.length > 0) {
       userInput.merge = await promptUser('Toggle', {
-        message: 'Do you want to merge with the current configuration file?', enabled: 'Merge', disabled: 'Import directly'
+        message: 'Do you want to merge with the current configuration file?',
+        enabled: 'Merge',
+        disabled: 'Import directly'
       })
     }
 
@@ -211,7 +205,7 @@ export default abstract class extends Command {
   }
 
   // @review: configFileType
-  abstract configAdd (configFile: ObjectLiteral): Promise<ObjectLiteral>
+  abstract configAdd(configFile: ObjectLiteral): Promise<ObjectLiteral>
 
-  abstract configEdit (configFile: ObjectLiteral): Promise<ObjectLiteral>
+  abstract configEdit(configFile: ObjectLiteral): Promise<ObjectLiteral>
 }

@@ -45,16 +45,14 @@ export default class extends Command {
   public async finally (): Promise<void> {
     // run anything in the task queue at the end
     await this.runTasks()
-
   }
 
   /** Run all tasks from task manager. */
-  public async runTasks <Ctx> (): Promise<Ctx> {
+  public async runTasks<Ctx>(): Promise<Ctx> {
     try {
       const ctx = await this.tasks.runAll<Ctx>()
 
       return ctx
-
     } catch (e) {
       cliCursor.show()
       this.logger.critical(e.message)
@@ -81,7 +79,7 @@ export default class extends Command {
    * Clean up unnecassary flags which might throw an error when passing them between commands, say no to parsing errors!
    * The function will find the second arguments in the first one and match them.abs
    * But the first one must be a valid set arguments because it will get parsed from the command.
-  */
+   */
   public cleanUpFlags (base: ObjectLiteral | typeof Command, from: ObjectLiteral | typeof Command): string[] {
     if (typeof base === typeof Command) {
       base = this.parse(base).flags
@@ -137,9 +135,10 @@ export default class extends Command {
       this.logger.debug('Found local configuration file.')
 
       return {
-        config: localConfig, local: true, path: localConfigPath
+        config: localConfig,
+        local: true,
+        path: localConfigPath
       }
-
     } else if (checkExists(defaultConfigPath)) {
       // read default module configuration
       const defaultConfig = await readFile(defaultConfigPath)
@@ -152,7 +151,6 @@ export default class extends Command {
 
       // return module default configuration
       return { config: defaultConfig, local: false }
-
     } else {
       this.logger.debug('Neither local nor default configuration exists. Initiating a new local one.')
 

@@ -18,7 +18,9 @@ export async function promptOverwrite (file: string): Promise<void> {
 
   // get prompt for overwrite
   const reply = await createPrompt('Toggle', {
-    message: `"${file}" already exists. Do you want to overwrite?`, enabled: 'Overwrite', disabled: 'Cancel'
+    message: `"${file}" already exists. Do you want to overwrite?`,
+    enabled: 'Overwrite',
+    disabled: 'Cancel'
   })
 
   // quit if overwrite permission not given
@@ -38,7 +40,9 @@ export async function tasksOverwritePrompt (file: string, task: ListrTaskWrapper
 
   // get prompt for overwrite
   const reply = await task.prompt<boolean>('Toggle', {
-    message: `"${file}" already exists. Do you want to overwrite?`, enabled: 'Overwrite', disabled: 'Cancel'
+    message: `"${file}" already exists. Do you want to overwrite?`,
+    enabled: 'Overwrite',
+    disabled: 'Cancel'
   })
 
   // quit if overwrite permission not given
@@ -46,7 +50,6 @@ export async function tasksOverwritePrompt (file: string, task: ListrTaskWrapper
     logger.critical(`Permission to overwrite "${file}" has not been granted. Exiting.`)
     process.exit(20)
   }
-
 }
 
 /** Check file exists. The shortest way to do it still is with the legacy one. */
@@ -92,7 +95,7 @@ export function getDirectoryFromPath (directory: string): string | void {
 }
 
 /** Just to read YAML or JSON files. */
-export async function readFile <T extends ObjectLiteral> (file: string): Promise<T> {
+export async function readFile<T extends ObjectLiteral> (file: string): Promise<T> {
   if (!checkExists(file)) {
     throw new Error(`File:"${file}" does not exists, or insufficient permissions.`)
   }
@@ -133,7 +136,6 @@ export async function writeFile (file: string, data: string | string[] | ObjectL
     const ext = path.extname(file)
 
     if (parse) {
-
       // parse json and yaml
       if (jsonExtensions.includes(ext)) {
         data = toJson(data)
@@ -146,7 +148,6 @@ export async function writeFile (file: string, data: string | string[] | ObjectL
       if (Array.isArray(data)) {
         data = data.join('\n')
       }
-
     }
 
     // write file
@@ -184,7 +185,7 @@ export function toJson (data: string | string[] | ObjectLiteral): string {
 
 /** Parses a YAML input. */
 // these are exposed to maybe later change the yaml parser
-export function parseYaml <T extends ObjectLiteral> (data: string | ObjectLiteral): T {
+export function parseYaml<T extends ObjectLiteral> (data: string | ObjectLiteral): T {
   try {
     return yamlParse(data)
   } catch (e) {
@@ -200,7 +201,7 @@ export function toYaml (data: string | string[] | ObjectLiteral): string {
 }
 
 /** To leave spaces between comment charachters in the given long string. */
-export function spacesBetweenComments <T extends string | string[]> (data: T, comment: string): T extends string ? string : string[] {
+export function spacesBetweenComments<T extends string | string[]> (data: T, comment: string): T extends string ? string : string[] {
   let parsedData: string
 
   if (Array.isArray(data)) {
@@ -209,7 +210,7 @@ export function spacesBetweenComments <T extends string | string[]> (data: T, co
     parsedData = data as string
   }
 
-  const result: string[] = parsedData.split('\n').reduce((o, value, index)=> {
+  const result: string[] = parsedData.split('\n').reduce((o, value, index) => {
     if (new RegExp(`^[ ]*${comment}.*`).test(value) && index !== 0) {
       o.push('', value)
     } else if (value !== '') {
@@ -224,5 +225,4 @@ export function spacesBetweenComments <T extends string | string[]> (data: T, co
   } else {
     return result.join('\n') as any
   }
-
 }

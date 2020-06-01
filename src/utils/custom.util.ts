@@ -27,7 +27,6 @@ export function removeObjectOverlappingKeys (target: ObjectLiteral, source: Obje
   let newTarget = objectPathImmutable.assign({}, '', target)
   Object.keys(source).forEach((key) => {
     if (!Array.isArray(source[key]) && typeof source[key] === 'object') {
-
       // do nothing if else
       if (newTarget[key]) {
         // if the key is empty now, delete it whole together
@@ -37,17 +36,12 @@ export function removeObjectOverlappingKeys (target: ObjectLiteral, source: Obje
         if (deleteEmpty !== false && Object.keys(newTarget[key]).length === 0) {
           newTarget = objectPathImmutable.del(newTarget, key)
         }
-
       }
-
     } else if (nullIt) {
       newTarget[key] = null
-
     } else {
       newTarget = objectPathImmutable.del(newTarget, key)
-
     }
-
   })
 
   return newTarget
@@ -66,15 +60,12 @@ export function removeObjectOtherKeys (target: ObjectLiteral, source: ObjectLite
       if (Object.keys(strippedObject[key]).length === 0) {
         strippedObject = objectPathImmutable.del(strippedObject, key)
       }
-
     } else if (typeof target?.[key] !== 'undefined') {
       strippedObject[key] = target[key]
     }
-
   })
 
   return strippedObject
-
 }
 
 /** Draw a table to the CLI. */

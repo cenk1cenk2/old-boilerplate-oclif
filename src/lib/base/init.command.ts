@@ -32,13 +32,14 @@ export default abstract class extends Command {
 
             // if any one of them is not appended this will drop to false
             ctx.alreadyAppended = true
-            await Promise.all(this.baseFile.split('\n').map(async (line) => {
-              const testRegex = new RegExp(line.replace(/[.*!]/g, '.'), 'mig')
-              if (!testRegex.test(ctx.file)) {
-                ctx.alreadyAppended = false
-              }
-            }))
-
+            await Promise.all(
+              this.baseFile.split('\n').map(async (line) => {
+                const testRegex = new RegExp(line.replace(/[.*!]/g, '.'), 'mig')
+                if (!testRegex.test(ctx.file)) {
+                  ctx.alreadyAppended = false
+                }
+              })
+            )
           } catch {
             // file does not exists change it to non-append mode
             this.append = false
@@ -51,13 +52,14 @@ export default abstract class extends Command {
         task: async (ctx): Promise<void> => {
           this.append = false
 
-          await Promise.all(this.baseFile.split('\n').map(async (line) => {
-            if (line !== '') {
-              const testRegex = new RegExp(`${line.replace(/[.*!]/g, '.')}(\n|\r|\r\n)?`, 'mig')
-              ctx.file = ctx.file.replace(testRegex, '')
-            }
-          }))
-
+          await Promise.all(
+            this.baseFile.split('\n').map(async (line) => {
+              if (line !== '') {
+                const testRegex = new RegExp(`${line.replace(/[.*!]/g, '.')}(\n|\r|\r\n)?`, 'mig')
+                ctx.file = ctx.file.replace(testRegex, '')
+              }
+            })
+          )
         }
       },
       {

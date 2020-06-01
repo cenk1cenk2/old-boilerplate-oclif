@@ -17,10 +17,8 @@ const hook: Hook<'init'> = async (opts): Promise<void> => {
   if (!opts.id) {
     try {
       logger.warn('No specific task is defined running the default task which is to git-merge and create docker-compose file.', { custom: opts.id })
-
     } finally {
       process.exit(0)
-
     }
   }
 }
