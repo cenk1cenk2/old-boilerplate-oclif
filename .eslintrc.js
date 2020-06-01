@@ -44,10 +44,6 @@ module.exports = {
             group: 'index'
           },
           {
-            pattern: '@templates/**',
-            group: 'index'
-          },
-          {
             pattern: '@utils/**',
             group: 'index'
           }

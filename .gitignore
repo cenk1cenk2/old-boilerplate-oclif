@@ -1,5 +1,4 @@
 # CLI FILES
-
 # Compiled Output
 /node_modules
 /dist
@@ -14,6 +13,9 @@ logs
 
 # OS
 .DS_Store
+
+# tests
+coverage/
 
 # IDEs and editors
 /.idea
