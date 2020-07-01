@@ -29,11 +29,11 @@ steps:
       mode: release
       git_method: gh
       git_user_email:
-        from_secret: GITHUB_USERNAME
+        from_secret: github_username
       github_token:
-        from_secret: GITHUB_TOKEN
+        from_secret: github_token
       npm_token:
-        from_secret: NPM_TOKEN
+        from_secret: npm_token
       update_readme_toc: true
     when:
       branch:
