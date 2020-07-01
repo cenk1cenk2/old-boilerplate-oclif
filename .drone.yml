@@ -32,3 +32,6 @@ steps:
     image: node:current-alpine
     commands:
       - PACKAGE="@cenk1cenk2/boilerplate-oclif" yarn release
+    environment:
+      GH_TOKEN:
+        from_secret: GITHUB_TOKEN
