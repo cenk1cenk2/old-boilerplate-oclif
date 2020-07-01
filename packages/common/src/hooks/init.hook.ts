@@ -23,5 +23,6 @@ export function generateInitHook (options: { defaultTask?: () => Promise<void>, 
     }
   }
 
+  // testchange
   return InitHook
 }
