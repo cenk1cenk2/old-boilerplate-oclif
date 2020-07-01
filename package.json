@@ -6,7 +6,7 @@
     "ls": "lerna la",
     "bootstrap": "lerna bootstrap ${ARGS} --scope ${PACKAGE:-''} --",
     "rimraf": "rimraf node_modules && lerna clean --scope ${PACKAGE:-''} -y",
-    "release": "lerna publish --conventional-commits --create-release github",
+    "release": "lerna publish -y --conventional-commits --create-release github",
     "exec": "lerna exec --scope ${PACKAGE:-''} --stream --no-bail --parallel",
     "command": "lerna run --scope ${PACKAGE:-''} --stream --no-bail --parallel",
     "link-packages": "lerna link --force-local"
