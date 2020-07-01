@@ -1,3 +1,9 @@
 {
-  "eslint.enable": true
+  "eslint.workingDirectories": [
+    {
+      "pattern": "./packages/*/",
+      "!cwd": true
+    }
+  ],
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

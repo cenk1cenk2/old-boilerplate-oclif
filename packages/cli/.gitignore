@@ -1,10 +1,8 @@
+# CLI FILES
 # Compiled Output
 /node_modules
 /dist
-tsconfig*.tsbuildinfo*
-
-# Docker stuff
-/volumes
+/tmp
 
 # Logs
 logs
@@ -15,6 +13,9 @@ logs
 
 # OS
 .DS_Store
+
+# tests
+coverage/
 
 # IDEs and editors
 /.idea
@@ -33,7 +34,7 @@ logs
 !.vscode/extensions.json
 
 # tsbuild
-tsconfig.tsbuildinfo
+tsconfig.*tsbuildinfo
 
 # Node Package Manager
 .npm

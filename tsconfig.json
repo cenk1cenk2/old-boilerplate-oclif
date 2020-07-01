@@ -1,41 +1,25 @@
 {
   "compilerOptions": {
-    "paths": {
-      "@src/*": [ "*" ],
-      "@commands/*": ["commands/*"],
-      "@helpers/*": ["helpers/*"],
-      "@interfaces/*": [ "interfaces/*" ],
-      "@context/*": [ "interfaces/commands/*" ],
-      "@lib/*": [ "lib/*" ],
-      "@base/*": [ "lib/base/*" ],
-      "@extend/*": [ "lib/extend/*" ],
-      "@templates/*": [ "templates/*" ],
-      "@utils/*": ["utils/*"]
-    },
-    "target": "es2019",
-    "lib": [
-      "esnext"
-    ],
-    "outDir": "dist",
-    "rootDir": "src",
-    "baseUrl": "src",
-    "module": "CommonJS",
+    "target": "es2018",
+    "lib": ["ES6", "ES7", "ESNext"],
+    "module": "commonjs",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "declaration": false,
     "sourceMap": true,
     "removeComments": true,
-    "noUnusedLocals": true,
+    "noUnusedLocals": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "incremental": true,
     "strictNullChecks": false,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "downlevelIteration": true,
+    "declaration": true,
+    "composite": false,
+    "outDir": "./dist",
+    "baseUrl": "packages/",
+    "rootDir": "packages/"
   },
-  "exclude": [
-    "node_modules"
-  ],
-  "include": [
-    "src/**/*"
-  ]
+  "exclude": ["**/node_modules", "**/dist"],
+  "include": ["packages"]
 }

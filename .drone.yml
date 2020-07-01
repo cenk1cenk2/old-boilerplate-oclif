@@ -1,32 +1,34 @@
-image: node:12
+kind: pipeline
+name: default
 
-cache:
-  paths:
-    - node_modules/
+trigger:
+  branch:
+    - master
+  event:
+    - push
 
-stages:
-  - test
-  - transpile
-  - publish
+steps:
+  - name: install
+    image: node:current-alpine
+    commands:
+      - yarn --frozen-lockfile
 
-linting:
-  stage: test
-  script:
-    - yarn --frozen-lockfile
-    - yarn lint
-  tags:
-    - node
+  - name: bootstrap
+    image: node:current-alpine
+    commands:
+      - yarn bootstrap
 
-update_readme:
-  stage: transpile
-  script:
-    - yarn --frozen-lockfile
-    - yarn readme
-  artifacts:
-    paths:
-      - README.md
-    expire_in: 30 minutes
-  tags:
-    - node
-  only:
-    - tags
+  - name: lint
+    image: node:current-alpine
+    commands:
+      - yarn command lint
+
+  - name: build
+    image: node:current-alpine
+    commands:
+      - PACKAGE="@cenk1cenk2/boilerplate-oclif" yarn command build
+
+  - name: publish
+    image: node:current-alpine
+    commands:
+      - PACKAGE="@cenk1cenk2/boilerplate-oclif" yarn release
