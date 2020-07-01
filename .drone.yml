@@ -13,11 +13,6 @@ steps:
     commands:
       - yarn --frozen-lockfile
 
-  - name: bootstrap
-    image: node:current-alpine
-    commands:
-      - yarn bootstrap
-
   - name: lint
     image: node:current-alpine
     commands:
@@ -34,7 +29,7 @@ steps:
       mode: release
       git_method: gh
       git_user_email:
-        from_secret: GITHUB_EMAIL
+        from_secret: GITHUB_USERNAME
       github_token:
         from_secret: GITHUB_TOKEN
       npm_token:
