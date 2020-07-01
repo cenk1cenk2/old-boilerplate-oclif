@@ -24,9 +24,8 @@ steps:
       - PACKAGE="@cenk1cenk2/boilerplate-oclif" yarn command build
 
   - name: semantic-release
-    image: cenk1cenk2/drone-semantic-release
+    image: cenk1cenk2/drone-lerna
     settings:
-      mode: release
       git_method: gh
       git_user_email:
         from_secret: github_username
@@ -34,7 +33,6 @@ steps:
         from_secret: github_token
       npm_token:
         from_secret: npm_token
-      update_readme_toc: true
     when:
       branch:
         - master

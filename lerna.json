@@ -8,7 +8,8 @@
     "publish": {
       "registry": "https://npm.kilic.dev",
       "message": "chore(release): publish",
-      "conventionalCommits": true
+      "conventionalCommits": true,
+      "create-release": "github"
     },
     "version": {
       "allowBranch": ["master"]
