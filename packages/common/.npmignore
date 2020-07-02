@@ -1,7 +1,7 @@
-**
-
-dist/*
-!dist/*
-!CHANGELOG.md
-!package.json
-!README.md
+node_modules/
+src/
+.eslintrc.js
+.gitignore
+.npmignore
+.prettierrc
+tsconfig*

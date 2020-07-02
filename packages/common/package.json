@@ -2,7 +2,6 @@
   "name": "@cenk1cenk2/boilerplate-oclif",
   "description": "Base custom boilerplate for oclif.",
   "version": "0.0.4",
-  "private": false,
   "author": "Cenk Kilic <cenk@kilic.dev>",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
