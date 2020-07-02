@@ -29,7 +29,7 @@ steps:
       git_method: gh
       add_modules:
         - semantic-release-monorepo
-      override: PACKAGE="@cenk1cenk2/boilerplate-oclif" yarn exec --concurrency 1 -- npx --no-install semantic-release -e semantic-release-monorepo
+      override: 'PACKAGE="@cenk1cenk2/boilerplate-oclif" yarn exec --concurrency 1 -- npx --no-install semantic-release -e semantic-release-monorepo'
       git_user_email:
         from_secret: github_username
       github_token:
