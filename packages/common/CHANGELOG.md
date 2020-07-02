@@ -1,3 +1,10 @@
+# [@cenk1cenk2/boilerplate-oclif-v1.0.1](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.0.0...@cenk1cenk2/boilerplate-oclif-v1.0.1) (2020-07-02)
+
+
+### Bug Fixes
+
+* access to scoped package ([b9d9bb0](https://github.com/cenk1cenk2/boilerplate-oclif/commit/b9d9bb0cf651a4177a819498a8c1a7c4b6673b66))
+
 # @cenk1cenk2/boilerplate-oclif-v1.0.0 (2020-07-02)
 
 
