@@ -1,3 +1,15 @@
+# @cenk1cenk2/boilerplate-oclif-v1.0.0 (2020-07-02)
+
+
+### Bug Fixes
+
+* jump start ([aab4649](https://github.com/cenk1cenk2/boilerplate-oclif/commit/aab46494f534b698e9159d66aac37a064e3fc621))
+* version common package ([e42f561](https://github.com/cenk1cenk2/boilerplate-oclif/commit/e42f561270d9df8ff3abc186ee262413c3363205))
+* **build:** for testing ([c5d5df3](https://github.com/cenk1cenk2/boilerplate-oclif/commit/c5d5df327e1761e30a1e2ba252298a086d85efe6))
+* **change:** testing build ([f1c2c4d](https://github.com/cenk1cenk2/boilerplate-oclif/commit/f1c2c4de3d45ad1485b3bca93cbf30ff21cbd81f))
+* for new brownie some changes has been required ([fdf3c3d](https://github.com/cenk1cenk2/boilerplate-oclif/commit/fdf3c3d3a6fad5ceef693c9b1df5fdcd05e3e8ef))
+* update readme for trying again ([ea2f425](https://github.com/cenk1cenk2/boilerplate-oclif/commit/ea2f42531a6fe036de114761bb89b8deb73c9bd8))
+
 # Change Log
 
 All notable changes to this project will be documented in this file.
