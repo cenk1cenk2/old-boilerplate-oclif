@@ -24,9 +24,11 @@ steps:
       - PACKAGE="@cenk1cenk2/boilerplate-oclif" yarn command build
 
   - name: semantic-release
-    image: cenk1cenk2/drone-lerna
+    image: cenk1cenk2/drone-semantic-release
     settings:
       git_method: gh
+      add_modules:
+        - semantic-release-monorepo
       git_user_email:
         from_secret: github_username
       github_token:
