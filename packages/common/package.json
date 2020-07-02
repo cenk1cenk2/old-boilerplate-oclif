@@ -17,6 +17,9 @@
     "dev:start:onSuccess": "tscpaths -p tsconfig.paths.json -s ./dist -o ./dist",
     "lint": "prettier --write src/ && eslint --ext .json,.ts,.js --fix src/"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
