@@ -1,5 +1,6 @@
 {
   "name": "root",
+  "private": true,
   "repository": "https://github.com/cenk1cenk2/boilerplate-oclif",
   "scripts": {
     "ls": "lerna la",
