@@ -1,6 +1,7 @@
 **
 
-!dist/
+dist/*
+!dist/*
 !CHANGELOG.md
 !package.json
 !README.md
