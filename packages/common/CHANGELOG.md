@@ -1,3 +1,10 @@
+# [@cenk1cenk2/boilerplate-oclif-v1.0.5](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.0.4...@cenk1cenk2/boilerplate-oclif-v1.0.5) (2020-07-12)
+
+
+### Bug Fixes
+
+* **config-command:** exported remove command interface ([ff45ce5](https://github.com/cenk1cenk2/boilerplate-oclif/commit/ff45ce57f909f9a2d4f50d827336b4874b1b56e4))
+
 # [@cenk1cenk2/boilerplate-oclif-v1.0.4](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.0.3...@cenk1cenk2/boilerplate-oclif-v1.0.4) (2020-07-12)
 
 
