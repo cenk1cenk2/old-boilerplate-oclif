@@ -1,3 +1,10 @@
+# [@cenk1cenk2/boilerplate-oclif-v1.0.4](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.0.3...@cenk1cenk2/boilerplate-oclif-v1.0.4) (2020-07-12)
+
+
+### Bug Fixes
+
+* **logger:** logger formatter fix ([287eb3e](https://github.com/cenk1cenk2/boilerplate-oclif/commit/287eb3ef4262dcbf95d1083ced48bf633d8365d9))
+
 # [@cenk1cenk2/boilerplate-oclif-v1.0.3](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.0.2...@cenk1cenk2/boilerplate-oclif-v1.0.3) (2020-07-12)
 
 
