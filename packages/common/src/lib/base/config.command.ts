@@ -82,7 +82,7 @@ export abstract class ConfigBaseCommand extends BaseCommand {
       return
     }
 
-    const { keys, removeFunction } = await this.configRemove()
+    const { keys, removeFunction } = await this.configRemove(config)
 
     // check entry count in the config file
     if (keys.length === 0) {
@@ -103,7 +103,7 @@ export abstract class ConfigBaseCommand extends BaseCommand {
       return
     }
 
-    desiredConfig = await removeFunction(config)
+    desiredConfig = await removeFunction(config, userInput)
 
     // write file
     if (this.configType === 'general') {
@@ -208,5 +208,5 @@ export abstract class ConfigBaseCommand extends BaseCommand {
 
   abstract configShow(configFile: any): Promise<void>
 
-  abstract configRemove(): Promise<{ keys: string[], removeFunction: (configFile: any) => Promise<any>}>
+  abstract configRemove(configFile: any): Promise<{ keys: string[], removeFunction: (configFile: any, userInput: string[]) => Promise<any>}>
 }
