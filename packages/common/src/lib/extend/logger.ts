@@ -90,26 +90,26 @@ export class Logger {
     switch (level) {
     case logLevels.critical:
       coloring = chalk.bgRed.black
-      icon = figures.main.cross
+      icon = figures.cross
       break
     case logLevels.fail:
       coloring = chalk.red
-      icon = figures.main.cross
+      icon = figures.cross
       break
     case logLevels.warn:
       coloring = chalk.yellow
-      icon = figures.main.warning
+      icon = figures.warning
       break
     case logLevels.success:
       coloring = chalk.green
-      icon = figures.main.tick
+      icon = figures.tick
       break
     case logLevels.info:
-      icon = figures.main.pointerSmall
+      icon = figures.pointerSmall
       break
     case logLevels.module:
       coloring = chalk.green
-      icon = figures.main.pointer
+      icon = figures.pointer
       break
     case logLevels.debug:
       coloring = chalk.dim
@@ -122,7 +122,7 @@ export class Logger {
     if (level === logLevels.direct) {
       return message
     } else {
-      return coloring(`${icon} [${context.toUpperCase(), 10}] ${message}`)
+      return coloring(`${icon} [${context.toUpperCase()}] ${message}`)
     }
   }
 }
