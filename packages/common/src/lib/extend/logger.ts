@@ -1,7 +1,6 @@
 import chalk from 'chalk'
 import config from 'config'
 import figures from 'figures'
-import pad from 'pad'
 import { createLogger, format, transports } from 'winston'
 
 import { logLevels } from './logger.constants'
@@ -64,7 +63,7 @@ export class Logger {
     return createLogger({
       level: loglevel || 'module',
       silent: loglevel === 'silent',
-      format: format.combine(logFormat),
+      format: format.combine(logFormat, format.splat(), format.prettyPrint()),
       levels: Logger.levels,
       transports: [ new transports.Console() ]
     }) as ILogger
@@ -87,43 +86,43 @@ export class Logger {
     let coloring = (input: string): string => {
       return input
     }
+
     switch (level) {
     case logLevels.critical:
       coloring = chalk.bgRed.black
-      icon = figures.cross
+      icon = figures.main.cross
       break
     case logLevels.fail:
       coloring = chalk.red
-      icon = figures.cross
+      icon = figures.main.cross
       break
     case logLevels.warn:
       coloring = chalk.yellow
-      icon = figures.warning
+      icon = figures.main.warning
       break
     case logLevels.success:
       coloring = chalk.green
-      icon = figures.tick
+      icon = figures.main.tick
       break
     case logLevels.info:
-      icon = figures.pointer
+      icon = figures.main.arrowRight
       break
     case logLevels.module:
       coloring = chalk.green
-      icon = figures.arrowRight
+      icon = figures.main.pointer
       break
     case logLevels.debug:
       coloring = chalk.dim
       icon = figures.play
       break
     default:
-      icon = figures.pointer
       break
     }
 
     if (level === logLevels.direct) {
       return message
     } else {
-      return coloring(`${icon} ${pad(context.toUpperCase(), 10)} | ${message}`)
+      return coloring(`${icon} [${context.toUpperCase(), 10}] ${message}`)
     }
   }
 }

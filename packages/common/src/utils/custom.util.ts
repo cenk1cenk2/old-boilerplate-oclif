@@ -2,15 +2,13 @@ import deepmerge from 'deepmerge'
 import objectPathImmutable from 'object-path-immutable'
 import { getBorderCharacters, table } from 'table'
 
-import { ObjectLiteral } from '@interfaces/object-literal.interface'
-
 interface MergeObjectsOptions {
   array: 'overwrite' | 'merge'
 }
 
 /** Merge objects deep from overwriting the properties from source to target.
  * Does not mutate the object */
-export function mergeObjects (target: ObjectLiteral, source: ObjectLiteral, options?: MergeObjectsOptions): ObjectLiteral {
+export function mergeObjects (target: Record<string, any>, source: Record<string, any>, options?: MergeObjectsOptions): Record<string, any> {
   // array strategy
   let arrayMergeStrategy: (destinationArray, sourceArray) => any[]
   if (options?.array === 'merge') {
@@ -23,7 +21,7 @@ export function mergeObjects (target: ObjectLiteral, source: ObjectLiteral, opti
 }
 
 /** For removing overlapping keys of the source from target. **/
-export function removeObjectOverlappingKeys (target: ObjectLiteral, source: ObjectLiteral, deleteEmpty?: boolean, nullIt?: boolean): ObjectLiteral {
+export function removeObjectOverlappingKeys (target: Record<string, any>, source: Record<string, any>, deleteEmpty?: boolean, nullIt?: boolean): Record<string, any> {
   let newTarget = objectPathImmutable.assign({}, '', target)
   Object.keys(source).forEach((key) => {
     if (!Array.isArray(source[key]) && typeof source[key] === 'object') {
@@ -48,7 +46,7 @@ export function removeObjectOverlappingKeys (target: ObjectLiteral, source: Obje
 }
 
 /** For removing the non-overlapping keys. */
-export function removeObjectOtherKeys (target: ObjectLiteral, source: ObjectLiteral): ObjectLiteral {
+export function removeObjectOtherKeys (target: Record<string, any>, source: Record<string, any>): Record<string, any> {
   let strippedObject = {}
 
   Object.keys(source).forEach((key) => {

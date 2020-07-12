@@ -1,8 +1,5 @@
-import { ObjectLiteral } from '@interfaces/object-literal.interface'
-
-// TODO: extract data from path is it impossible?
 export interface ILockData extends Partial<IUnlockData> {
-  data: ObjectLiteral | string | string[]
+  data: Record<string, any> | string | string[]
   merge?: boolean
 }
 

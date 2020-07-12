@@ -1,7 +1,5 @@
-import { ObjectLiteral } from './object-literal.interface'
-
 export interface IDefaultConfig {
   local: boolean
-  config: ObjectLiteral
+  config: Record<string, any> | any[]
   path?: string
 }

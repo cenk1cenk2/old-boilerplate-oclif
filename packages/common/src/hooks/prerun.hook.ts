@@ -1,5 +1,4 @@
 import { Hook } from '@oclif/config'
-import cliCursor from 'cli-cursor'
 import os from 'os'
 import { createInterface } from 'readline'
 
@@ -21,9 +20,6 @@ export const PrerunHook: Hook<'prerun'> = async (opts) => {
   process.on('SIGINT', () => {
     // show that we have understood that
     logger.fail('Caught terminate signal.', { custom: 'exit' })
-
-    // to be sure return the clicursor from listr, this was mostly a bug
-    cliCursor.show()
 
     process.exit(127)
   })

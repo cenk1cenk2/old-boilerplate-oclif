@@ -1,6 +1,5 @@
 import { BaseCommand } from './base.command'
 import { Locker } from '@extend/locker'
-import { ObjectLiteral } from '@interfaces/object-literal.interface'
 import { mergeObjects } from '@utils/custom.util'
 import { checkExists, deleteFile, readFile } from '@utils/file-tools.util'
 import { promptUser } from '@utils/prompt.util'
@@ -83,8 +82,10 @@ export abstract class ConfigBaseCommand extends BaseCommand {
       return
     }
 
+    const { keys, removeFunction } = await this.configRemove()
+
     // check entry count in the config file
-    if (Object.keys(config).length === 0) {
+    if (keys.length === 0) {
       this.logger.fail('No entries inside the config file.')
       return
     }
@@ -93,7 +94,7 @@ export abstract class ConfigBaseCommand extends BaseCommand {
     const userInput: string[] = await promptUser({
       type: 'MultiSelect',
       message: 'Please select configuration to delete. [space to select, a to select all]',
-      choices: Object.keys(config)
+      choices: keys
     })
 
     // if nothing selected in the prompt
@@ -102,11 +103,7 @@ export abstract class ConfigBaseCommand extends BaseCommand {
       return
     }
 
-    userInput.forEach((entry) => {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars,no-unused-vars
-      const { [entry]: omit, ...rest } = desiredConfig
-      desiredConfig = rest
-    })
+    desiredConfig = await removeFunction(config)
 
     // write file
     if (this.configType === 'general') {
@@ -154,7 +151,7 @@ export abstract class ConfigBaseCommand extends BaseCommand {
 
     const importFile = await readFile(userInput.importPath)
 
-    let desiredConfig: ObjectLiteral
+    let desiredConfig: any
     if (userInput.merge) {
       desiredConfig = mergeObjects(config, importFile)
     } else {
@@ -205,9 +202,11 @@ export abstract class ConfigBaseCommand extends BaseCommand {
     this.logger.module(`Initiated local config file at "${path}".`)
   }
 
-  abstract configAdd(configFile: ObjectLiteral): Promise<ObjectLiteral>
+  abstract configAdd(configFile: any): Promise<any>
 
-  abstract configEdit(configFile: ObjectLiteral): Promise<ObjectLiteral>
+  abstract configEdit(configFile: any): Promise<any>
 
-  abstract configShow(configFile: ObjectLiteral): Promise<void>
+  abstract configShow(configFile: any): Promise<void>
+
+  abstract configRemove(): Promise<{ keys: string[], removeFunction: (configFile: any) => Promise<any>}>
 }

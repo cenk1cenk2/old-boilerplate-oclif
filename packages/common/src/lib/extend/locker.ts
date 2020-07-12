@@ -3,9 +3,7 @@ import objectPath from 'object-path'
 
 import { ILockData, IUnlockData } from './locker.interface'
 import { Logger } from '@extend/logger'
-import { ILockFile } from '@interfaces/lock-file.interface'
 import { ILogger } from '@interfaces/logger.interface'
-import { ObjectLiteral } from '@interfaces/object-literal.interface'
 import { mergeObjects } from '@utils/custom.util'
 import { checkExists, readFile, writeFile } from '@utils/file-tools.util'
 
@@ -50,7 +48,7 @@ export class Locker {
 
         // set lock
         if (lock?.merge === true) {
-          let parsedLockData: [] | ObjectLiteral
+          let parsedLockData: [] | Record<string, any>
 
           // check if array else merge as object
           if (Array.isArray(lock?.data)) {
@@ -162,7 +160,7 @@ export class Locker {
     }
   }
 
-  public async getLockFile (): Promise<ILockFile> {
+  public async getLockFile <ILockFile extends Record<string, any>> (): Promise<ILockFile> {
     const lockPath = this.getLockPath()
 
     // if not exists

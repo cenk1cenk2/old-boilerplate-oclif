@@ -8,14 +8,13 @@ import { Locker } from '@extend/locker'
 import { Logger } from '@extend/logger'
 import { IDefaultConfig } from '@interfaces/default-config.interface'
 import { ILogger } from '@interfaces/logger.interface'
-import { ObjectLiteral, ObjectLiteralString } from '@interfaces/object-literal.interface'
 import { removeObjectOtherKeys } from '@src/utils/custom.util'
 import { yamlExtensions } from '@utils/file-tools.constants'
 import { checkExists, createDirIfNotExists, readFile, writeFile } from '@utils/file-tools.util'
 
 export class BaseCommand extends Command {
   public logger: ILogger
-  public constants: ObjectLiteralString
+  public constants: Record<string, string>
   public tasks: Manager<any, 'default'>
   public shortId: string
   public locker: Locker = new Locker(this.id)
@@ -77,7 +76,7 @@ export class BaseCommand extends Command {
    * The function will find the second arguments in the first one and match them.abs
    * But the first one must be a valid set arguments because it will get parsed from the command.
    */
-  public cleanUpFlags (base: ObjectLiteral | typeof Command, from: ObjectLiteral | typeof Command): string[] {
+  public cleanUpFlags (base: Record<string, any> | typeof Command, from: Record<string, any> | typeof Command): string[] {
     if (typeof base === typeof Command) {
       base = this.parse(base).flags
     }
@@ -94,7 +93,7 @@ export class BaseCommand extends Command {
 
       // it goes crazy when setting the argument boolean, will throw a parsing error
       if (typeof value !== 'boolean' && typeof value !== 'undefined') {
-        argv.push(value)
+        argv.push(value as string)
       }
     })
 
@@ -103,7 +102,7 @@ export class BaseCommand extends Command {
 
   /** To reset local/default configuration directly from the command itself.
    * Mainly used for initiating local config from getConfig. */
-  public async resetConfig (configName: string, defaults: ObjectLiteral = {}): Promise<void> {
+  public async resetConfig (configName: string, defaults: Record<string, any> = {}): Promise<void> {
     // we expect do config file to be a yaml file
     const ext = path.extname(configName)
 

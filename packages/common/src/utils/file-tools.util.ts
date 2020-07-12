@@ -5,7 +5,6 @@ import { parse as yamlParse, stringify as convertToYaml } from 'yaml'
 
 import { jsonExtensions, yamlExtensions } from './file-tools.constants'
 import { Logger } from '@extend/logger'
-import { ObjectLiteral } from '@interfaces/object-literal.interface'
 
 const logger = Logger.prototype.getInstance('file')
 
@@ -97,7 +96,7 @@ export function getDirectoryFromPath (directory: string): string | void {
 }
 
 /** Just to read YAML or JSON files. */
-export async function readFile<T extends ObjectLiteral> (file: string): Promise<T> {
+export async function readFile<T extends Record<string, any>> (file: string): Promise<T> {
   if (!checkExists(file)) {
     throw new Error(`File:"${file}" does not exists, or insufficient permissions.`)
   }
@@ -132,7 +131,7 @@ export function readRaw (file: string): Promise<string> {
 }
 
 /** Write to a file. */
-export async function writeFile (file: string, data: string | string[] | ObjectLiteral, append = false, parse = true): Promise<void> {
+export async function writeFile (file: string, data: string | string[] | Record<string, any>, append = false, parse = true): Promise<void> {
   try {
     // parse if send as json or yaml form
     const ext = path.extname(file)
@@ -181,13 +180,13 @@ export async function deleteFile (file: string): Promise<void> {
 }
 
 /** Stringfy a object to JSON. */
-export function toJson (data: string | string[] | ObjectLiteral): string {
+export function toJson (data: string | string[] | Record<string, any>): string {
   return JSON.stringify(data, null, 2)
 }
 
 /** Parses a YAML input. */
 // these are exposed to maybe later change the yaml parser
-export function parseYaml<T extends ObjectLiteral> (data: string): T {
+export function parseYaml<T extends Record<string, any>> (data: string): T {
   try {
     return yamlParse(data)
   } catch (e) {
@@ -198,7 +197,7 @@ export function parseYaml<T extends ObjectLiteral> (data: string): T {
 }
 
 /** Stringfy a object to yaml. */
-export function toYaml (data: string | string[] | ObjectLiteral): string {
+export function toYaml (data: string | string[] | Record<string, any>): string {
   return convertToYaml(data, {})
 }
 
