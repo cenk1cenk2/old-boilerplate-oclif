@@ -1,3 +1,10 @@
+# [@cenk1cenk2/boilerplate-oclif-v1.0.6](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.0.5...@cenk1cenk2/boilerplate-oclif-v1.0.6) (2020-07-12)
+
+
+### Bug Fixes
+
+* **logger:** fixed logger not displaying context properly ([2d9af3f](https://github.com/cenk1cenk2/boilerplate-oclif/commit/2d9af3f8ee904940bb315da67fabd4ac09df4fab))
+
 # [@cenk1cenk2/boilerplate-oclif-v1.0.5](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.0.4...@cenk1cenk2/boilerplate-oclif-v1.0.5) (2020-07-12)
 
 
