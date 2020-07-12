@@ -63,7 +63,7 @@ export class Logger {
     return createLogger({
       level: loglevel || 'module',
       silent: loglevel === 'silent',
-      format: format.combine(logFormat, format.splat(), format.prettyPrint()),
+      format: format.combine(logFormat, format.splat()),
       levels: Logger.levels,
       transports: [ new transports.Console() ]
     }) as ILogger
@@ -105,7 +105,7 @@ export class Logger {
       icon = figures.main.tick
       break
     case logLevels.info:
-      icon = figures.main.arrowRight
+      icon = figures.main.pointerSmall
       break
     case logLevels.module:
       coloring = chalk.green
