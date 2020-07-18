@@ -33,8 +33,10 @@ export class BaseCommand extends Command {
     // initiate all utilities used
     this.shortId = this.id.split(':').pop()
     this.constants = config.util.toObject()
+
     this.logger = Logger.prototype.getInstance(this.shortId)
     this.message = new Message(this.logger)
+
     this.config.configDir = path.join(this.config.home, config.get('configDir'))
     // initiate manager
     this.tasks = new Manager({ renderer: this.getListrRenderer() as 'default' })
