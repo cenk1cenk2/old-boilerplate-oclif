@@ -1,3 +1,10 @@
+# [@cenk1cenk2/boilerplate-oclif-v1.0.8](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.0.7...@cenk1cenk2/boilerplate-oclif-v1.0.8) (2020-07-18)
+
+
+### Bug Fixes
+
+* added to use fancy icons with windows WT ([76d82b3](https://github.com/cenk1cenk2/boilerplate-oclif/commit/76d82b3e39a5052c983a9a2bb4680ebea3c3e54b))
+
 # [@cenk1cenk2/boilerplate-oclif-v1.0.7](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.0.6...@cenk1cenk2/boilerplate-oclif-v1.0.7) (2020-07-18)
 
 
