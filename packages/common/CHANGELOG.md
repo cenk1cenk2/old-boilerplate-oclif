@@ -1,3 +1,10 @@
+# [@cenk1cenk2/boilerplate-oclif-v1.0.7](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.0.6...@cenk1cenk2/boilerplate-oclif-v1.0.7) (2020-07-18)
+
+
+### Bug Fixes
+
+* added message queue have to readd this ([1b8097e](https://github.com/cenk1cenk2/boilerplate-oclif/commit/1b8097e2ba2e0215ccaa89ac23bd9ea24d525c16))
+
 # [@cenk1cenk2/boilerplate-oclif-v1.0.6](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.0.5...@cenk1cenk2/boilerplate-oclif-v1.0.6) (2020-07-12)
 
 
