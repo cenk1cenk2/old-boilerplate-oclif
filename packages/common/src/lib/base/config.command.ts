@@ -5,6 +5,7 @@ import { checkExists, deleteFile, readFile } from '@utils/file-tools.util'
 import { promptUser } from '@utils/prompt.util'
 
 export abstract class ConfigBaseCommand extends BaseCommand {
+  public choices: ('Show'| 'Add'| 'Remove'| 'Edit'| 'Init'| 'Import'| 'Delete')[]
   protected configLock: Locker = new Locker(this.id, 'local')
   protected abstract configName: string
   protected abstract configType: 'general' | 'local'
@@ -14,23 +15,22 @@ export abstract class ConfigBaseCommand extends BaseCommand {
   }
 
   private async generateConfigurationMenu (): Promise<void> {
-    // handle choices for different config types
-    let choices: string[]
-
-    if (this.configType === 'general') {
-      choices = [ 'Show', 'Add', 'Remove', 'Edit', 'Init', 'Import', 'Delete' ]
-    } else if (this.configType === 'local') {
-      choices = [ 'Show', 'Add', 'Remove', 'Edit', 'Import', 'Delete' ]
-    } else {
-      this.logger.critical('Config type to edit is wrong this should not have happened.')
-      process.exit(126)
+    if (!this.choices) {
+      if (this.configType === 'general') {
+        this.choices = [ 'Show', 'Add', 'Remove', 'Edit', 'Init', 'Import', 'Delete' ]
+      } else if (this.configType === 'local') {
+        this.choices = [ 'Show', 'Add', 'Remove', 'Edit', 'Import', 'Delete' ]
+      } else {
+        this.logger.critical('Config type to edit is wrong this should not have happened.')
+        process.exit(126)
+      }
     }
 
     // prompt user for the action
     const response: string = await promptUser({
       type: 'Select',
       message: 'Please select what to do with this configuration.',
-      choices
+      choices: this.choices
     })
 
     if (this[`${response.toLowerCase()}Config`]) {

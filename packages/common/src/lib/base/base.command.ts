@@ -6,6 +6,7 @@ import path from 'path'
 
 import { Locker } from '@extend/locker'
 import { Logger } from '@extend/logger'
+import { Message } from '@extend/message'
 import { IDefaultConfig } from '@interfaces/default-config.interface'
 import { ILogger } from '@interfaces/logger.interface'
 import { removeObjectOtherKeys } from '@src/utils/custom.util'
@@ -14,6 +15,7 @@ import { checkExists, createDirIfNotExists, readFile, writeFile } from '@utils/f
 
 export class BaseCommand extends Command {
   public logger: ILogger
+  public message: Message
   public constants: Record<string, string>
   public tasks: Manager<any, 'default'>
   public shortId: string
@@ -32,6 +34,7 @@ export class BaseCommand extends Command {
     this.shortId = this.id.split(':').pop()
     this.constants = config.util.toObject()
     this.logger = Logger.prototype.getInstance(this.shortId)
+    this.message = new Message(this.logger)
     this.config.configDir = path.join(this.config.home, config.get('configDir'))
     // initiate manager
     this.tasks = new Manager({ renderer: this.getListrRenderer() as 'default' })
