@@ -1,3 +1,10 @@
+# [@cenk1cenk2/boilerplate-oclif-v1.1.0](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.0.8...@cenk1cenk2/boilerplate-oclif-v1.1.0) (2020-07-21)
+
+
+### Features
+
+* **lint:** complying to new linting rules did some refactoring with the naming schemas ([c912552](https://github.com/cenk1cenk2/boilerplate-oclif/commit/c912552f6c16ae73d8f66c482564ffc63fe11129))
+
 # [@cenk1cenk2/boilerplate-oclif-v1.0.8](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.0.7...@cenk1cenk2/boilerplate-oclif-v1.0.8) (2020-07-18)
 
 
