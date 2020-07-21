@@ -4,7 +4,7 @@ import { createInterface } from 'readline'
 
 import { Logger } from '@extend/logger'
 
-export const PrerunHook: Hook<'prerun'> = async (opts) => {
+export const prerunHook: Hook<'prerun'> = async (opts) => {
   const logger = Logger.prototype.getInstance(opts.config.name)
 
   // graceful terminate

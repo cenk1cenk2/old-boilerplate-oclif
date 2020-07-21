@@ -1,15 +1,15 @@
 import config from 'config'
 import objectPath from 'object-path'
 
-import { ILockData, IUnlockData } from './locker.interface'
+import { LockData, UnlockData } from './locker.interface'
 import { Logger } from '@extend/logger'
 import { ILogger } from '@interfaces/logger.interface'
 import { mergeObjects } from '@utils/custom.util'
 import { checkExists, readFile, writeFile } from '@utils/file-tools.util'
 
 export class Locker {
-  private toLock: ILockData[] = []
-  private toUnlock: IUnlockData[] = []
+  private toLock: LockData[] = []
+  private toUnlock: UnlockData[] = []
   private logger: ILogger
 
   constructor (private module: string, private type: 'lock' | 'local' = 'lock') {
@@ -17,7 +17,7 @@ export class Locker {
     this.logger = Logger.prototype.getInstance(this.constructor.name)
   }
 
-  public async lock (data: ILockData | ILockData[]): Promise<void> {
+  public async lock (data: LockData | LockData[]): Promise<void> {
     // cast to array
     if (!Array.isArray(data)) {
       data = [ data ]
@@ -76,7 +76,7 @@ export class Locker {
     await this.writeLockFile(currentLock)
   }
 
-  public add (data: ILockData | ILockData[]): void {
+  public add (data: LockData | LockData[]): void {
     if (Array.isArray(data)) {
       this.toLock = [ ...this.toLock, ...data ]
     } else {
@@ -84,7 +84,7 @@ export class Locker {
     }
   }
 
-  public addUnlock (data?: IUnlockData | IUnlockData[]): void {
+  public addUnlock (data?: UnlockData | UnlockData[]): void {
     if (Array.isArray(data)) {
       this.toUnlock = [ ...this.toUnlock, ...data ]
     } else {
@@ -97,7 +97,7 @@ export class Locker {
     this.toLock = []
   }
 
-  public async unlock (data?: IUnlockData | IUnlockData[]): Promise<void> {
+  public async unlock (data?: UnlockData | UnlockData[]): Promise<void> {
     // cast to array
     if (data && !Array.isArray(data)) {
       data = [ data ]
@@ -160,7 +160,7 @@ export class Locker {
     }
   }
 
-  public async getLockFile <ILockFile extends Record<string, any>> (): Promise<ILockFile> {
+  public async getLockFile<ILockFile extends Record<string, any>>(): Promise<ILockFile> {
     const lockPath = this.getLockPath()
 
     // if not exists

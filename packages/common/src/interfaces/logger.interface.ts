@@ -1,5 +1,5 @@
 import { LeveledLogMethod, Logger as Winston } from 'winston'
 
-import { logLevels } from '@lib/extend/logger.constants'
+import { LogLevels } from '@lib/extend/logger.constants'
 
-export type ILogger = Winston & Record<keyof typeof logLevels, LeveledLogMethod>
+export type ILogger = Winston & Record<keyof typeof LogLevels, LeveledLogMethod>

@@ -1,41 +1,41 @@
-import { logLevels } from './logger.constants'
-import { IMessage } from './message.interface'
+import { LogLevels } from './logger.constants'
+import { MessageQueue } from './message.interface'
 import { ILogger } from '@interfaces/logger.interface'
 
 export class Message {
   private logger: ILogger
-  private messages: IMessage[] = []
+  private messages: MessageQueue[] = []
 
   constructor (logger: ILogger) {
     this.logger = logger
   }
 
   public direct (message: any): void {
-    this.messages.push({ level: logLevels.direct, message })
+    this.messages.push({ level: LogLevels.direct, message })
   }
 
   public critical (message: any): void {
-    this.messages.push({ level: logLevels.critical, message })
+    this.messages.push({ level: LogLevels.critical, message })
   }
 
   public fail (message: any): void {
-    this.messages.push({ level: logLevels.fail, message })
+    this.messages.push({ level: LogLevels.fail, message })
   }
 
   public warn (message: any): void {
-    this.messages.push({ level: logLevels.warn, message })
+    this.messages.push({ level: LogLevels.warn, message })
   }
 
   public success (message: any): void {
-    this.messages.push({ level: logLevels.success, message })
+    this.messages.push({ level: LogLevels.success, message })
   }
 
   public info (message: any): void {
-    this.messages.push({ level: logLevels.info, message })
+    this.messages.push({ level: LogLevels.info, message })
   }
 
   public debug (message: any): void {
-    this.messages.push({ level: logLevels.debug, message })
+    this.messages.push({ level: LogLevels.debug, message })
   }
 
   public pop (): void {

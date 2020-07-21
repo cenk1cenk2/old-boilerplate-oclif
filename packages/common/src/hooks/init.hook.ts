@@ -4,7 +4,7 @@ import config from 'config'
 import { Logger } from '@extend/logger'
 
 export function generateInitHook (options: { defaultTask?: () => Promise<void>, logo: (version: string) => string }): Hook<'init'> {
-  const InitHook: Hook<'init'> = async (opts): Promise<void> => {
+  const initHook: Hook<'init'> = async (opts): Promise<void> => {
     // initiate logger
     const logger = Logger.prototype.getInstance(opts.config.name)
 
@@ -23,5 +23,5 @@ export function generateInitHook (options: { defaultTask?: () => Promise<void>, 
     }
   }
 
-  return InitHook
+  return initHook
 }

@@ -7,7 +7,7 @@ import path from 'path'
 import { Locker } from '@extend/locker'
 import { Logger } from '@extend/logger'
 import { Message } from '@extend/message'
-import { IDefaultConfig } from '@interfaces/default-config.interface'
+import { DefaultConfig } from '@interfaces/default-config.interface'
 import { ILogger } from '@interfaces/logger.interface'
 import { removeObjectOtherKeys } from '@src/utils/custom.util'
 import { yamlExtensions } from '@utils/file-tools.constants'
@@ -126,7 +126,7 @@ export class BaseCommand extends Command {
   }
 
   /** To get local/default configuration directly from the command itself. */
-  public async getConfig (configName: string, init = false): Promise<IDefaultConfig> {
+  public async getConfig (configName: string, init = false): Promise<DefaultConfig> {
     const localConfigPath = path.join(this.config.configDir, configName)
     const defaultConfigPath = path.join(this.config.root, 'config', 'defaults', configName)
 

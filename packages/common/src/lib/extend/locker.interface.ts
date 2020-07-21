@@ -1,9 +1,9 @@
-export interface ILockData extends Partial<IUnlockData> {
+export interface LockData extends Partial<UnlockData> {
   data: Record<string, any> | string | string[]
   merge?: boolean
 }
 
-export interface IUnlockData {
+export interface UnlockData {
   path: string
   enabled?: boolean
   root?: boolean

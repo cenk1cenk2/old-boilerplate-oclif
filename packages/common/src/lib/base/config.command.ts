@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { BaseCommand } from './base.command'
 import { Locker } from '@extend/locker'
 import { mergeObjects } from '@utils/custom.util'
@@ -5,7 +6,7 @@ import { checkExists, deleteFile, readFile } from '@utils/file-tools.util'
 import { promptUser } from '@utils/prompt.util'
 
 export abstract class ConfigBaseCommand extends BaseCommand {
-  public choices: ('Show'| 'Add'| 'Remove'| 'Edit'| 'Init'| 'Import'| 'Delete')[]
+  public choices: ('Show' | 'Add' | 'Remove' | 'Edit' | 'Init' | 'Import' | 'Delete')[]
   protected configLock: Locker = new Locker(this.id, 'local')
   protected abstract configName: string
   protected abstract configType: 'general' | 'local'
@@ -202,11 +203,11 @@ export abstract class ConfigBaseCommand extends BaseCommand {
     this.logger.module(`Initiated local config file at "${path}".`)
   }
 
-  abstract configAdd(configFile: any): Promise<any>
+  abstract configAdd (configFile: any): Promise<any>
 
-  abstract configEdit(configFile: any): Promise<any>
+  abstract configEdit (configFile: any): Promise<any>
 
-  abstract configShow(configFile: any): Promise<void>
+  abstract configShow (configFile: any): Promise<void>
 
-  abstract configRemove(configFile: any): Promise<{ keys: string[], removeFunction: (configFile: any, userInput: string[]) => Promise<any>}>
+  abstract configRemove (configFile: any): Promise<{ keys: string[], removeFunction: (configFile: any, userInput: string[]) => Promise<any> }>
 }

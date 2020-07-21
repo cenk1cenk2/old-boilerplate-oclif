@@ -3,7 +3,7 @@ import Help from '@oclif/plugin-help'
 
 import { Logger } from '@extend/logger'
 
-export const NotFoundHook: Hook<'command_not_found'> = async (opts) => {
+export const notFoundHook: Hook<'command_not_found'> = async (opts) => {
   const logger = Logger.prototype.getInstance(opts.config.name)
 
   // show info

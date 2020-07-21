@@ -1,5 +1,5 @@
 module.exports = {
-  'extends': [
+  extends: [
     '@cenk1cenk2/eslint-config/typescript'
   ],
   rules: {

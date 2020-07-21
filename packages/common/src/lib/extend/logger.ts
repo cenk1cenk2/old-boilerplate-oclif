@@ -3,26 +3,26 @@ import config from 'config'
 import figures from 'figures'
 import { createLogger, format, transports } from 'winston'
 
-import { logLevels } from './logger.constants'
-import { ILoggerFormat } from './logger.interface'
+import { LogLevels } from './logger.constants'
+import { LoggerFormat } from './logger.interface'
 import { ILogger } from '@interfaces/logger.interface'
 
 export class Logger {
   static readonly levels = {
-    [logLevels.silent]: 0,
-    [logLevels.direct]: 1,
-    [logLevels.critical]: 1,
-    [logLevels.fail]: 2,
-    [logLevels.warn]: 3,
-    [logLevels.success]: 4,
-    [logLevels.info]: 5,
-    [logLevels.module]: 6,
-    [logLevels.debug]: 7
+    [LogLevels.silent]: 0,
+    [LogLevels.direct]: 1,
+    [LogLevels.critical]: 1,
+    [LogLevels.fail]: 2,
+    [LogLevels.warn]: 3,
+    [LogLevels.success]: 4,
+    [LogLevels.info]: 5,
+    [LogLevels.module]: 6,
+    [LogLevels.debug]: 7
   }
 
   public log: ILogger
   public id: string
-  private figures: figures = process.platform === 'win32' && !process.env.WT_SESSION ? figures : figures.main
+  private figures = process.platform === 'win32' && !process.env.WT_SESSION ? figures : figures.main
 
   constructor (module?: string) {
     this.id = module
@@ -41,7 +41,7 @@ export class Logger {
 
   private initiateLogger (): ILogger {
     const loglevel: string = config.get('loglevel')
-    const logFormat = format.printf(({ level, message, custom }: ILoggerFormat) => {
+    const logFormat = format.printf(({ level, message, custom }: LoggerFormat) => {
       // parse multi line messages
       try {
         let multiLineMessage = message.split('\n')
@@ -70,7 +70,7 @@ export class Logger {
     }) as ILogger
   }
 
-  private logColoring ({ level, message, module, custom }: ILoggerFormat & { module?: string }): string {
+  private logColoring ({ level, message, module, custom }: LoggerFormat & { module?: string }): string {
     let context: string
     let icon: string
 
@@ -89,30 +89,30 @@ export class Logger {
     }
 
     switch (level) {
-    case logLevels.critical:
+    case LogLevels.critical:
       coloring = chalk.bgRed.black
       icon = this.figures.cross
       break
-    case logLevels.fail:
+    case LogLevels.fail:
       coloring = chalk.red
       icon = this.figures.cross
       break
-    case logLevels.warn:
+    case LogLevels.warn:
       coloring = chalk.yellow
       icon = this.figures.warning
       break
-    case logLevels.success:
+    case LogLevels.success:
       coloring = chalk.green
       icon = this.figures.tick
       break
-    case logLevels.info:
+    case LogLevels.info:
       icon = this.figures.pointerSmall
       break
-    case logLevels.module:
+    case LogLevels.module:
       coloring = chalk.green
       icon = this.figures.pointer
       break
-    case logLevels.debug:
+    case LogLevels.debug:
       coloring = chalk.dim
       icon = this.figures.play
       break
@@ -120,7 +120,7 @@ export class Logger {
       break
     }
 
-    if (level === logLevels.direct) {
+    if (level === LogLevels.direct) {
       return message
     } else {
       return coloring(`${icon} [${context.toUpperCase()}] ${message}`)
