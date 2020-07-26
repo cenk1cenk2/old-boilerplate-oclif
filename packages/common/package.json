@@ -55,7 +55,7 @@
     "listr2": ">= 2.3.2"
   },
   "devDependencies": {
-    "@cenk1cenk2/eslint-config": "^0.4.0",
+    "@cenk1cenk2/eslint-config": "^0.4.1",
     "@oclif/command": "^1.7.0",
     "@oclif/config": "^1.16.0",
     "@oclif/dev-cli": "^1.22.2",
@@ -74,14 +74,14 @@
     "husky": "^4.2.5",
     "jest": "^26.0.1",
     "lint-staged": "^10.2.7",
-    "listr2": "^2.2.0",
+    "listr2": "^2.3.4",
     "prettier": "^2.0.5",
     "ts-jest": "^26.1.0",
     "ts-node": "^8.10.2",
-    "tsc-watch": "^4.2.8",
+    "tsc-watch": "^4.2.9",
     "tsconfig-paths": "^3.9.0",
     "tscpaths": "^0.0.9",
-    "typescript": "^3.9.3"
+    "typescript": "^3.9.7"
   },
   "config": {
     "commitizen": {
