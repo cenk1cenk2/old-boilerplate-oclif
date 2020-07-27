@@ -1,3 +1,10 @@
+# [@cenk1cenk2/boilerplate-oclif-v1.1.7](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.1.6...@cenk1cenk2/boilerplate-oclif-v1.1.7) (2020-07-27)
+
+
+### Bug Fixes
+
+* **utils:** fix types for utils ([6a4f41e](https://github.com/cenk1cenk2/boilerplate-oclif/commit/6a4f41ed07fbd23bd68099a6a2e998aafd4ebdae))
+
 # [@cenk1cenk2/boilerplate-oclif-v1.1.6](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.1.5...@cenk1cenk2/boilerplate-oclif-v1.1.6) (2020-07-27)
 
 
