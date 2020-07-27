@@ -1,5 +1,5 @@
 import deepmerge from 'deepmerge'
-import objectPathImmutable from 'object-path-immutable'
+import objectPath from 'object-path-immutable'
 import { getBorderCharacters, table } from 'table'
 
 interface MergeObjectsOptions {
@@ -22,7 +22,7 @@ export function mergeObjects (target: Record<string, any>, source: Record<string
 
 /** For removing overlapping keys of the source from target. **/
 export function removeObjectOverlappingKeys (target: Record<string, any>, source: Record<string, any>, deleteEmpty?: boolean, nullIt?: boolean): Record<string, any> {
-  let newTarget = objectPathImmutable.assign({}, '', target)
+  let newTarget = objectPath.assign({}, '', target)
   Object.keys(source).forEach((key) => {
     if (!Array.isArray(source[key]) && typeof source[key] === 'object') {
       // do nothing if else
@@ -32,13 +32,13 @@ export function removeObjectOverlappingKeys (target: Record<string, any>, source
 
         // check for empty remaning object
         if (deleteEmpty !== false && Object.keys(newTarget[key]).length === 0) {
-          newTarget = objectPathImmutable.del(newTarget, key)
+          newTarget = objectPath.del(newTarget, key)
         }
       }
     } else if (nullIt) {
       newTarget[key] = null
     } else {
-      newTarget = objectPathImmutable.del(newTarget, key)
+      newTarget = objectPath.del(newTarget, key)
     }
   })
 
@@ -56,7 +56,7 @@ export function removeObjectOtherKeys (target: Record<string, any>, source: Reco
 
       // check for empty remaning object
       if (Object.keys(strippedObject[key]).length === 0) {
-        strippedObject = objectPathImmutable.del(strippedObject, key)
+        strippedObject = objectPath.del(strippedObject, key)
       }
     } else if (typeof target?.[key] !== 'undefined') {
       strippedObject[key] = target[key]

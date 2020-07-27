@@ -209,8 +209,10 @@ export abstract class ConfigBaseCommand extends BaseCommand {
 
     if (this.configType === ConfigTypes.general) {
       ({ path } = await this.getConfig(this.configName))
+
     } else if (this.configType === ConfigTypes.local || this.configType === ConfigTypes.localRoot) {
       path = this.configLock.getLockPath()
+
     }
 
     if (!path) {

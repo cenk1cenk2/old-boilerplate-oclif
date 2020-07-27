@@ -90,30 +90,30 @@ export class Logger {
     switch (level) {
     case LogLevels.fatal:
       coloring = chalk.bgRed.white
-      icon = figures.cross
+      icon = figures.main.cross
       break
     case LogLevels.fail:
       coloring = chalk.red
-      icon = figures.cross
+      icon = figures.main.cross
       break
     case LogLevels.warn:
       coloring = chalk.yellow
-      icon = figures.warning
+      icon = figures.main.warning
       break
     case LogLevels.success:
       coloring = chalk.green
-      icon = figures.tick
+      icon = figures.main.tick
       break
     case LogLevels.info:
-      icon = figures.pointerSmall
+      icon = figures.main.pointerSmall
       break
     case LogLevels.module:
       coloring = chalk.green
-      icon = figures.pointer
+      icon = figures.main.pointer
       break
     case LogLevels.debug:
       coloring = chalk.dim
-      icon = figures.play
+      icon = figures.main.play
       break
     default:
       break

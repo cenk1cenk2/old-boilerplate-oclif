@@ -1,5 +1,5 @@
 import config from 'config'
-import objectPath from 'object-path'
+import objectPath from 'object-path-immutable'
 
 import { LockData, UnlockData, LockerTypes } from './locker.interface'
 import { Logger } from '@extend/logger'
@@ -12,7 +12,7 @@ export class Locker {
   private toUnlock: UnlockData[] = []
   private logger: ILogger
 
-  constructor (private module: string, private type: LockerTypes.lock | LockerTypes.local = LockerTypes.lock, private lockFilePath?: string) {
+  constructor (private module: string, private type: LockerTypes = LockerTypes.lock, private lockFilePath?: string) {
     this.module = module
     this.logger = Logger.prototype.getInstance(this.constructor.name)
   }
@@ -23,7 +23,7 @@ export class Locker {
       data = [ data ]
     }
 
-    const currentLock = await this.getLockFile() || {}
+    let currentLock = await this.getLockFile() || {}
 
     await Promise.all(
       data.map(async (lock) => {
@@ -52,21 +52,24 @@ export class Locker {
 
           // check if array else merge as object
           if (Array.isArray(lock?.data)) {
-            const arrayLock = objectPath.get(currentLock, lockPath) || []
+            const arrayLock: any[] = objectPath.get(currentLock, lockPath) as any[] || []
             parsedLockData = [ ...arrayLock, ...lock.data ]
+
           } else if (typeof lock.data === 'object') {
             parsedLockData = mergeObjects(objectPath.get(currentLock, lockPath) || {}, lock.data)
+
           } else {
             this.logger.debug(`"${typeof lock.data}" is not mergable.`)
             parsedLockData = [ lock.data ]
+
           }
 
           // set lock data
-          objectPath.set(currentLock, lockPath, parsedLockData)
+          currentLock = objectPath.set(currentLock, lockPath, parsedLockData)
           this.logger.debug(`Merge lock: "${lockPath}"`)
         } else {
           // dont merge directly set the data
-          objectPath.set(currentLock, lockPath, lock.data)
+          currentLock = objectPath.set(currentLock, lockPath, lock.data)
           this.logger.debug(`Override lock: "${lockPath}"`)
         }
       })
@@ -104,7 +107,7 @@ export class Locker {
     }
 
     // get lock file
-    const currentLock = await this.getLockFile()
+    let currentLock = await this.getLockFile()
 
     // write data
     if (!currentLock) {
@@ -130,12 +133,12 @@ export class Locker {
           }
 
           // set unlock
-          objectPath.del(currentLock, lockPath)
+          currentLock = objectPath.del(currentLock, lockPath)
           this.logger.debug(`Unlocked: ${lockPath}`)
         })
       )
     } else {
-      objectPath.del(currentLock, this.module)
+      currentLock = objectPath.del(currentLock, this.module)
       this.logger.debug(`Unlocked module: ${this.module}`)
     }
 

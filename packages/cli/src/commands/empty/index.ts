@@ -15,5 +15,6 @@ export default class Empty extends BaseCommand {
     // const {args, flags} = this.parse(Index)
 
     this.logger.module('Hello all.')
+    this.logger.debug('secret debug message')
   }
 }
