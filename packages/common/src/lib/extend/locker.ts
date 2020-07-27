@@ -160,7 +160,7 @@ export class Locker {
       return config.get('localConfig')
 
     } else {
-      this.logger.critical('Lock type is not correct. This should not happenned.')
+      this.logger.fatal('Lock type is not correct. This should not happenned.')
       process.exit(126)
     }
   }

@@ -14,8 +14,8 @@ export class Message {
     this.messages.push({ level: LogLevels.direct, message })
   }
 
-  public critical (message: any): void {
-    this.messages.push({ level: LogLevels.critical, message })
+  public fatal (message: any): void {
+    this.messages.push({ level: LogLevels.fatal, message })
   }
 
   public fail (message: any): void {

@@ -25,7 +25,7 @@ export async function promptOverwrite (file: string): Promise<void> {
 
   // quit if overwrite permission not given
   if (!reply) {
-    logger.critical(`Permission to overwrite "${file}" has not been granted. Exiting.`)
+    logger.fatal(`Permission to overwrite "${file}" has not been granted. Exiting.`)
     process.exit(20)
   }
 }
@@ -48,7 +48,7 @@ export async function tasksOverwritePrompt (file: string, task: ListrTaskWrapper
 
   // quit if overwrite permission not given
   if (!reply) {
-    logger.critical(`Permission to overwrite "${file}" has not been granted. Exiting.`)
+    logger.fatal(`Permission to overwrite "${file}" has not been granted. Exiting.`)
     process.exit(20)
   }
 }
@@ -71,7 +71,7 @@ export async function createDirIfNotExists (directory: string): Promise<void> {
       logger.debug(`Not a valid dirpath for: ${dirPath}`)
     }
   } catch (e) {
-    logger.critical(`Unable to create non existing configuration directory at ${directory}. Please check permissions.`)
+    logger.fatal(`Unable to create non existing configuration directory at ${directory}. Please check permissions.`)
     logger.debug(e)
     process.exit(20)
   }
@@ -114,7 +114,7 @@ export async function readFile<T extends Record<string, any>> (file: string): Pr
 
     return parsedFile
   } catch {
-    logger.critical(`"${file}" is not a valid "${ext}" file.`)
+    logger.fatal(`"${file}" is not a valid "${ext}" file.`)
     process.exit(20)
   }
 }
@@ -124,7 +124,7 @@ export function readRaw (file: string): Promise<string> {
   try {
     return fs.readFile(file, 'utf-8')
   } catch (e) {
-    logger.critical(`Error reading from "${file}".`)
+    logger.fatal(`Error reading from "${file}".`)
     logger.debug(e)
     process.exit(20)
   }
@@ -158,7 +158,7 @@ export async function writeFile (file: string, data: string | string[] | Record<
       await fs.writeFile(file, data, 'utf-8')
     }
   } catch (e) {
-    logger.critical(`Unable to generate "${file}". Please check permissions if overwriting over existing one.`)
+    logger.fatal(`Unable to generate "${file}". Please check permissions if overwriting over existing one.`)
     logger.debug(e)
     process.exit(20)
   }
@@ -173,7 +173,7 @@ export async function deleteFile (file: string): Promise<void> {
       logger.info(`"${file}" not found.`)
     }
   } catch (e) {
-    logger.critical(`Error deleting file from "${file}".`)
+    logger.fatal(`Error deleting file from "${file}".`)
     logger.debug(e)
     process.exit(20)
   }
@@ -190,7 +190,7 @@ export function parseYaml<T extends Record<string, any>> (data: string): T {
   try {
     return yamlParse(data)
   } catch (e) {
-    logger.critical('Can not read yaml file.')
+    logger.fatal('Can not read yaml file.')
     logger.debug(e)
     process.exit(21)
   }

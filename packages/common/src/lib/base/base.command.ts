@@ -56,7 +56,7 @@ export class BaseCommand extends Command {
       return ctx
     } catch (e) {
       cliCursor.show()
-      this.logger.critical(e.message)
+      this.logger.fatal(e.message)
       this.logger.debug(e.stack)
       process.exit(126)
     }
@@ -70,7 +70,7 @@ export class BaseCommand extends Command {
     if (this.constants.loglevel === 'debug') {
       this.logger.debug(e.stack, { custom: 'crash' })
     } else {
-      this.logger.critical(e.message)
+      this.logger.fatal(e.message)
     }
 
     process.exit(126)
@@ -112,7 +112,7 @@ export class BaseCommand extends Command {
     const ext = path.extname(configName)
 
     if (!yamlExtensions.includes(ext)) {
-      this.logger.critical('Configuration file must be a yml file!')
+      this.logger.fatal('Configuration file must be a yml file!')
       process.exit(20)
     }
 

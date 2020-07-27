@@ -11,7 +11,7 @@ export class Logger {
   static readonly levels = {
     [LogLevels.silent]: 0,
     [LogLevels.direct]: 1,
-    [LogLevels.critical]: 1,
+    [LogLevels.fatal]: 1,
     [LogLevels.fail]: 2,
     [LogLevels.warn]: 3,
     [LogLevels.success]: 4,
@@ -88,32 +88,32 @@ export class Logger {
     }
 
     switch (level) {
-    case LogLevels.critical:
-      coloring = chalk.bgRed.black
-      icon = figures.main.cross
+    case LogLevels.fatal:
+      coloring = chalk.bgRed.white
+      icon = figures.cross
       break
     case LogLevels.fail:
       coloring = chalk.red
-      icon = figures.main.cross
+      icon = figures.cross
       break
     case LogLevels.warn:
       coloring = chalk.yellow
-      icon = figures.main.warning
+      icon = figures.warning
       break
     case LogLevels.success:
       coloring = chalk.green
-      icon = figures.main.tick
+      icon = figures.tick
       break
     case LogLevels.info:
-      icon = figures.main.pointerSmall
+      icon = figures.pointerSmall
       break
     case LogLevels.module:
       coloring = chalk.green
-      icon = figures.main.pointer
+      icon = figures.pointer
       break
     case LogLevels.debug:
       coloring = chalk.dim
-      icon = figures.main.play
+      icon = figures.play
       break
     default:
       break

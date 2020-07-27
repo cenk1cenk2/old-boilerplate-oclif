@@ -15,7 +15,7 @@ export async function promptUser<T = any> (options: PromptOptions): Promise<T> {
       }
     })
   } catch (e) {
-    logger.critical('There was a problem getting the answer of the last question. Quitting.')
+    logger.fatal('There was a problem getting the answer of the last question. Quitting.')
     logger.debug(e.trace)
     process.exit(126)
   }

@@ -15,13 +15,7 @@ export abstract class ConfigBaseCommand extends BaseCommand {
 
   public async init (): Promise<void> {
     this.configLock = new Locker(this.id, LockerTypes.local, this?.configName)
-  }
 
-  public async run (): Promise<void> {
-    await this.generateConfigurationMenu()
-  }
-
-  private async generateConfigurationMenu (): Promise<void> {
     if (!this.choices) {
       if (this.configType === ConfigTypes.general) {
         this.choices = [
@@ -45,12 +39,18 @@ export abstract class ConfigBaseCommand extends BaseCommand {
         ]
 
       } else {
-        this.logger.critical('Config type to edit is wrong this should not have happened.')
+        this.logger.fatal('Config type to edit is wrong this should not have happened.')
         process.exit(126)
 
       }
     }
+  }
 
+  public async run (): Promise<void> {
+    await this.generateConfigurationMenu()
+  }
+
+  private async generateConfigurationMenu (): Promise<void> {
     // prompt user for the action
     const response: string = await promptUser({
       type: 'Select',
@@ -61,7 +61,7 @@ export abstract class ConfigBaseCommand extends BaseCommand {
     if (this[`${response.toLowerCase()}Config`]) {
       this[`${response.toLowerCase()}Config`]()
     } else {
-      this.logger.critical('This should not have happened in config command! No valid function to execute.')
+      this.logger.fatal('This should not have happened in config command! No valid function to execute.')
     }
   }
 
