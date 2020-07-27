@@ -22,7 +22,6 @@ export class Logger {
 
   public log: ILogger
   public id: string
-  private figures = process.platform === 'win32' && !process.env.WT_SESSION ? figures : figures.main
 
   constructor (module?: string) {
     this.id = module
@@ -91,30 +90,30 @@ export class Logger {
     switch (level) {
     case LogLevels.critical:
       coloring = chalk.bgRed.black
-      icon = this.figures.cross
+      icon = figures.main.cross
       break
     case LogLevels.fail:
       coloring = chalk.red
-      icon = this.figures.cross
+      icon = figures.main.cross
       break
     case LogLevels.warn:
       coloring = chalk.yellow
-      icon = this.figures.warning
+      icon = figures.main.warning
       break
     case LogLevels.success:
       coloring = chalk.green
-      icon = this.figures.tick
+      icon = figures.main.tick
       break
     case LogLevels.info:
-      icon = this.figures.pointerSmall
+      icon = figures.main.pointerSmall
       break
     case LogLevels.module:
       coloring = chalk.green
-      icon = this.figures.pointer
+      icon = figures.main.pointer
       break
     case LogLevels.debug:
       coloring = chalk.dim
-      icon = this.figures.play
+      icon = figures.main.play
       break
     default:
       break

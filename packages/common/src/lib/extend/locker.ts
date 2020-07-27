@@ -12,7 +12,7 @@ export class Locker {
   private toUnlock: UnlockData[] = []
   private logger: ILogger
 
-  constructor (private module: string, private type: 'lock' | 'local' = 'lock') {
+  constructor (private module: string, private type: 'lock' | 'local' = 'lock', private lockFilePath?: string) {
     this.module = module
     this.logger = Logger.prototype.getInstance(this.constructor.name)
   }
@@ -152,8 +152,13 @@ export class Locker {
     // maybe will use it in multiple places, so better keep it here
     if (this.type === 'lock') {
       return config.get('lock')
+
+    } else if (this.type === 'local' && this?.lockFilePath) {
+      return this?.lockFilePath
+
     } else if (this.type === 'local') {
       return config.get('localConfig')
+
     } else {
       this.logger.critical('Lock type is not correct. This should not happenned.')
       process.exit(126)
