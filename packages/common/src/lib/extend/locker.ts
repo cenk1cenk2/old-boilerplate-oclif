@@ -1,7 +1,7 @@
 import config from 'config'
 import objectPath from 'object-path'
 
-import { LockData, UnlockData } from './locker.interface'
+import { LockData, UnlockData, LockerTypes } from './locker.interface'
 import { Logger } from '@extend/logger'
 import { ILogger } from '@interfaces/logger.interface'
 import { mergeObjects } from '@utils/custom.util'
@@ -12,7 +12,7 @@ export class Locker {
   private toUnlock: UnlockData[] = []
   private logger: ILogger
 
-  constructor (private module: string, private type: 'lock' | 'local' = 'lock', private lockFilePath?: string) {
+  constructor (private module: string, private type: LockerTypes.lock | LockerTypes.local = LockerTypes.lock, private lockFilePath?: string) {
     this.module = module
     this.logger = Logger.prototype.getInstance(this.constructor.name)
   }
@@ -150,13 +150,13 @@ export class Locker {
 
   public getLockPath (): string {
     // maybe will use it in multiple places, so better keep it here
-    if (this.type === 'lock') {
+    if (this.type === LockerTypes.lock) {
       return config.get('lock')
 
-    } else if (this.type === 'local' && this?.lockFilePath) {
+    } else if (this.type === LockerTypes.local && this?.lockFilePath) {
       return this?.lockFilePath
 
-    } else if (this.type === 'local') {
+    } else if (this.type === LockerTypes.local) {
       return config.get('localConfig')
 
     } else {

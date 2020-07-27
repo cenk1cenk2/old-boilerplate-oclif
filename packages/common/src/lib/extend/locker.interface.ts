@@ -8,3 +8,8 @@ export interface UnlockData {
   enabled?: boolean
   root?: boolean
 }
+
+export enum LockerTypes {
+  lock,
+  local
+}

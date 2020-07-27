@@ -1,17 +1,21 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { BaseCommand } from './base.command'
-import { ConfigRemove } from './config.command.interface'
+import { ConfigRemove, ConfigTypes, ConfigCommandChoices } from './config.command.interface'
 import { Locker } from '@extend/locker'
+import { LockerTypes } from '@extend/locker.interface'
 import { mergeObjects } from '@utils/custom.util'
 import { checkExists, deleteFile, readFile } from '@utils/file-tools.util'
 import { promptUser } from '@utils/prompt.util'
 
 export abstract class ConfigBaseCommand extends BaseCommand {
-  public choices: ('Show' | 'Add' | 'Remove' | 'Edit' | 'Init' | 'Import' | 'Delete')[]
-  public lockFileName: string
-  protected configLock: Locker = new Locker(this.id, 'local', this?.lockFileName)
+  public choices: (ConfigCommandChoices)[]
+  protected configLock: Locker
   protected abstract configName: string
-  protected abstract configType: 'general' | 'local' | 'local.root'
+  protected abstract configType: ConfigTypes
+
+  public async init (): Promise<void> {
+    this.configLock = new Locker(this.id, LockerTypes.local, this?.configName)
+  }
 
   public async run (): Promise<void> {
     await this.generateConfigurationMenu()
@@ -19,11 +23,26 @@ export abstract class ConfigBaseCommand extends BaseCommand {
 
   private async generateConfigurationMenu (): Promise<void> {
     if (!this.choices) {
-      if (this.configType === 'general') {
-        this.choices = [ 'Show', 'Add', 'Remove', 'Edit', 'Init', 'Import', 'Delete' ]
+      if (this.configType === ConfigTypes.general) {
+        this.choices = [
+          ConfigCommandChoices.show,
+          ConfigCommandChoices.add,
+          ConfigCommandChoices.remove,
+          ConfigCommandChoices.edit,
+          ConfigCommandChoices.init,
+          ConfigCommandChoices.import,
+          ConfigCommandChoices.delete
+        ]
 
-      } else if (this.configType === 'local' || this.configType === 'local.root') {
-        this.choices = [ 'Show', 'Add', 'Remove', 'Edit', 'Import', 'Delete' ]
+      } else if (this.configType === ConfigTypes.local || this.configType === ConfigTypes.localRoot) {
+        this.choices = [
+          ConfigCommandChoices.show,
+          ConfigCommandChoices.add,
+          ConfigCommandChoices.remove,
+          ConfigCommandChoices.edit,
+          ConfigCommandChoices.import,
+          ConfigCommandChoices.delete
+        ]
 
       } else {
         this.logger.critical('Config type to edit is wrong this should not have happened.')
@@ -52,12 +71,12 @@ export abstract class ConfigBaseCommand extends BaseCommand {
 
     const desiredConfig = await this.configAdd(config)
 
-    if (this.configType === 'general') {
+    if (this.configType === ConfigTypes.general) {
       await this.resetConfig(this.configName, desiredConfig)
 
-    } else if (this.configType === 'local' || this.configType === 'local.root') {
+    } else if (this.configType === ConfigTypes.local || this.configType === ConfigTypes.localRoot) {
       await this.configLock.lock([ {
-        data: desiredConfig, merge: true, root: this.configType === 'local.root'
+        data: desiredConfig, merge: true, root: this.configType === ConfigTypes.localRoot
       } ])
 
     }
@@ -73,11 +92,11 @@ export abstract class ConfigBaseCommand extends BaseCommand {
     }
     const editedConfig = await this.configEdit(config)
 
-    if (this.configType === 'general') {
+    if (this.configType === ConfigTypes.general) {
       await this.resetConfig(this.configName, editedConfig)
 
-    } else if (this.configType === 'local' || this.configType === 'local.root') {
-      await this.configLock.lock([ { data: editedConfig, root: this.configType === 'local.root' } ])
+    } else if (this.configType === ConfigTypes.local || this.configType === ConfigTypes.localRoot) {
+      await this.configLock.lock([ { data: editedConfig, root: this.configType === ConfigTypes.localRoot } ])
 
     }
   }
@@ -89,7 +108,7 @@ export abstract class ConfigBaseCommand extends BaseCommand {
     let desiredConfig = config
 
     // if does not have local config
-    if (!local && this.configType === 'general') {
+    if (!local && this.configType === ConfigTypes.general) {
       this.logger.fail('No local configuration file found, please initiate it first.')
       return
     }
@@ -123,11 +142,11 @@ export abstract class ConfigBaseCommand extends BaseCommand {
     desiredConfig = await removeFunction(config, userInput)
 
     // write file
-    if (this.configType === 'general') {
+    if (this.configType === ConfigTypes.general) {
       await this.resetConfig(this.configName, desiredConfig)
 
-    } else if (this.configType === 'local' || this.configType === 'local.root') {
-      await this.configLock.lock([ { data: desiredConfig, root: this.configType === 'local.root' } ])
+    } else if (this.configType === ConfigTypes.local || this.configType === ConfigTypes.localRoot) {
+      await this.configLock.lock([ { data: desiredConfig, root: this.configType === ConfigTypes.localRoot } ])
 
     }
 
@@ -139,7 +158,7 @@ export abstract class ConfigBaseCommand extends BaseCommand {
     // get configuration file
     const { local, config } = await this.getConfig(this.configName)
 
-    if (this.configType === 'general') {
+    if (this.configType === ConfigTypes.general) {
       if (!local) {
         this.logger.warn('Use add to start with predefined local configuration or reset to start with empty local configuration that is editable through menu.')
       }
@@ -178,11 +197,11 @@ export abstract class ConfigBaseCommand extends BaseCommand {
       desiredConfig = importFile
     }
 
-    if (this.configType === 'general') {
+    if (this.configType === ConfigTypes.general) {
       await this.resetConfig(this.configName, desiredConfig)
 
-    } else if (this.configType === 'local' || this.configType === 'local.root') {
-      await this.configLock.lock([ { data: desiredConfig, root: this.configType === 'local.root' } ])
+    } else if (this.configType === ConfigTypes.local || this.configType === ConfigTypes.localRoot) {
+      await this.configLock.lock([ { data: desiredConfig, root: this.configType === ConfigTypes.localRoot } ])
 
     }
     this.logger.module(`Imported configuration file from "${userInput.importPath}".`)
@@ -192,9 +211,9 @@ export abstract class ConfigBaseCommand extends BaseCommand {
   private async deleteConfig (): Promise<void> {
     let path: string
 
-    if (this.configType === 'general') {
+    if (this.configType === ConfigTypes.general) {
       ({ path } = await this.getConfig(this.configName))
-    } else if (this.configType === 'local' || this.configType === 'local.root') {
+    } else if (this.configType === ConfigTypes.local || this.configType === ConfigTypes.localRoot) {
       path = this.configLock.getLockPath()
     }
 
@@ -209,16 +228,16 @@ export abstract class ConfigBaseCommand extends BaseCommand {
 
   // @ts-ignore
   private async initConfig (): Promise<void> {
-    if (this.configType === 'general') {
+    if (this.configType === ConfigTypes.general) {
       await this.resetConfig(this.configName)
     }
 
     let path: string
 
-    if (this.configType === 'general') {
+    if (this.configType === ConfigTypes.general) {
       ({ path } = await this.getConfig(this.configName))
 
-    } else if (this.configType === 'local' || this.configType === 'local.root') {
+    } else if (this.configType === ConfigTypes.local || this.configType === ConfigTypes.localRoot) {
       path = this.configLock.getLockPath()
 
     }
