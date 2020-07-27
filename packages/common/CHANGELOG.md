@@ -1,3 +1,10 @@
+# [@cenk1cenk2/boilerplate-oclif-v1.1.6](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.1.5...@cenk1cenk2/boilerplate-oclif-v1.1.6) (2020-07-27)
+
+
+### Bug Fixes
+
+* **config-command:** fix config command ([2a334d8](https://github.com/cenk1cenk2/boilerplate-oclif/commit/2a334d88919c28b7dbfb048d9ee0d16649064a09))
+
 # [@cenk1cenk2/boilerplate-oclif-v1.1.5](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.1.4...@cenk1cenk2/boilerplate-oclif-v1.1.5) (2020-07-27)
 
 
