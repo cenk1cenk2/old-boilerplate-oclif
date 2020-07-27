@@ -94,7 +94,12 @@ export abstract class ConfigBaseCommand extends BaseCommand {
       return
     }
 
-    const { keys, removeFunction } = await this.configRemove(config)
+    const configRemove = await this.configRemove(config)
+    if (typeof configRemove === 'undefined') {
+      return
+    }
+
+    const { keys, removeFunction } = configRemove
 
     // check entry count in the config file
     if (keys.length === 0) {
