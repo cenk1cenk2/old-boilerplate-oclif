@@ -8,7 +8,7 @@ interface MergeObjectsOptions {
 
 /** Merge objects deep from overwriting the properties from source to target.
  * Does not mutate the object */
-export function mergeObjects (target: Record<string, any>, source: Record<string, any>, options?: MergeObjectsOptions): Record<string, any> {
+export function mergeObjects <T extends Record<string, any>> (target: T, source: Record<string, any>, options?: MergeObjectsOptions): T {
   // array strategy
   let arrayMergeStrategy: (destinationArray, sourceArray) => any[]
   if (options?.array === 'merge') {
@@ -17,11 +17,11 @@ export function mergeObjects (target: Record<string, any>, source: Record<string
     arrayMergeStrategy = (destinationArray, sourceArray): any[] => sourceArray
   }
 
-  return deepmerge(target, source, { arrayMerge: arrayMergeStrategy })
+  return deepmerge(target, source, { arrayMerge: arrayMergeStrategy }) as T
 }
 
 /** For removing overlapping keys of the source from target. **/
-export function removeObjectOverlappingKeys (target: Record<string, any>, source: Record<string, any>, deleteEmpty?: boolean, nullIt?: boolean): Record<string, any> {
+export function removeObjectOverlappingKeys <T extends Record<string, any>> (target: T, source: Record<string, any>, deleteEmpty?: boolean, nullIt?: boolean): T {
   let newTarget = objectPath.assign({}, '', target)
   Object.keys(source).forEach((key) => {
     if (!Array.isArray(source[key]) && typeof source[key] === 'object') {
@@ -42,11 +42,11 @@ export function removeObjectOverlappingKeys (target: Record<string, any>, source
     }
   })
 
-  return newTarget
+  return newTarget as T
 }
 
 /** For removing the non-overlapping keys. */
-export function removeObjectOtherKeys (target: Record<string, any>, source: Record<string, any>): Record<string, any> {
+export function removeObjectOtherKeys <T extends Record<string, any>> (target: T, source: Record<string, any>): T {
   let strippedObject = {}
 
   Object.keys(source).forEach((key) => {
@@ -63,7 +63,7 @@ export function removeObjectOtherKeys (target: Record<string, any>, source: Reco
     }
   })
 
-  return strippedObject
+  return strippedObject as T
 }
 
 /** Draw a table to the CLI. */
