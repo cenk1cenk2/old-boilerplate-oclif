@@ -1,3 +1,10 @@
+# [@cenk1cenk2/boilerplate-oclif-v1.1.4](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.1.3...@cenk1cenk2/boilerplate-oclif-v1.1.4) (2020-07-27)
+
+
+### Bug Fixes
+
+* trying to fix errors in brownie ([0c9a939](https://github.com/cenk1cenk2/boilerplate-oclif/commit/0c9a9390a4a8b32c605efa595396ebcb19e8d26d))
+
 # [@cenk1cenk2/boilerplate-oclif-v1.1.3](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.1.2...@cenk1cenk2/boilerplate-oclif-v1.1.3) (2020-07-27)
 
 
