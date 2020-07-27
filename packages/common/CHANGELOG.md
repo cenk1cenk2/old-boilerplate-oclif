@@ -1,3 +1,10 @@
+# [@cenk1cenk2/boilerplate-oclif-v1.1.2](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.1.1...@cenk1cenk2/boilerplate-oclif-v1.1.2) (2020-07-27)
+
+
+### Bug Fixes
+
+* **locker:** fix locker to enums, changed config name ([5731f2e](https://github.com/cenk1cenk2/boilerplate-oclif/commit/5731f2e2242850a27f11d7c6dd5c71b48e049c19))
+
 # [@cenk1cenk2/boilerplate-oclif-v1.1.1](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.1.0...@cenk1cenk2/boilerplate-oclif-v1.1.1) (2020-07-27)
 
 
