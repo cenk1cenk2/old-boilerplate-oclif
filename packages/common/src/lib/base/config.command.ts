@@ -38,10 +38,6 @@ export abstract class ConfigBaseCommand extends BaseCommand {
           ConfigCommandChoices.delete
         ]
 
-      } else {
-        this.logger.fatal('Config type to edit is wrong this should not have happened.')
-        process.exit(126)
-
       }
     }
   }

@@ -1,5 +1,4 @@
 import Command from '@oclif/command'
-import cliCursor from 'cli-cursor'
 import config from 'config'
 import { ListrRendererValue, Manager } from 'listr2'
 import path from 'path'
@@ -55,7 +54,6 @@ export class BaseCommand extends Command {
 
       return ctx
     } catch (e) {
-      cliCursor.show()
       this.logger.fatal(e.message)
       this.logger.debug(e.stack)
       process.exit(126)
@@ -65,8 +63,6 @@ export class BaseCommand extends Command {
   /** Catch any error occured during command. */
   // catch all those errors, not verbose
   public catch (e: Error): Promise<void> {
-    cliCursor.show()
-
     if (this.constants.loglevel === 'debug') {
       this.logger.debug(e.stack, { custom: 'crash' })
     } else {
