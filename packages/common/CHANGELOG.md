@@ -1,3 +1,11 @@
+# [@cenk1cenk2/boilerplate-oclif-v1.1.1](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.1.0...@cenk1cenk2/boilerplate-oclif-v1.1.1) (2020-07-27)
+
+
+### Bug Fixes
+
+* build error ([57d14d4](https://github.com/cenk1cenk2/boilerplate-oclif/commit/57d14d4fcd4846fbf71bdfa690002baeb6a4dfd1))
+* **config command:** fix local locker bug with config command ([0b96a37](https://github.com/cenk1cenk2/boilerplate-oclif/commit/0b96a37ebeb08bd813012e1db5786b3547ebccbf))
+
 # [@cenk1cenk2/boilerplate-oclif-v1.1.0](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.0.8...@cenk1cenk2/boilerplate-oclif-v1.1.0) (2020-07-21)
 
 
