@@ -17,6 +17,7 @@
     "dev:start": "yarn dev:build && TS_NODE_PROJECT='tsconfig.paths.json' tsc-watch --noClear --onSuccess \"yarn dev:start:onSuccess\"",
     "dev:start:onSuccess": "tscpaths -p tsconfig.paths.json -s ./dist -o ./dist",
     "lint": "prettier --write src/ && eslint --ext .json,.ts,.js --fix src/",
+    "lint:check": "eslint --ext .json,.ts,.js src/",
     "release": "yarn lint && yarn readme",
     "readme": "yarn oclif-dev readme",
     "oclif": "oclif $command",

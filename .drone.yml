@@ -16,7 +16,7 @@ steps:
   - name: lint
     image: node:current-alpine
     commands:
-      - yarn command lint
+      - yarn command lint:check
 
   - name: build
     image: node:current-alpine
