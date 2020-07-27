@@ -13,7 +13,7 @@ export abstract class ConfigBaseCommand extends BaseCommand {
   protected abstract configName: string
   protected abstract configType: ConfigTypes
 
-  public async init (): Promise<void> {
+  public setup (): void {
     this.configLock = new Locker(this.id, LockerTypes.local, this?.configName)
 
     if (!this.choices) {
@@ -43,6 +43,7 @@ export abstract class ConfigBaseCommand extends BaseCommand {
   }
 
   public async run (): Promise<void> {
+    this.setup()
     await this.generateConfigurationMenu()
   }
 

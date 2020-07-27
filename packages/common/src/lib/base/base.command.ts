@@ -15,7 +15,7 @@ import { checkExists, createDirIfNotExists, readFile, writeFile } from '@utils/f
 export class BaseCommand extends Command {
   public logger: ILogger
   public message: Message
-  public constants: Record<string, string>
+  public constants: Record<string, any>
   public tasks: Manager<any, 'default'>
   public shortId: string
   public locker: Locker = new Locker(this.id)
@@ -33,7 +33,7 @@ export class BaseCommand extends Command {
     this.shortId = this.id.split(':').pop()
     this.constants = config.util.toObject()
 
-    this.logger = Logger.prototype.getInstance(this.shortId)
+    this.logger = Logger.prototype.getInstance(this.id)
     this.message = new Message(this.logger)
 
     this.config.configDir = path.join(this.config.home, config.get('configDir'))
