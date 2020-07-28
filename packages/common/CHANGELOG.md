@@ -1,3 +1,10 @@
+# [@cenk1cenk2/boilerplate-oclif-v1.1.10](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.1.9...@cenk1cenk2/boilerplate-oclif-v1.1.10) (2020-07-28)
+
+
+### Bug Fixes
+
+* **logger:** logger singleton ([0f29d21](https://github.com/cenk1cenk2/boilerplate-oclif/commit/0f29d21af0b98b741bbad22b1175c95ed992ea50))
+
 # [@cenk1cenk2/boilerplate-oclif-v1.1.9](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.1.8...@cenk1cenk2/boilerplate-oclif-v1.1.9) (2020-07-28)
 
 
