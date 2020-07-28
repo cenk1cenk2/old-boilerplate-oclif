@@ -7,6 +7,8 @@ import { LogLevels } from './logger.constants'
 import { LoggerFormat } from './logger.interface'
 import { ILogger } from '@interfaces/logger.interface'
 
+let loggerInstance: Logger
+
 export class Logger {
   static readonly levels = {
     [LogLevels.silent]: 0,
@@ -31,13 +33,16 @@ export class Logger {
   }
 
   public getInstance (module?: string): ILogger {
-    if (!this.log) {
-      new Logger(module)
+    if (!loggerInstance) {
+      loggerInstance = new Logger(module)
+      loggerInstance.log.debug(`Initiated logger with level "${loggerInstance.loglevel}".`, { custom: 'logger' })
     }
 
-    this.log.debug(`Set log level to: ${this.loglevel}`)
+    if (module) {
+      loggerInstance.id = module
+    }
 
-    return this.log
+    return loggerInstance.log
   }
 
   private initiateLogger (): ILogger {
@@ -114,7 +119,7 @@ export class Logger {
       break
     case LogLevels.debug:
       coloring = chalk.dim
-      icon = figures.play
+      icon = figures.info
       break
     default:
       break
