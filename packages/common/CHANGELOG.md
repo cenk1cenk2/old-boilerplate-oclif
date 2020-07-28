@@ -1,3 +1,10 @@
+# [@cenk1cenk2/boilerplate-oclif-v1.1.8](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.1.7...@cenk1cenk2/boilerplate-oclif-v1.1.8) (2020-07-28)
+
+
+### Bug Fixes
+
+* **logger:** added tiny logger fixes ([7fcd77a](https://github.com/cenk1cenk2/boilerplate-oclif/commit/7fcd77aa29b2b3ece6f2ef709a4e625e4ac0f2ed))
+
 # [@cenk1cenk2/boilerplate-oclif-v1.1.7](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.1.6...@cenk1cenk2/boilerplate-oclif-v1.1.7) (2020-07-27)
 
 
