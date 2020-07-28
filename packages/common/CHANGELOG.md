@@ -1,3 +1,11 @@
+# [@cenk1cenk2/boilerplate-oclif-v1.1.9](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.1.8...@cenk1cenk2/boilerplate-oclif-v1.1.9) (2020-07-28)
+
+
+### Bug Fixes
+
+* **logger:** fix unnecassary initiation ([d24a856](https://github.com/cenk1cenk2/boilerplate-oclif/commit/d24a856989cae75091c755363a7da59c45df6c95))
+* **logger:** logger initiation problem ([4f8ca51](https://github.com/cenk1cenk2/boilerplate-oclif/commit/4f8ca51959cf3f1f7589c35c879a27958f66d53d))
+
 # [@cenk1cenk2/boilerplate-oclif-v1.1.8](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.1.7...@cenk1cenk2/boilerplate-oclif-v1.1.8) (2020-07-28)
 
 
