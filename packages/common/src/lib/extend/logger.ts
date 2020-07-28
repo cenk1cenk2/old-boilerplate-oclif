@@ -1,6 +1,7 @@
 import chalk from 'chalk'
 import config from 'config'
 import figures from 'figures'
+import { logLevels } from 'listr2'
 import { createLogger, format, transports } from 'winston'
 
 import { LogLevels } from './logger.constants'
@@ -22,17 +23,17 @@ export class Logger {
 
   public log: ILogger
   public id: string
-  public loglevel: string = config.get('loglevel')
+  public loglevel: LogLevels
 
   constructor (module?: string) {
     this.id = module
+    this.loglevel = config.get<LogLevels>('loglevel')
     this.log = this.initiateLogger()
   }
 
   public getInstance (module?: string): ILogger {
     if (!this.log) {
-      this.id = module
-      this.log = this.initiateLogger()
+      new Logger(module)
     }
 
     if (!this.id) {
@@ -66,8 +67,8 @@ export class Logger {
     })
 
     return createLogger({
-      level: this.loglevel || 'module',
-      silent: this.loglevel === 'silent',
+      level: this.loglevel || LogLevels.module,
+      silent: this.loglevel === LogLevels.silent,
       format: format.combine(logFormat, format.splat()),
       levels: Logger.levels,
       transports: [ new transports.Console() ]
