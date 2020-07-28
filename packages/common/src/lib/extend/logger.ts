@@ -1,7 +1,6 @@
 import chalk from 'chalk'
 import config from 'config'
 import figures from 'figures'
-import { logLevels } from 'listr2'
 import { createLogger, format, transports } from 'winston'
 
 import { LogLevels } from './logger.constants'

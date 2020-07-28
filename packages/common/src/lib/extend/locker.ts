@@ -52,16 +52,13 @@ export class Locker {
 
           // check if array else merge as object
           if (Array.isArray(lock?.data)) {
-            const arrayLock: any[] = objectPath.get(currentLock, lockPath) as any[] || []
+            const arrayLock: any[] = (objectPath.get(currentLock, lockPath) as any[]) || []
             parsedLockData = [ ...arrayLock, ...lock.data ]
-
           } else if (typeof lock.data === 'object') {
             parsedLockData = mergeObjects(objectPath.get(currentLock, lockPath) || {}, lock.data)
-
           } else {
             this.logger.debug(`"${typeof lock.data}" is not mergable.`)
             parsedLockData = [ lock.data ]
-
           }
 
           // set lock data
@@ -155,13 +152,10 @@ export class Locker {
     // maybe will use it in multiple places, so better keep it here
     if (this.type === LockerTypes.lock) {
       return config.get('lock')
-
     } else if (this.type === LockerTypes.local && this?.lockFilePath) {
       return this?.lockFilePath
-
     } else if (this.type === LockerTypes.local) {
       return config.get('localConfig')
-
     } else {
       this.logger.fatal('Lock type is not correct. This should not happenned.')
       process.exit(126)
