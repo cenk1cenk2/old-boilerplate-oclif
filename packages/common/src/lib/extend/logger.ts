@@ -36,10 +36,6 @@ export class Logger {
       new Logger(module)
     }
 
-    if (!this.id) {
-      this.id = module
-    }
-
     this.log.debug(`Set log level to: ${this.loglevel}`)
 
     return this.log
