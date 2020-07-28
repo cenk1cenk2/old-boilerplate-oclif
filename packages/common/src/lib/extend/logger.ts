@@ -22,6 +22,7 @@ export class Logger {
 
   public log: ILogger
   public id: string
+  public loglevel: string = config.get('loglevel')
 
   constructor (module?: string) {
     this.id = module
@@ -34,12 +35,16 @@ export class Logger {
       this.log = this.initiateLogger()
     }
 
-    this.id = module
+    if (!this.id) {
+      this.id = module
+    }
+
+    this.log.debug(`Set log level to: ${this.loglevel}`)
+
     return this.log
   }
 
   private initiateLogger (): ILogger {
-    const loglevel: string = config.get('loglevel')
     const logFormat = format.printf(({ level, message, custom }: LoggerFormat) => {
       // parse multi line messages
       try {
@@ -61,8 +66,8 @@ export class Logger {
     })
 
     return createLogger({
-      level: loglevel || 'module',
-      silent: loglevel === 'silent',
+      level: this.loglevel || 'module',
+      silent: this.loglevel === 'silent',
       format: format.combine(logFormat, format.splat()),
       levels: Logger.levels,
       transports: [ new transports.Console() ]
@@ -90,30 +95,30 @@ export class Logger {
     switch (level) {
     case LogLevels.fatal:
       coloring = chalk.bgRed.white
-      icon = figures.main.cross
+      icon = figures.cross
       break
     case LogLevels.fail:
       coloring = chalk.red
-      icon = figures.main.cross
+      icon = figures.cross
       break
     case LogLevels.warn:
       coloring = chalk.yellow
-      icon = figures.main.warning
+      icon = figures.warning
       break
     case LogLevels.success:
       coloring = chalk.green
-      icon = figures.main.tick
+      icon = figures.tick
       break
     case LogLevels.info:
-      icon = figures.main.pointerSmall
+      icon = figures.pointerSmall
       break
     case LogLevels.module:
       coloring = chalk.green
-      icon = figures.main.pointer
+      icon = figures.pointer
       break
     case LogLevels.debug:
       coloring = chalk.dim
-      icon = figures.main.play
+      icon = figures.play
       break
     default:
       break
