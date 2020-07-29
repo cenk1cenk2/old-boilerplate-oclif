@@ -38,13 +38,16 @@ export class BaseCommand extends Command {
 
     this.config.configDir = path.join(this.config.home, config.get('configDir'))
     // initiate manager
-    this.tasks = new Manager({ renderer: this.getListrRenderer() as 'default' })
+    this.tasks = new Manager({ renderer: this.getListrRenderer() as 'default', nonTTYRendererOptions: { logEmptyTitle: false, logTitleChange: false } })
   }
 
   /** Tasks to run before end of the command. */
   public async finally (): Promise<void> {
     // run anything in the task queue at the end
     await this.runTasks()
+
+    // pop all messages in the queue
+    this.message.pop()
   }
 
   /** Run all tasks from task manager. */
@@ -63,11 +66,8 @@ export class BaseCommand extends Command {
   /** Catch any error occured during command. */
   // catch all those errors, not verbose
   public catch (e: Error): Promise<void> {
-    if (this.constants.loglevel === 'debug') {
-      this.logger.debug(e.stack, { custom: 'crash' })
-    } else {
-      this.logger.fatal(e.message)
-    }
+    this.logger.fatal(e.message)
+    this.logger.debug(e.stack, { custom: 'crash' })
 
     process.exit(126)
   }

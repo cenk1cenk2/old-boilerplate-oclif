@@ -32,7 +32,7 @@ export async function promptOverwrite (file: string): Promise<void> {
 
 /** Prompt for overwrite inside a Listr2 task.
  *  This needs it to be wrapped around a task object since the output will be pushed through Listr2 itself. */
-export async function tasksOverwritePrompt (file: string, task: ListrTaskWrapper<any, any>): Promise<void> {
+export async function tasksOverwritePrompt (file: string, task: ListrTaskWrapper<any, any>, quit = true): Promise<void> {
   // return if file does not already exists
   if (!checkExists(file)) {
     return
@@ -48,8 +48,13 @@ export async function tasksOverwritePrompt (file: string, task: ListrTaskWrapper
 
   // quit if overwrite permission not given
   if (!reply) {
-    logger.fatal(`Permission to overwrite "${file}" has not been granted. Exiting.`)
-    process.exit(20)
+    const message = `Permission to overwrite "${file}" has not been granted.`
+    if (quit) {
+      logger.fatal(`${message} Exitting.`)
+      process.exit(20)
+    } else {
+      throw new Error(message)
+    }
   }
 }
 

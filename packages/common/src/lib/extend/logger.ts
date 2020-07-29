@@ -38,7 +38,7 @@ export class Logger {
       loggerInstance.log.debug(`Initiated logger with level "${loggerInstance.loglevel}".`, { custom: 'logger' })
     }
 
-    if (module) {
+    if (module && !loggerInstance.id) {
       loggerInstance.id = module
     }
 
@@ -128,7 +128,14 @@ export class Logger {
     if (level === LogLevels.direct) {
       return message
     } else {
-      return coloring(`${icon} [${context.toUpperCase()}] ${message}`)
+      const parsedMessage = `[${context.toUpperCase()}] ${message}`
+
+      if (level === LogLevels.debug) {
+        return `[${level}] ${parsedMessage}`
+      } else {
+        return coloring(`${icon} ${message}`)
+      }
+
     }
   }
 }
