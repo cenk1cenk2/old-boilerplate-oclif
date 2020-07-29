@@ -1,3 +1,10 @@
+# [@cenk1cenk2/boilerplate-oclif-v1.1.12](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.1.11...@cenk1cenk2/boilerplate-oclif-v1.1.12) (2020-07-29)
+
+
+### Bug Fixes
+
+* **logger:** tiny upgrade on logger to have uppercase ([8fd53e3](https://github.com/cenk1cenk2/boilerplate-oclif/commit/8fd53e356d23d342970c7457a4ac449490f28895))
+
 # [@cenk1cenk2/boilerplate-oclif-v1.1.11](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.1.10...@cenk1cenk2/boilerplate-oclif-v1.1.11) (2020-07-29)
 
 
