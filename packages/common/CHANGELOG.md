@@ -1,3 +1,10 @@
+# [@cenk1cenk2/boilerplate-oclif-v1.1.11](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.1.10...@cenk1cenk2/boilerplate-oclif-v1.1.11) (2020-07-29)
+
+
+### Bug Fixes
+
+* various little fixes with logger and sutff ([2f286a0](https://github.com/cenk1cenk2/boilerplate-oclif/commit/2f286a03561665e4e6ef55f80e28ef4020ac17d2))
+
 # [@cenk1cenk2/boilerplate-oclif-v1.1.10](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.1.9...@cenk1cenk2/boilerplate-oclif-v1.1.10) (2020-07-28)
 
 
