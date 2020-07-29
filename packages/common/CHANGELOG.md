@@ -1,3 +1,10 @@
+# [@cenk1cenk2/boilerplate-oclif-v1.1.13](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.1.12...@cenk1cenk2/boilerplate-oclif-v1.1.13) (2020-07-29)
+
+
+### Bug Fixes
+
+* **logger:** added more formatters ([e4cc48a](https://github.com/cenk1cenk2/boilerplate-oclif/commit/e4cc48ad60adbe1801f3529b642ef580f74c24b1))
+
 # [@cenk1cenk2/boilerplate-oclif-v1.1.12](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.1.11...@cenk1cenk2/boilerplate-oclif-v1.1.12) (2020-07-29)
 
 
