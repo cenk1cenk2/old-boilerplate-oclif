@@ -131,7 +131,7 @@ export class Logger {
       const parsedMessage = `[${context.toUpperCase()}] ${message}`
 
       if (level === LogLevels.debug) {
-        return `[${level}] ${parsedMessage}`
+        return `[${level.toUpperCase()}] ${parsedMessage}`
       } else {
         return coloring(`${icon} ${message}`)
       }
