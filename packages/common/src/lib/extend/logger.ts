@@ -69,7 +69,7 @@ export class Logger {
     return createLogger({
       level: this.loglevel || LogLevels.module,
       silent: this.loglevel === LogLevels.silent,
-      format: format.combine(logFormat, format.splat()),
+      format: format.combine(format.splat(), format.json({ space: 2 }), format.prettyPrint(), logFormat),
       levels: Logger.levels,
       transports: [ new transports.Console() ]
     }) as ILogger
