@@ -52,6 +52,9 @@ export class Message {
     })
   }
 
+  /** Pop all the messages waiting in the queue.
+   * Which is mostly useful while if you can not reach stdout in a process.
+   */
   public pop (): void {
     this.messages.forEach((message) => {
       this.logger[message.level](message.message, ...message?.args)
