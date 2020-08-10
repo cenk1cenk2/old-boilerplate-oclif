@@ -14,7 +14,7 @@ export class Locker {
 
   constructor (private module: string, private type: LockerTypes = LockerTypes.lock, private lockFilePath?: string) {
     this.module = module
-    this.logger = Logger.prototype.getInstance(this.constructor.name)
+    this.logger = new Logger(this.constructor.name).log
   }
 
   public async lock (data: LockData | LockData[]): Promise<void> {

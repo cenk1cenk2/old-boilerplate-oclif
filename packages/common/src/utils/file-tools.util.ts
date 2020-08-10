@@ -6,7 +6,7 @@ import { parse as yamlParse, stringify as convertToYaml } from 'yaml'
 import { jsonExtensions, yamlExtensions } from './file-tools.constants'
 import { Logger } from '@extend/logger'
 
-const logger = Logger.prototype.getInstance('file')
+const logger = new Logger('file').log
 
 /** Prompt for overwrite. */
 export async function promptOverwrite (file: string): Promise<void> {

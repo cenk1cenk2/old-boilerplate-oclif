@@ -6,7 +6,7 @@ import { Logger } from '@extend/logger'
 export function generateInitHook (options: { defaultTask?: () => Promise<void>, logo: (version: string) => string }): Hook<'init'> {
   const initHook: Hook<'init'> = async (opts): Promise<void> => {
     // initiate logger
-    const logger = Logger.prototype.getInstance(opts.config.name)
+    const logger = new Logger(opts.config.name).log
 
     // print logo
     if (config.get('loglevel') !== 'silent') {

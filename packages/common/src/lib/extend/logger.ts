@@ -7,7 +7,7 @@ import { LogLevels } from './logger.constants'
 import { LoggerFormat } from './logger.interface'
 import { ILogger } from '@interfaces/logger.interface'
 
-let loggerInstance: Logger
+let loggerInstance: ILogger
 
 export class Logger {
   static readonly levels = {
@@ -25,24 +25,22 @@ export class Logger {
   public log: ILogger
   public id: string
   public loglevel: LogLevels
+  public logcolor: boolean
 
   constructor (module?: string) {
     this.id = module
     this.loglevel = config.get<LogLevels>('loglevel')
-    this.log = this.initiateLogger()
+    this.logcolor = config.get<boolean>('logcolor')
+    this.log = this.getInstance()
   }
 
-  public getInstance (module?: string): ILogger {
+  public getInstance (): ILogger {
     if (!loggerInstance) {
-      loggerInstance = new Logger(module)
-      loggerInstance.log.debug(`Initiated logger with level "${loggerInstance.loglevel}".`, { custom: 'logger' })
+      loggerInstance = this.initiateLogger()
+      loggerInstance.debug(`Initiated logger with level "${this.loglevel}".`, { custom: 'logger' })
     }
 
-    if (module && !loggerInstance.id) {
-      loggerInstance.id = module
-    }
-
-    return loggerInstance.log
+    return loggerInstance
   }
 
   private initiateLogger (): ILogger {
@@ -130,10 +128,10 @@ export class Logger {
     } else {
       const parsedMessage = `[${context.toUpperCase()}] ${message}`
 
-      if (level === LogLevels.debug) {
+      if (this.logcolor === false) {
         return `[${level.toUpperCase()}] ${parsedMessage}`
       } else {
-        return coloring(`${icon} ${message}`)
+        return coloring(`${icon} ${parsedMessage}`)
       }
 
     }

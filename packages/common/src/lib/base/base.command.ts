@@ -33,7 +33,7 @@ export class BaseCommand extends Command {
     this.shortId = this.id.split(':').pop()
     this.constants = config.util.toObject()
 
-    this.logger = Logger.prototype.getInstance(this.id)
+    this.logger = new Logger(this.id).log
     this.message = new Message(this.logger)
 
     this.config.configDir = path.join(this.config.home, config.get('configDir'))
