@@ -10,37 +10,51 @@ export class Message {
     this.logger = logger
   }
 
-  public direct (message: any): void {
-    this.messages.push({ level: LogLevels.direct, message })
+  public direct (message: MessageQueue['message'], ...args: MessageQueue['args']): void {
+    this.messages.push({
+      level: LogLevels.direct, message, args
+    })
   }
 
-  public fatal (message: any): void {
-    this.messages.push({ level: LogLevels.fatal, message })
+  public fatal (message: MessageQueue['message'], ...args: MessageQueue['args']): void {
+    this.messages.push({
+      level: LogLevels.fatal, message, args
+    })
   }
 
-  public fail (message: any): void {
-    this.messages.push({ level: LogLevels.fail, message })
+  public fail (message: MessageQueue['message'], ...args: MessageQueue['args']): void {
+    this.messages.push({
+      level: LogLevels.fail, message, args
+    })
   }
 
-  public warn (message: any): void {
-    this.messages.push({ level: LogLevels.warn, message })
+  public warn (message: MessageQueue['message'], ...args: MessageQueue['args']): void {
+    this.messages.push({
+      level: LogLevels.warn, message, args
+    })
   }
 
-  public success (message: any): void {
-    this.messages.push({ level: LogLevels.success, message })
+  public success (message: MessageQueue['message'], ...args: MessageQueue['args']): void {
+    this.messages.push({
+      level: LogLevels.success, message, args
+    })
   }
 
-  public info (message: any): void {
-    this.messages.push({ level: LogLevels.info, message })
+  public info (message: MessageQueue['message'], ...args: MessageQueue['args']): void {
+    this.messages.push({
+      level: LogLevels.info, message, args
+    })
   }
 
-  public debug (message: any): void {
-    this.messages.push({ level: LogLevels.debug, message })
+  public debug (message: MessageQueue['message'], ...args: MessageQueue['args']): void {
+    this.messages.push({
+      level: LogLevels.debug, message, args
+    })
   }
 
   public pop (): void {
     this.messages.forEach((message) => {
-      this.logger[message.level](message.message)
+      this.logger[message.level](message.message, ...message?.args)
     })
 
     this.messages = []
