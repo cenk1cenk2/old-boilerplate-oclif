@@ -1,3 +1,10 @@
+# [@cenk1cenk2/boilerplate-oclif-v1.2.1](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.2.0...@cenk1cenk2/boilerplate-oclif-v1.2.1) (2020-08-10)
+
+
+### Bug Fixes
+
+* **base-command:** update to manager for new listr version ([e466730](https://github.com/cenk1cenk2/boilerplate-oclif/commit/e466730b3be388906170d538b9aa16dd8a6a142c))
+
 # [@cenk1cenk2/boilerplate-oclif-v1.2.0](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.1.13...@cenk1cenk2/boilerplate-oclif-v1.2.0) (2020-08-10)
 
 
