@@ -1,3 +1,15 @@
+# [@cenk1cenk2/boilerplate-oclif-v1.2.0](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.1.13...@cenk1cenk2/boilerplate-oclif-v1.2.0) (2020-08-10)
+
+
+### Bug Fixes
+
+* **deps:** update dependency tslib to ^2.0.1 ([b787201](https://github.com/cenk1cenk2/boilerplate-oclif/commit/b7872010fa14a3f9fc2e16c6fde43e7186ecc5da))
+
+
+### Features
+
+* **logger:** fixed logger initiation added log color option ([4687ce2](https://github.com/cenk1cenk2/boilerplate-oclif/commit/4687ce206e39c5abaa9af8165860d9d5c3681584))
+
 # [@cenk1cenk2/boilerplate-oclif-v1.1.13](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.1.12...@cenk1cenk2/boilerplate-oclif-v1.1.13) (2020-07-29)
 
 
