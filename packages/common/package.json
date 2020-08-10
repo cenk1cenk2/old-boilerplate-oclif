@@ -55,7 +55,7 @@
     "execa": ">= 4.0.0",
     "fs-extra": ">= 9.0.0",
     "globby": ">= 11.0.0",
-    "listr2": ">= 2.3.0"
+    "listr2": ">= 2.5.0"
   },
   "devDependencies": {
     "@cenk1cenk2/eslint-config": "^0.4.6",

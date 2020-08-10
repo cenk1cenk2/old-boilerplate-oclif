@@ -1,10 +1,11 @@
 import Command from '@oclif/command'
 import config from 'config'
-import { ListrRendererValue, Manager } from 'listr2'
+import { Manager } from 'listr2'
 import path from 'path'
 
 import { Locker } from '@extend/locker'
 import { Logger } from '@extend/logger'
+import { LogLevels } from '@extend/logger.constants'
 import { Message } from '@extend/message'
 import { DefaultConfig } from '@interfaces/default-config.interface'
 import { ILogger } from '@interfaces/logger.interface'
@@ -38,7 +39,11 @@ export class BaseCommand extends Command {
 
     this.config.configDir = path.join(this.config.home, config.get('configDir'))
     // initiate manager
-    this.tasks = new Manager({ renderer: this.getListrRenderer() as 'default', nonTTYRendererOptions: { logEmptyTitle: false, logTitleChange: false } })
+    this.tasks = new Manager({
+      rendererFallback: this.constants?.loglevel === LogLevels.debug,
+      rendererSilent: this.constants?.loglevel === LogLevels.silent,
+      nonTTYRendererOptions: { logEmptyTitle: false, logTitleChange: false }
+    })
   }
 
   /** Tasks to run before end of the command. */
@@ -157,14 +162,4 @@ export class BaseCommand extends Command {
     }
   }
 
-  /** Returns a listr renderer defending on the configuration. */
-  private getListrRenderer (): ListrRendererValue {
-    if (this.constants?.loglevel === 'silent') {
-      return 'silent'
-    } else if (this.constants?.loglevel === 'debug') {
-      return 'verbose'
-    } else {
-      return 'default'
-    }
-  }
 }
