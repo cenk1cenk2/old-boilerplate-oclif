@@ -1,3 +1,11 @@
+# [@cenk1cenk2/boilerplate-oclif-v1.2.2](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.2.1...@cenk1cenk2/boilerplate-oclif-v1.2.2) (2020-08-10)
+
+
+### Bug Fixes
+
+* **[object Object]:** fix arguments ([3c54ae8](https://github.com/cenk1cenk2/boilerplate-oclif/commit/3c54ae816a2582f3ca99d268490f47689bf514d7))
+* **message:** added jsdock ([45ffc8b](https://github.com/cenk1cenk2/boilerplate-oclif/commit/45ffc8b638f6ced3ff8da02cfaf24ef6bd55e7b7))
+
 # [@cenk1cenk2/boilerplate-oclif-v1.2.1](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.2.0...@cenk1cenk2/boilerplate-oclif-v1.2.1) (2020-08-10)
 
 
