@@ -161,5 +161,4 @@ export class BaseCommand extends Command {
       return { config: {}, local: true }
     }
   }
-
 }

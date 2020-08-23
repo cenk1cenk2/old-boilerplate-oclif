@@ -12,43 +12,57 @@ export class Message {
 
   public direct (message: MessageQueue['message'], ...args: MessageQueue['args']): void {
     this.messages.push({
-      level: LogLevels.direct, message, args
+      level: LogLevels.direct,
+      message,
+      args
     })
   }
 
   public fatal (message: MessageQueue['message'], ...args: MessageQueue['args']): void {
     this.messages.push({
-      level: LogLevels.fatal, message, args
+      level: LogLevels.fatal,
+      message,
+      args
     })
   }
 
   public fail (message: MessageQueue['message'], ...args: MessageQueue['args']): void {
     this.messages.push({
-      level: LogLevels.fail, message, args
+      level: LogLevels.fail,
+      message,
+      args
     })
   }
 
   public warn (message: MessageQueue['message'], ...args: MessageQueue['args']): void {
     this.messages.push({
-      level: LogLevels.warn, message, args
+      level: LogLevels.warn,
+      message,
+      args
     })
   }
 
   public success (message: MessageQueue['message'], ...args: MessageQueue['args']): void {
     this.messages.push({
-      level: LogLevels.success, message, args
+      level: LogLevels.success,
+      message,
+      args
     })
   }
 
   public info (message: MessageQueue['message'], ...args: MessageQueue['args']): void {
     this.messages.push({
-      level: LogLevels.info, message, args
+      level: LogLevels.info,
+      message,
+      args
     })
   }
 
   public debug (message: MessageQueue['message'], ...args: MessageQueue['args']): void {
     this.messages.push({
-      level: LogLevels.debug, message, args
+      level: LogLevels.debug,
+      message,
+      args
     })
   }
 

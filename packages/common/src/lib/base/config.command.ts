@@ -54,7 +54,7 @@ export abstract class ConfigBaseCommand extends BaseCommand {
     })
 
     if (this[`${response.toLowerCase()}Config`]) {
-      this[`${response.toLowerCase()}Config`]()
+      return this[`${response.toLowerCase()}Config`]()
     } else {
       this.logger.fatal('This should not have happened in config command! No valid function to execute.')
     }

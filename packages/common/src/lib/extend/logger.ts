@@ -133,7 +133,6 @@ export class Logger {
       } else {
         return coloring(`${icon} ${parsedMessage}`)
       }
-
     }
   }
 }

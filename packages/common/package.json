@@ -1,7 +1,7 @@
 {
   "name": "@cenk1cenk2/boilerplate-oclif",
   "description": "Base custom boilerplate for oclif.",
-  "version": "1.0.0-development",
+  "version": "1.0.0",
   "author": "Cenk Kilic <cenk@kilic.dev>",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -11,12 +11,13 @@
   "repository": "https://github.com/cenk1cenk2/boilerplate-oclif",
   "scripts": {
     "prebuild": "rimraf tsconfig*.tsbuildinfo && rimraf dist/",
-    "build": "tsc -p tsconfig.build.json && tscpaths -p tsconfig.paths.json -s ./dist -o ./dist",
-    "dev:build": "yarn prebuild && tsc -p tsconfig.json && tscpaths -p tsconfig.paths.json -s ./dist -o ./dist",
-    "dev:start": "yarn dev:build && TS_NODE_PROJECT='tsconfig.paths.json' tsc-watch --noClear --onSuccess \"yarn dev:start:onSuccess\"",
-    "dev:start:onSuccess": "tscpaths -p tsconfig.paths.json -s ./dist -o ./dist",
-    "lint": "prettier --write src/ && eslint --ext .json,.ts,.js --fix src/",
-    "lint:check": "eslint --ext .json,.ts,.js src/"
+    "build": "tsc -p tsconfig.build.json",
+    "postbuild": "tscpaths -p tsconfig.paths.json -s ./dist -o ./dist",
+    "dev:build": "yarn prebuild && tsc -p tsconfig.json && yarn postbuild",
+    "dev:start": "yarn dev:build && TS_NODE_PROJECT='tsconfig.paths.json' tsc-watch --noClear --onSuccess \"yarn postbuild\"",
+    "lint": "prettier --write src/ --loglevel warn && eslint --ext .ts,.js,.tsx,.jsx --fix src/",
+    "lint:check": "eslint --ext .ts,.js,.tsx,.jsx src/",
+    "lint:staged": "lint-staged"
   },
   "publishConfig": {
     "access": "public"
@@ -27,9 +28,12 @@
     }
   },
   "lint-staged": {
-    "src/*.{ts,js,json}": [
-      "prettier --write",
-      "eslint --ext .json,.ts,.js --fix"
+    "./*.{ts,js,tsx,jsx}": [
+      "prettier --loglevel warn --write",
+      "eslint --fix"
+    ],
+    "./*.{json,md}": [
+      "prettier --loglevel warn --write"
     ]
   },
   "engines": {
