@@ -58,6 +58,14 @@ export class Message {
     })
   }
 
+  public verbose (message: MessageQueue['message'], ...args: MessageQueue['args']): void {
+    this.messages.push({
+      level: LogLevels.verbose,
+      message,
+      args
+    })
+  }
+
   public debug (message: MessageQueue['message'], ...args: MessageQueue['args']): void {
     this.messages.push({
       level: LogLevels.debug,

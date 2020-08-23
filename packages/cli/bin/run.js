@@ -9,7 +9,7 @@ const path = require('path')
 const debug = process.argv.indexOf('--debug')
 const silent = process.argv.indexOf('--silent')
 const inspect = process.argv.indexOf('--inspect')
-const sourceMaps = process.argv.indexOf('--map')
+const sourceMaps = process.argv.indexOf('--source-map')
 const verbose = process.argv.indexOf('--verbose')
 
 // debug port
