@@ -10,6 +10,7 @@ const debug = process.argv.indexOf('--debug')
 const silent = process.argv.indexOf('--silent')
 const inspect = process.argv.indexOf('--inspect')
 const sourceMaps = process.argv.indexOf('--map')
+const verbose = process.argv.indexOf('--verbose')
 
 // debug port
 if (inspect !== -1) {
@@ -18,8 +19,12 @@ if (inspect !== -1) {
 }
 
 // log levels, with single variable instead of the config plugin
-if (debug !== -1) {
+if (verbose !== -1) {
+  process.env.LOG_LEVEL = 'verbose'
+  process.argv.splice(verbose, 1)
+}
 
+if (debug !== -1) {
   process.env.LOG_LEVEL = 'debug'
   process.argv.splice(debug, 1)
 }
