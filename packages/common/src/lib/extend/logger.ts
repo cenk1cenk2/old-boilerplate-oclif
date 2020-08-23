@@ -49,13 +49,15 @@ export class Logger {
       try {
         let multiLineMessage = message.split('\n')
         multiLineMessage = multiLineMessage.map((msg) => {
-          // format messages
-          return this.logColoring({
-            level,
-            message: msg,
-            module: this.id,
-            custom
-          })
+          if (msg.trim() !== '') {
+            // format messages
+            return this.logColoring({
+              level,
+              message: msg,
+              module: this.id,
+              custom
+            })
+          }
         })
         // join back multi line messages
         message = multiLineMessage.join('\n')
