@@ -1,3 +1,10 @@
+# [@cenk1cenk2/boilerplate-oclif-v1.2.3](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.2.2...@cenk1cenk2/boilerplate-oclif-v1.2.3) (2020-08-23)
+
+
+### Bug Fixes
+
+* **config-command:** fix message poping in config command ([4067634](https://github.com/cenk1cenk2/boilerplate-oclif/commit/40676343c2e19dad132d5386a474f81c8e258cfb))
+
 # [@cenk1cenk2/boilerplate-oclif-v1.2.2](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.2.1...@cenk1cenk2/boilerplate-oclif-v1.2.2) (2020-08-10)
 
 
