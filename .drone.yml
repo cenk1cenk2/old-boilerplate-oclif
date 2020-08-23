@@ -8,7 +8,7 @@ trigger:
     - push
 
 environment:
-  scope: '--scope "@cenk1cenk2/boilerplate-oclif"'
+  SCOPE: '--scope "@cenk1cenk2/boilerplate-oclif"'
 
 steps:
   - name: install
