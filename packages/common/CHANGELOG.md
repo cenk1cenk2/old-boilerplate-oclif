@@ -1,3 +1,10 @@
+# [@cenk1cenk2/boilerplate-oclif-v1.2.6](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.2.5...@cenk1cenk2/boilerplate-oclif-v1.2.6) (2020-08-23)
+
+
+### Bug Fixes
+
+* **message:** added verbose to message ([d9fe8d1](https://github.com/cenk1cenk2/boilerplate-oclif/commit/d9fe8d1c2d76f62310a8856c18c306475e76c699))
+
 # [@cenk1cenk2/boilerplate-oclif-v1.2.5](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.2.4...@cenk1cenk2/boilerplate-oclif-v1.2.5) (2020-08-23)
 
 
