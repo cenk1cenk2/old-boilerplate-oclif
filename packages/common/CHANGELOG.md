@@ -1,3 +1,10 @@
+# [@cenk1cenk2/boilerplate-oclif-v1.2.5](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.2.4...@cenk1cenk2/boilerplate-oclif-v1.2.5) (2020-08-23)
+
+
+### Bug Fixes
+
+* **logger:** upgrade logger to use winston singleton ([5270469](https://github.com/cenk1cenk2/boilerplate-oclif/commit/52704699a29e536ba573a751b9155f2432819e4a))
+
 # [@cenk1cenk2/boilerplate-oclif-v1.2.4](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.2.3...@cenk1cenk2/boilerplate-oclif-v1.2.4) (2020-08-23)
 
 
