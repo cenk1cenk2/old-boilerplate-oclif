@@ -134,7 +134,7 @@ export class BaseCommand extends Command {
     // return if local configuration exists
     if (checkExists(localConfigPath)) {
       const localConfig = await readFile(localConfigPath)
-      this.logger.debug('Found local configuration file.')
+      this.logger.verbose('Found local configuration file.')
 
       return {
         config: localConfig,
@@ -144,7 +144,7 @@ export class BaseCommand extends Command {
     } else if (checkExists(defaultConfigPath)) {
       // read default module configuration
       const defaultConfig = await readFile(defaultConfigPath)
-      this.logger.debug('No local configuration file found. Using the defaults.')
+      this.logger.verbose('No local configuration file found. Using the defaults.')
 
       // initiate a lock configuration if specified from the default values
       if (init) {
@@ -154,7 +154,7 @@ export class BaseCommand extends Command {
       // return module default configuration
       return { config: defaultConfig, local: false }
     } else {
-      this.logger.debug('Neither local nor default configuration exists. Initiating a new local one.')
+      this.logger.verbose('Neither local nor default configuration exists. Initiating a new local one.')
 
       await this.resetConfig(configName, {})
 

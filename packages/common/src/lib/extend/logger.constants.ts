@@ -7,5 +7,10 @@ export enum LogLevels {
   success = 'success',
   info = 'info',
   module = 'module',
+  verbose = 'verbose',
   debug = 'debug'
+}
+
+export enum LoggerConstants {
+  DEFAULT_LOGGER = 'default'
 }

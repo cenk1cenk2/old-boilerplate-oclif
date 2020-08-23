@@ -1,13 +1,11 @@
 import chalk from 'chalk'
 import config from 'config'
 import figures from 'figures'
-import { createLogger, format, transports } from 'winston'
+import winston, { format, transports } from 'winston'
 
-import { LogLevels } from './logger.constants'
+import { LoggerConstants, LogLevels } from './logger.constants'
 import { LoggerFormat } from './logger.interface'
 import { ILogger } from '@interfaces/logger.interface'
-
-let loggerInstance: ILogger
 
 export class Logger {
   static readonly levels = {
@@ -19,11 +17,12 @@ export class Logger {
     [LogLevels.success]: 4,
     [LogLevels.info]: 5,
     [LogLevels.module]: 6,
-    [LogLevels.debug]: 7
+    [LogLevels.verbose]: 7,
+    [LogLevels.debug]: 8
   }
 
   public log: ILogger
-  public id: string
+  public id?: string
   public loglevel: LogLevels
   public logcolor: boolean
 
@@ -35,15 +34,19 @@ export class Logger {
   }
 
   public getInstance (): ILogger {
-    if (!loggerInstance) {
-      loggerInstance = this.initiateLogger()
-      loggerInstance.debug(`Initiated logger with level "${this.loglevel}".`, { custom: 'logger' })
+    if (this.id ? !winston.loggers.has(this.id) : !winston.loggers.has(LoggerConstants.DEFAULT_LOGGER)) {
+      this.initiateLogger()
+
     }
 
-    return loggerInstance
+    if (this.id) {
+      return winston.loggers.get(this.id) as ILogger
+    } else {
+      return winston.loggers.get(LoggerConstants.DEFAULT_LOGGER) as ILogger
+    }
   }
 
-  private initiateLogger (): ILogger {
+  private initiateLogger (): void {
     const logFormat = format.printf(({ level, message, custom }: LoggerFormat) => {
       // parse multi line messages
       try {
@@ -54,7 +57,6 @@ export class Logger {
             return this.logColoring({
               level,
               message: msg,
-              module: this.id,
               custom
             })
           }
@@ -66,26 +68,28 @@ export class Logger {
       return message
     })
 
-    return createLogger({
+    const logger = winston.loggers.add(this.id ?? LoggerConstants.DEFAULT_LOGGER, {
       level: this.loglevel || LogLevels.module,
       silent: this.loglevel === LogLevels.silent,
       format: format.combine(format.splat(), format.json({ space: 2 }), format.prettyPrint(), logFormat),
       levels: Logger.levels,
       transports: [ new transports.Console() ]
-    }) as ILogger
+    })
+
+    if (process.env.DEBUG === '*') {
+      logger.debug(`Initiated logger with level "${this.loglevel}" with id "${this.id ?? LoggerConstants.DEFAULT_LOGGER}".`, { custom: 'logger' })
+    }
   }
 
-  private logColoring ({ level, message, module, custom }: LoggerFormat & { module?: string }): string {
+  private logColoring ({ level, message, custom }: LoggerFormat): string {
     let context: string
     let icon: string
 
     // parse context from custom or module
     if (custom) {
       context = custom
-    } else if (module) {
-      context = module
-    } else {
-      context = level
+    } else if (this.id) {
+      context = this.id
     }
 
     // do the coloring
@@ -117,8 +121,12 @@ export class Logger {
       coloring = chalk.green
       icon = figures.pointer
       break
-    case LogLevels.debug:
+    case LogLevels.verbose:
       coloring = chalk.dim
+      icon = figures.info
+      break
+    case LogLevels.debug:
+      coloring = chalk.cyan
       icon = figures.info
       break
     default:

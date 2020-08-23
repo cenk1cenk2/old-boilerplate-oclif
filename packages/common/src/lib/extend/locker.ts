@@ -57,7 +57,7 @@ export class Locker {
           } else if (typeof lock.data === 'object') {
             parsedLockData = mergeObjects(objectPath.get(currentLock, lockPath) || {}, lock.data)
           } else {
-            this.logger.debug(`"${typeof lock.data}" is not mergable.`)
+            this.logger.verbose(`"${typeof lock.data}" is not mergable.`)
             parsedLockData = [ lock.data ]
           }
 
