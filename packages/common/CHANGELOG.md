@@ -1,3 +1,10 @@
+# [@cenk1cenk2/boilerplate-oclif-v1.2.4](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.2.3...@cenk1cenk2/boilerplate-oclif-v1.2.4) (2020-08-23)
+
+
+### Bug Fixes
+
+* **logger:** add skipping empty lines ([97b0432](https://github.com/cenk1cenk2/boilerplate-oclif/commit/97b0432a33a164e60c9414b420250435bf048d7f))
+
 # [@cenk1cenk2/boilerplate-oclif-v1.2.3](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.2.2...@cenk1cenk2/boilerplate-oclif-v1.2.3) (2020-08-23)
 
 
