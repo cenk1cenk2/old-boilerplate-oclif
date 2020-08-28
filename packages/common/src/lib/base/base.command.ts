@@ -127,13 +127,13 @@ export class BaseCommand extends Command {
   }
 
   /** To get local/default configuration directly from the command itself. */
-  public async getConfig (configName: string, init = false): Promise<DefaultConfig> {
+  public async getConfig <T extends Record<string, any> | any[]> (configName: string, init = false): Promise<DefaultConfig<T>> {
     const localConfigPath = path.join(this.config.configDir, configName)
     const defaultConfigPath = path.join(this.config.root, 'config', 'defaults', configName)
 
     // return if local configuration exists
     if (checkExists(localConfigPath)) {
-      const localConfig = await readFile(localConfigPath)
+      const localConfig = await readFile<T>(localConfigPath)
       this.logger.verbose('Found local configuration file.')
 
       return {
@@ -143,7 +143,7 @@ export class BaseCommand extends Command {
       }
     } else if (checkExists(defaultConfigPath)) {
       // read default module configuration
-      const defaultConfig = await readFile(defaultConfigPath)
+      const defaultConfig = await readFile<T>(defaultConfigPath)
       this.logger.verbose('No local configuration file found. Using the defaults.')
 
       // initiate a lock configuration if specified from the default values
@@ -158,7 +158,7 @@ export class BaseCommand extends Command {
 
       await this.resetConfig(configName, {})
 
-      return { config: {}, local: true }
+      return { config: null, local: true }
     }
   }
 }

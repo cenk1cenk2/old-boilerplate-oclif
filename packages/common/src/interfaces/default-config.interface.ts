@@ -1,5 +1,5 @@
-export interface DefaultConfig {
+export interface DefaultConfig<T = Record<string, any> | any[]> {
   local: boolean
-  config: Record<string, any> | any[]
+  config: T
   path?: string
 }
