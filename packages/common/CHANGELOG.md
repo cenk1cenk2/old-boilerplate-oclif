@@ -1,3 +1,10 @@
+# [@cenk1cenk2/boilerplate-oclif-v1.2.9](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.2.8...@cenk1cenk2/boilerplate-oclif-v1.2.9) (2020-08-29)
+
+
+### Bug Fixes
+
+* **hooks:** add preliminary task ([ac475e3](https://github.com/cenk1cenk2/boilerplate-oclif/commit/ac475e31f9f0869f1790a93a67640050800efea2))
+
 # [@cenk1cenk2/boilerplate-oclif-v1.2.8](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.2.7...@cenk1cenk2/boilerplate-oclif-v1.2.8) (2020-08-29)
 
 
