@@ -1,3 +1,10 @@
+# [@cenk1cenk2/boilerplate-oclif-v1.2.10](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.2.9...@cenk1cenk2/boilerplate-oclif-v1.2.10) (2020-08-29)
+
+
+### Bug Fixes
+
+* **hook:** update hook function to have opts ([2c26a8a](https://github.com/cenk1cenk2/boilerplate-oclif/commit/2c26a8a53b38669f8757b801c674025579e078a3))
+
 # [@cenk1cenk2/boilerplate-oclif-v1.2.9](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.2.8...@cenk1cenk2/boilerplate-oclif-v1.2.9) (2020-08-29)
 
 
