@@ -46,7 +46,7 @@
     "deepmerge": "^4.2.2",
     "figures": "^3.2.0",
     "object-path-immutable": "^4.1.0",
-    "table": "^5.4.6",
+    "table": "^6.0.3",
     "tslib": "^2.0.1",
     "types": "^0.1.1",
     "winston": "^3.3.3",
