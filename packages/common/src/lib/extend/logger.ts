@@ -26,7 +26,7 @@ export class Logger {
   public loglevel: LogLevels
   public logcolor: boolean
 
-  constructor (module?: string) {
+  constructor (module?: string, public options?: winston.LoggerOptions) {
     this.id = module
     this.loglevel = config.get<LogLevels>('loglevel')
     this.logcolor = config.get<boolean>('logcolor')
@@ -73,7 +73,9 @@ export class Logger {
       silent: this.loglevel === LogLevels.silent,
       format: format.combine(format.splat(), format.json({ space: 2 }), format.prettyPrint(), logFormat),
       levels: Logger.levels,
-      transports: [ new transports.Console() ]
+      transports: [ new transports.Console({
+        stderrLevels: [ LogLevels.fail, LogLevels.fatal ]
+      }) ]
     })
 
     if (process.env.DEBUG === '*') {
