@@ -1,3 +1,10 @@
+# [@cenk1cenk2/boilerplate-oclif-v1.2.11](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.2.10...@cenk1cenk2/boilerplate-oclif-v1.2.11) (2020-09-05)
+
+
+### Bug Fixes
+
+* **deps:** update dependency table to v6 ([d4853c1](https://github.com/cenk1cenk2/boilerplate-oclif/commit/d4853c18ac1fe697e891b390915a366d162cf030))
+
 # [@cenk1cenk2/boilerplate-oclif-v1.2.10](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.2.9...@cenk1cenk2/boilerplate-oclif-v1.2.10) (2020-08-29)
 
 
