@@ -45,7 +45,7 @@
     "config": "^3.3.2",
     "deepmerge": "^4.2.2",
     "figures": "^3.2.0",
-    "object-path-immutable": "^4.1.0",
+    "object-path-immutable": "^4.1.1",
     "table": "^6.0.3",
     "tslib": "^2.0.3",
     "types": "^0.1.1",
