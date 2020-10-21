@@ -282,7 +282,7 @@
   optionalDependencies:
     "@commitlint/load" "^11.0.0"
 
-"@cenk1cenk2/eslint-config@^0.4.18":
+"@cenk1cenk2/eslint-config@^0.4.19":
   version "0.4.19"
   resolved "https://registry.yarnpkg.com/@cenk1cenk2/eslint-config/-/eslint-config-0.4.19.tgz#e348df43e703e8737f9d288deddfe97c8de1b734"
   integrity sha512-7K3JXUgEcO87VnBIEmheS++5oG5hu4I6eHe2f7TnjHTeCfNUcSnbzTvDk95FDC9LOrX+rwF2+iJ9keMJz9PAsw==
