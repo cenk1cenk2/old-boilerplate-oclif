@@ -1470,9 +1470,9 @@
     "@octokit/types" "^2.0.1"
 
 "@octokit/plugin-request-log@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@octokit/plugin-request-log/-/plugin-request-log-1.0.0.tgz#eef87a431300f6148c39a7f75f8cfeb218b2547e"
-  integrity sha512-ywoxP68aOT3zHCLgWZgwUJatiENeHE7xJzYjfz8WI0goynp96wETBF+d95b8g/uL4QmS6owPVlaxiz3wyMAzcw==
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@octokit/plugin-request-log/-/plugin-request-log-1.0.1.tgz#07e3bfeb94559a2538cdf54d435b097fba6d6fd3"
+  integrity sha512-d8vmiGAUGswxErdIGfpd0I2UHo2Cs7EaBDpFUZQ9UqYmA0s5/4XoMO4HBld73xGpCj2BvyVyQe2qd9e+/nvKwQ==
 
 "@octokit/plugin-rest-endpoint-methods@2.4.0":
   version "2.4.0"
@@ -4227,9 +4227,9 @@ git-up@^4.0.0:
     parse-url "^5.0.0"
 
 git-url-parse@^11.1.2:
-  version "11.3.0"
-  resolved "https://registry.yarnpkg.com/git-url-parse/-/git-url-parse-11.3.0.tgz#1515b4574c4eb2efda7d25cc50b29ce8beaefaae"
-  integrity sha512-i3XNa8IKmqnUqWBcdWBjOcnyZYfN3C1WRvnKI6ouFWwsXCZEnlgbwbm55ZpJ3OJMhfEP/ryFhqW8bBhej3C5Ug==
+  version "11.4.0"
+  resolved "https://registry.yarnpkg.com/git-url-parse/-/git-url-parse-11.4.0.tgz#f2bb1f2b00f05552540e95a62e31399a639a6aa6"
+  integrity sha512-KlIa5jvMYLjXMQXkqpFzobsyD/V2K5DRHl5OAf+6oDFPlPLxrGDVQlIdI63c4/Kt6kai4kALENSALlzTGST3GQ==
   dependencies:
     git-up "^4.0.0"
 
