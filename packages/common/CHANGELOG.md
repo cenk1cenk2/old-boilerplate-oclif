@@ -1,3 +1,14 @@
+# [@cenk1cenk2/boilerplate-oclif-v1.2.12](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.2.11...@cenk1cenk2/boilerplate-oclif-v1.2.12) (2020-10-26)
+
+
+### Bug Fixes
+
+* **deps:** update dependency object-path-immutable to ^4.1.1 ([e49c7b1](https://github.com/cenk1cenk2/boilerplate-oclif/commit/e49c7b1fba56deca3d1cf4ee44f24a66db4ce2b2))
+* i fixed something ([ffe2f44](https://github.com/cenk1cenk2/boilerplate-oclif/commit/ffe2f44dbb55e2e479b6d96059f550456f451f45))
+* **deps:** update dependency config to ^3.3.2 ([7dc0b81](https://github.com/cenk1cenk2/boilerplate-oclif/commit/7dc0b819c8d559541b2ba75859c1b1212272a727))
+* **deps:** update dependency tslib to ^2.0.2 ([3c785b4](https://github.com/cenk1cenk2/boilerplate-oclif/commit/3c785b48378b2d8154dba0bed740f10421fd18f5))
+* **deps:** update dependency tslib to ^2.0.3 ([c2bbed4](https://github.com/cenk1cenk2/boilerplate-oclif/commit/c2bbed4f518778c0eb882feebebff50f490136c5))
+
 # [@cenk1cenk2/boilerplate-oclif-v1.2.11](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.2.10...@cenk1cenk2/boilerplate-oclif-v1.2.11) (2020-09-05)
 
 
