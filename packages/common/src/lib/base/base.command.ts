@@ -7,16 +7,17 @@ import { Locker } from '@extend/locker'
 import { Logger } from '@extend/logger'
 import { LogLevels } from '@extend/logger.constants'
 import { Message } from '@extend/message'
+import { BaseConfig } from '@interfaces/base-config.interface'
 import { DefaultConfig } from '@interfaces/default-config.interface'
 import { ILogger } from '@interfaces/logger.interface'
 import { removeObjectOtherKeys } from '@src/utils/custom.util'
 import { yamlExtensions } from '@utils/file-tools.constants'
 import { checkExists, createDirIfNotExists, readFile, writeFile } from '@utils/file-tools.util'
 
-export class BaseCommand extends Command {
+export class BaseCommand<Config extends BaseConfig = BaseConfig> extends Command {
   public logger: ILogger
   public message: Message
-  public constants: Record<string, any>
+  public constants: Config
   public tasks: Manager<any, 'default'>
   public shortId: string
   public locker: Locker = new Locker(this.id)
@@ -44,7 +45,15 @@ export class BaseCommand extends Command {
       rendererSilent: this.constants?.loglevel === LogLevels.silent,
       nonTTYRendererOptions: { logEmptyTitle: false, logTitleChange: false }
     })
+
+    await this.construct()
   }
+
+  /**
+   * Construct the class if you dont want to extend init or constructor
+   */
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  public async construct (): Promise<void> {}
 
   /** Tasks to run before end of the command. */
   public async finally (): Promise<void> {
@@ -71,10 +80,14 @@ export class BaseCommand extends Command {
   /** Catch any error occured during command. */
   // catch all those errors, not verbose
   public catch (e: Error): Promise<void> {
+    // pop all messages in the queue
+    this.message.pop()
+
+    // log the error
     this.logger.fatal(e.message)
     this.logger.debug(e.stack, { custom: 'crash' })
 
-    process.exit(126)
+    process.exit(127)
   }
 
   /**
@@ -127,7 +140,7 @@ export class BaseCommand extends Command {
   }
 
   /** To get local/default configuration directly from the command itself. */
-  public async getConfig <T extends Record<string, any> | any[]> (configName: string, init = false): Promise<DefaultConfig<T>> {
+  public async getConfig<T extends Record<string, any> | any[]>(configName: string, init = false): Promise<DefaultConfig<T>> {
     const localConfigPath = path.join(this.config.configDir, configName)
     const defaultConfigPath = path.join(this.config.root, 'config', 'defaults', configName)
 

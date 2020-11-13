@@ -14,5 +14,5 @@ export const notFoundHook: Hook<'command_not_found'> = async (opts) => {
   const help = new Help(opts.config)
   help.showHelp([ '--all' ])
 
-  process.exit(126)
+  process.exit(120)
 }
