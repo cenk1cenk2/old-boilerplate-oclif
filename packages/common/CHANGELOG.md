@@ -1,3 +1,10 @@
+# [@cenk1cenk2/boilerplate-oclif-v1.3.0](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.2.12...@cenk1cenk2/boilerplate-oclif-v1.3.0) (2020-11-13)
+
+
+### Features
+
+* extend messages config and stuff ([b6fb9bf](https://github.com/cenk1cenk2/boilerplate-oclif/commit/b6fb9bfa68bbef924c6278256c75b97f19a564ee))
+
 # [@cenk1cenk2/boilerplate-oclif-v1.2.12](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.2.11...@cenk1cenk2/boilerplate-oclif-v1.2.12) (2020-10-26)
 
 
