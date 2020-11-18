@@ -1,3 +1,10 @@
+# [@cenk1cenk2/boilerplate-oclif-v1.4.1](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.4.0...@cenk1cenk2/boilerplate-oclif-v1.4.1) (2020-11-18)
+
+
+### Bug Fixes
+
+* fix local config thingy ([8267d9b](https://github.com/cenk1cenk2/boilerplate-oclif/commit/8267d9beaf55a1c05a4f11e84e621861d0011a57))
+
 # [@cenk1cenk2/boilerplate-oclif-v1.4.0](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.3.0...@cenk1cenk2/boilerplate-oclif-v1.4.0) (2020-11-18)
 
 
