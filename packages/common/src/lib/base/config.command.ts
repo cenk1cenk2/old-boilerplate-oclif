@@ -66,7 +66,7 @@ export abstract class ConfigBaseCommand extends BaseCommand {
     if (this.configType === ConfigTypes.general) {
       ({ config } = await this.getConfig(this.configName))
     } else if (this.configType === ConfigTypes.local || this.configType === ConfigTypes.localRoot) {
-      ({ config } = await this.configLock.getLockFile())
+      config = await this.configLock.getLockFile()
     }
 
     const desiredConfig = await this.configAdd(config)
@@ -90,7 +90,7 @@ export abstract class ConfigBaseCommand extends BaseCommand {
     if (this.configType === ConfigTypes.general) {
       ({ config } = await this.getConfig(this.configName))
     } else if (this.configType === ConfigTypes.local || this.configType === ConfigTypes.localRoot) {
-      ({ config } = await this.configLock.getLockFile())
+      config = await this.configLock.getLockFile()
     }
 
     if (Object.keys(config).length === 0) {
@@ -113,7 +113,8 @@ export abstract class ConfigBaseCommand extends BaseCommand {
     if (this.configType === ConfigTypes.general) {
       ({ config, local } = await this.getConfig(this.configName))
     } else if (this.configType === ConfigTypes.local || this.configType === ConfigTypes.localRoot) {
-      ({ config, local } = await this.configLock.getLockFile())
+      config = await this.configLock.getLockFile()
+      local = true
     }
 
     // write configuration to file merge with existing one
@@ -170,7 +171,8 @@ export abstract class ConfigBaseCommand extends BaseCommand {
     if (this.configType === ConfigTypes.general) {
       ({ config, local } = await this.getConfig(this.configName))
     } else if (this.configType === ConfigTypes.local || this.configType === ConfigTypes.localRoot) {
-      ({ config, local } = await this.configLock.getLockFile())
+      config = await this.configLock.getLockFile()
+      local = true
     }
 
     if (this.configType === ConfigTypes.general) {
@@ -197,7 +199,8 @@ export abstract class ConfigBaseCommand extends BaseCommand {
     if (this.configType === ConfigTypes.general) {
       ({ config, local } = await this.getConfig(this.configName))
     } else if (this.configType === ConfigTypes.local || this.configType === ConfigTypes.localRoot) {
-      ({ config, local } = await this.configLock.getLockFile())
+      config = await this.configLock.getLockFile()
+      local = true
     }
 
     if (local && Object.keys(config)?.length > 0) {
