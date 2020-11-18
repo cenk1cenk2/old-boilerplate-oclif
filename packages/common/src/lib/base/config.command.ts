@@ -64,9 +64,9 @@ export abstract class ConfigBaseCommand extends BaseCommand {
   private async addConfig (): Promise<void> {
     let config: unknown
     if (this.configType === ConfigTypes.general) {
-      config = await this.getConfig(this.configName)
+      ({ config } = await this.getConfig(this.configName))
     } else if (this.configType === ConfigTypes.local || this.configType === ConfigTypes.localRoot) {
-      config = await this.configLock.getLockFile()
+      ({ config } = await this.configLock.getLockFile())
     }
 
     const desiredConfig = await this.configAdd(config)
@@ -88,9 +88,9 @@ export abstract class ConfigBaseCommand extends BaseCommand {
   private async editConfig (): Promise<void> {
     let config: unknown
     if (this.configType === ConfigTypes.general) {
-      config = await this.getConfig(this.configName)
+      ({ config } = await this.getConfig(this.configName))
     } else if (this.configType === ConfigTypes.local || this.configType === ConfigTypes.localRoot) {
-      config = await this.configLock.getLockFile()
+      ({ config } = await this.configLock.getLockFile())
     }
 
     if (Object.keys(config).length === 0) {
