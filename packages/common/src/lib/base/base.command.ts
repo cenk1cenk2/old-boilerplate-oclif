@@ -56,12 +56,14 @@ export class BaseCommand<Config extends BaseConfig = BaseConfig> extends Command
   public async construct (): Promise<void> {}
 
   /** Tasks to run before end of the command. */
-  public async finally (): Promise<void> {
+  public async finally<Ctx = any>(): Promise<{ ctx: Ctx }> {
     // run anything in the task queue at the end
-    await this.runTasks()
+    const ctx = await this.runTasks<Ctx>()
 
     // pop all messages in the queue
     this.message.pop()
+
+    return { ctx }
   }
 
   /** Run all tasks from task manager. */
