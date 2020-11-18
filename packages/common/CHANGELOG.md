@@ -1,3 +1,10 @@
+# [@cenk1cenk2/boilerplate-oclif-v1.4.3](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.4.2...@cenk1cenk2/boilerplate-oclif-v1.4.3) (2020-11-18)
+
+
+### Bug Fixes
+
+* fix my retardation yet again ([2262114](https://github.com/cenk1cenk2/boilerplate-oclif/commit/226211445f0f898bd133bb4ce2841464066d7e64))
+
 # [@cenk1cenk2/boilerplate-oclif-v1.4.2](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.4.1...@cenk1cenk2/boilerplate-oclif-v1.4.2) (2020-11-18)
 
 
