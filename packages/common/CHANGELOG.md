@@ -1,3 +1,10 @@
+# [@cenk1cenk2/boilerplate-oclif-v1.4.0](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.3.0...@cenk1cenk2/boilerplate-oclif-v1.4.0) (2020-11-18)
+
+
+### Features
+
+* added finally to return value for quick ends ([31f8cb3](https://github.com/cenk1cenk2/boilerplate-oclif/commit/31f8cb30d0b86c0c922aae42df14a6ccb14df308))
+
 # [@cenk1cenk2/boilerplate-oclif-v1.3.0](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.2.12...@cenk1cenk2/boilerplate-oclif-v1.3.0) (2020-11-13)
 
 
