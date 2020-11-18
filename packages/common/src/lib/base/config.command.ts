@@ -56,13 +56,18 @@ export abstract class ConfigBaseCommand extends BaseCommand {
     if (this[`${response.toLowerCase()}Config`]) {
       return this[`${response.toLowerCase()}Config`]()
     } else {
-      this.logger.fatal('This should not have happened in config command! No valid function to execute.')
+      this.logger.fatal(`This should not have happened in config command! No valid function to execute: ${response.toLowerCase()}Config`)
     }
   }
 
   // @ts-ignore
   private async addConfig (): Promise<void> {
-    const { config } = await this.getConfig(this.configName)
+    let config: unknown
+    if (this.configType === ConfigTypes.general) {
+      config = await this.getConfig(this.configName)
+    } else if (this.configType === ConfigTypes.local || this.configType === ConfigTypes.localRoot) {
+      config = await this.configLock.getLockFile()
+    }
 
     const desiredConfig = await this.configAdd(config)
 
@@ -81,7 +86,12 @@ export abstract class ConfigBaseCommand extends BaseCommand {
 
   // @ts-ignore
   private async editConfig (): Promise<void> {
-    const { config } = await this.getConfig(this.configName)
+    let config: unknown
+    if (this.configType === ConfigTypes.general) {
+      config = await this.getConfig(this.configName)
+    } else if (this.configType === ConfigTypes.local || this.configType === ConfigTypes.localRoot) {
+      config = await this.configLock.getLockFile()
+    }
 
     if (Object.keys(config).length === 0) {
       this.logger.fail('No entries inside the config file.')
@@ -98,8 +108,15 @@ export abstract class ConfigBaseCommand extends BaseCommand {
 
   // @ts-ignore
   private async removeConfig (): Promise<void> {
+    let local: boolean
+    let config: unknown
+    if (this.configType === ConfigTypes.general) {
+      ({ config, local } = await this.getConfig(this.configName))
+    } else if (this.configType === ConfigTypes.local || this.configType === ConfigTypes.localRoot) {
+      ({ config, local } = await this.configLock.getLockFile())
+    }
+
     // write configuration to file merge with existing one
-    const { local, config } = await this.getConfig(this.configName)
     let desiredConfig = config
 
     // if does not have local config
@@ -148,8 +165,13 @@ export abstract class ConfigBaseCommand extends BaseCommand {
 
   // @ts-ignore
   private async showConfig (): Promise<void> {
-    // get configuration file
-    const { local, config } = await this.getConfig(this.configName)
+    let local: boolean
+    let config: unknown
+    if (this.configType === ConfigTypes.general) {
+      ({ config, local } = await this.getConfig(this.configName))
+    } else if (this.configType === ConfigTypes.local || this.configType === ConfigTypes.localRoot) {
+      ({ config, local } = await this.configLock.getLockFile())
+    }
 
     if (this.configType === ConfigTypes.general) {
       if (!local) {
@@ -170,7 +192,13 @@ export abstract class ConfigBaseCommand extends BaseCommand {
       process.exit(21)
     }
 
-    const { local, config } = await this.getConfig(this.configName)
+    let local: boolean
+    let config: unknown
+    if (this.configType === ConfigTypes.general) {
+      ({ config, local } = await this.getConfig(this.configName))
+    } else if (this.configType === ConfigTypes.local || this.configType === ConfigTypes.localRoot) {
+      ({ config, local } = await this.configLock.getLockFile())
+    }
 
     if (local && Object.keys(config)?.length > 0) {
       userInput.merge = await promptUser({
