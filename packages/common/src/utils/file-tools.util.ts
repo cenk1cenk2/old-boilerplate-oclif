@@ -173,12 +173,30 @@ export async function writeFile (file: string, data: string | string[] | Record<
 export async function deleteFile (file: string): Promise<void> {
   try {
     if (fs.existsSync(file)) {
-      await fs.unlinkSync(file)
+      fs.unlinkSync(file)
     } else {
       logger.info(`"${file}" not found.`)
     }
   } catch (e) {
     logger.fatal(`Error deleting file from "${file}".`)
+    logger.debug(e)
+    process.exit(20)
+  }
+}
+
+/**
+ * Delete a folder
+ * @param data
+ */
+export async function deleteFolder (folder: string): Promise<void> {
+  try {
+    if (fs.existsSync(folder)) {
+      fs.emptyDirSync(folder)
+    } else {
+      logger.info(`"${folder}" not found.`)
+    }
+  } catch (e) {
+    logger.fatal(`Error deleting folder from "${folder}".`)
     logger.debug(e)
     process.exit(20)
   }
