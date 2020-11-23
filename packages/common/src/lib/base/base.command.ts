@@ -53,7 +53,7 @@ export class BaseCommand<Config extends BaseConfig = BaseConfig> extends Command
    * Construct the class if you dont want to extend init or constructor
    */
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  public async construct (): Promise<void> {}
+  public construct (): void | Promise<void> {}
 
   /** Tasks to run before end of the command. */
   public async finally<Ctx = any>(): Promise<{ ctx: Ctx }> {

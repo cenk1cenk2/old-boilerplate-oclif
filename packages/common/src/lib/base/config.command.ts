@@ -3,11 +3,12 @@ import { BaseCommand } from './base.command'
 import { ConfigRemove, ConfigTypes, ConfigCommandChoices } from './config.command.interface'
 import { Locker } from '@extend/locker'
 import { LockerTypes } from '@extend/locker.interface'
+import { BaseConfig } from '@src/interfaces'
 import { mergeObjects } from '@utils/custom.util'
 import { checkExists, deleteFile, readFile } from '@utils/file-tools.util'
 import { promptUser } from '@utils/prompt.util'
 
-export abstract class ConfigBaseCommand extends BaseCommand {
+export abstract class ConfigBaseCommand<Config extends BaseConfig = BaseConfig> extends BaseCommand<Config> {
   public choices: (ConfigCommandChoices | string)[]
   protected configLock: Locker
   protected abstract configName: string
