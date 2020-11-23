@@ -21,7 +21,7 @@ export class Locker {
     this.module = root
   }
 
-  public async lock (data: LockData | LockData[]): Promise<void> {
+  public async lock<T = Record<string, any> | string | string[]>(data: LockData<T> | LockData<T>[]): Promise<void> {
     // cast to array
     if (!Array.isArray(data)) {
       data = [ data ]
