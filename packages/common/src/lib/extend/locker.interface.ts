@@ -1,5 +1,5 @@
-export interface LockData extends Partial<UnlockData> {
-  data: Record<string, any> | string | string[]
+export interface LockData<T = Record<string, any> | string | string[]> extends Partial<UnlockData> {
+  data: T
   merge?: boolean
 }
 

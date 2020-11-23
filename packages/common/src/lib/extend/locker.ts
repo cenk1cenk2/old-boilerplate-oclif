@@ -80,7 +80,7 @@ export class Locker {
     await this.writeLockFile(currentLock)
   }
 
-  public add (data: LockData | LockData[]): void {
+  public add<T = Record<string, any> | string | string[]>(data: LockData<T> | LockData<T>[]): void {
     if (Array.isArray(data)) {
       this.toLock = [ ...this.toLock, ...data ]
     } else {
