@@ -1,3 +1,11 @@
+# [@cenk1cenk2/boilerplate-oclif-v1.4.4](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.4.3...@cenk1cenk2/boilerplate-oclif-v1.4.4) (2020-11-23)
+
+
+### Bug Fixes
+
+* added some features for brownie ([cf844d3](https://github.com/cenk1cenk2/boilerplate-oclif/commit/cf844d3cf51c8a842e97e826bcc630016a35d73c))
+* **deps:** update dependency table to ^6.0.4 ([b56a615](https://github.com/cenk1cenk2/boilerplate-oclif/commit/b56a615961550c9458207643d82ab37fac838a72))
+
 # [@cenk1cenk2/boilerplate-oclif-v1.4.3](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.4.2...@cenk1cenk2/boilerplate-oclif-v1.4.3) (2020-11-18)
 
 
