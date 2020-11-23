@@ -1,3 +1,10 @@
+# [@cenk1cenk2/boilerplate-oclif-v1.4.7](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.4.6...@cenk1cenk2/boilerplate-oclif-v1.4.7) (2020-11-23)
+
+
+### Bug Fixes
+
+* add typing to lock as well ([a0fc48c](https://github.com/cenk1cenk2/boilerplate-oclif/commit/a0fc48c2d8b85b27489693f704fca33db2d6a3f0))
+
 # [@cenk1cenk2/boilerplate-oclif-v1.4.6](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.4.5...@cenk1cenk2/boilerplate-oclif-v1.4.6) (2020-11-23)
 
 
