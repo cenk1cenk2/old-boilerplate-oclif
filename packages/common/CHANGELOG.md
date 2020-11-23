@@ -1,3 +1,10 @@
+# [@cenk1cenk2/boilerplate-oclif-v1.5.1](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.5.0...@cenk1cenk2/boilerplate-oclif-v1.5.1) (2020-11-23)
+
+
+### Bug Fixes
+
+* add local locker to base command ([c0b1e4e](https://github.com/cenk1cenk2/boilerplate-oclif/commit/c0b1e4efc6c7d4aec1c474075b1a9e190f7a66a8))
+
 # [@cenk1cenk2/boilerplate-oclif-v1.5.0](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.4.10...@cenk1cenk2/boilerplate-oclif-v1.5.0) (2020-11-23)
 
 
