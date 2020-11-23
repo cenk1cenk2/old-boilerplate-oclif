@@ -1,3 +1,10 @@
+# [@cenk1cenk2/boilerplate-oclif-v1.4.8](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.4.7...@cenk1cenk2/boilerplate-oclif-v1.4.8) (2020-11-23)
+
+
+### Bug Fixes
+
+* add lock all in queue in finally ([006c134](https://github.com/cenk1cenk2/boilerplate-oclif/commit/006c134da967aae4788d4ff5f7a491196bc2eb69))
+
 # [@cenk1cenk2/boilerplate-oclif-v1.4.7](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.4.6...@cenk1cenk2/boilerplate-oclif-v1.4.7) (2020-11-23)
 
 
