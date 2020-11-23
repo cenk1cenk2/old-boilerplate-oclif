@@ -1,3 +1,10 @@
+# [@cenk1cenk2/boilerplate-oclif-v1.4.9](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.4.8...@cenk1cenk2/boilerplate-oclif-v1.4.9) (2020-11-23)
+
+
+### Bug Fixes
+
+* add also unlcok to finally ([ca5d964](https://github.com/cenk1cenk2/boilerplate-oclif/commit/ca5d964b1b64046f9c6de29bbe7c0d1d73b5df73))
+
 # [@cenk1cenk2/boilerplate-oclif-v1.4.8](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.4.7...@cenk1cenk2/boilerplate-oclif-v1.4.8) (2020-11-23)
 
 
