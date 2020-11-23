@@ -63,6 +63,9 @@ export class BaseCommand<Config extends BaseConfig = BaseConfig> extends Command
     // pop all messages in the queue
     this.message.pop()
 
+    // lock everything in queue
+    await this.locker.lockAll()
+
     return { ctx }
   }
 
