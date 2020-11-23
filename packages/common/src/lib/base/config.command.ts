@@ -8,7 +8,7 @@ import { checkExists, deleteFile, readFile } from '@utils/file-tools.util'
 import { promptUser } from '@utils/prompt.util'
 
 export abstract class ConfigBaseCommand extends BaseCommand {
-  public choices: ConfigCommandChoices[]
+  public choices: (ConfigCommandChoices | string)[]
   protected configLock: Locker
   protected abstract configName: string
   protected abstract configType: ConfigTypes

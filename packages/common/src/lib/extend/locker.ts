@@ -17,6 +17,10 @@ export class Locker {
     this.logger = new Logger(this.constructor.name).log
   }
 
+  public setRoot (root: string): void {
+    this.module = root
+  }
+
   public async lock (data: LockData | LockData[]): Promise<void> {
     // cast to array
     if (!Array.isArray(data)) {
