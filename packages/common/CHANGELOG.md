@@ -1,3 +1,10 @@
+# [@cenk1cenk2/boilerplate-oclif-v1.4.5](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.4.4...@cenk1cenk2/boilerplate-oclif-v1.4.5) (2020-11-23)
+
+
+### Bug Fixes
+
+* fix config command typing ([cee3dd1](https://github.com/cenk1cenk2/boilerplate-oclif/commit/cee3dd1a81b94dcbf256886ee55705f45c4cdc43))
+
 # [@cenk1cenk2/boilerplate-oclif-v1.4.4](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.4.3...@cenk1cenk2/boilerplate-oclif-v1.4.4) (2020-11-23)
 
 
