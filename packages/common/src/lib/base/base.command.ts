@@ -68,6 +68,8 @@ export class BaseCommand<Config extends BaseConfig = BaseConfig> extends Command
     // lock everything in queue
     await this.locker.unlockAll()
     await this.locker.lockAll()
+    await this.lockerLocal.unlockAll()
+    await this.lockerLocal.lockAll()
 
     return { ctx }
   }
