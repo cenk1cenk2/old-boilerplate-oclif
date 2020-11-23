@@ -97,8 +97,10 @@ export class Locker {
   }
 
   public async lockAll (): Promise<void> {
-    await this.lock(this.toLock)
-    this.toLock = []
+    if (this.toLock.length > 0) {
+      await this.lock(this.toLock)
+      this.toLock = []
+    }
   }
 
   public async unlock (data?: UnlockData | UnlockData[]): Promise<void> {
@@ -148,8 +150,10 @@ export class Locker {
   }
 
   public async unlockAll (): Promise<void> {
-    await this.unlock(this.toUnlock)
-    this.toUnlock = []
+    if (this.toUnlock.length > 0) {
+      await this.unlock(this.toUnlock)
+      this.toUnlock = []
+    }
   }
 
   public getLockPath (): string {
