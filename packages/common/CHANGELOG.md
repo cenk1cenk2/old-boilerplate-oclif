@@ -1,3 +1,10 @@
+# [@cenk1cenk2/boilerplate-oclif-v1.4.10](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.4.9...@cenk1cenk2/boilerplate-oclif-v1.4.10) (2020-11-23)
+
+
+### Bug Fixes
+
+* add queue check for lock-unlock ([1ff6ed9](https://github.com/cenk1cenk2/boilerplate-oclif/commit/1ff6ed9c909cf9917308604ee105ce1c9f2fd437))
+
 # [@cenk1cenk2/boilerplate-oclif-v1.4.9](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.4.8...@cenk1cenk2/boilerplate-oclif-v1.4.9) (2020-11-23)
 
 
