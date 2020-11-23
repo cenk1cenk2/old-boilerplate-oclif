@@ -4,6 +4,7 @@ import { Manager } from 'listr2'
 import path from 'path'
 
 import { Locker } from '@extend/locker'
+import { LockerTypes } from '@extend/locker.interface'
 import { Logger } from '@extend/logger'
 import { LogLevels } from '@extend/logger.constants'
 import { Message } from '@extend/message'
@@ -21,6 +22,7 @@ export class BaseCommand<Config extends BaseConfig = BaseConfig> extends Command
   public tasks: Manager<any, 'default'>
   public shortId: string
   public locker: Locker = new Locker(this.id)
+  public lockerLocal: Locker = new Locker(this.id, LockerTypes.local)
 
   /** Every command needs to implement run for running the command itself. */
   // make run non-abstract for other classes
