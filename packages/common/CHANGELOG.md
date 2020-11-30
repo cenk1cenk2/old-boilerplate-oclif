@@ -1,3 +1,11 @@
+# [@cenk1cenk2/boilerplate-oclif-v1.5.2](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.5.1...@cenk1cenk2/boilerplate-oclif-v1.5.2) (2020-11-30)
+
+
+### Bug Fixes
+
+* remove invalid bin field ([32a7d99](https://github.com/cenk1cenk2/boilerplate-oclif/commit/32a7d999bcec6a71ec2f9214a40b84f635e5ed59))
+* **deps:** update dependency config to ^3.3.3 ([3e1caea](https://github.com/cenk1cenk2/boilerplate-oclif/commit/3e1caeabccc702714406832cd428ad144dfbcaa5))
+
 # [@cenk1cenk2/boilerplate-oclif-v1.5.1](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.5.0...@cenk1cenk2/boilerplate-oclif-v1.5.1) (2020-11-23)
 
 
