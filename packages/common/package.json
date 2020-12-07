@@ -80,7 +80,7 @@
     "listr2": "^3.2.3",
     "prettier": "^2.2.1",
     "ts-jest": "^26.4.4",
-    "ts-node": "^9.1.0",
+    "ts-node": "^9.1.1",
     "tsc-watch": "^4.2.9",
     "tsconfig-paths": "^3.9.0",
     "tscpaths": "^0.0.9",
