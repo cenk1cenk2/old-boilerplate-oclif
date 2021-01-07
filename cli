@@ -2,6 +2,7 @@
 
 PACKAGE_FOLDER=packages
 
+
 SEPERATOR="------------------------"
 
 trap trap_int INT
