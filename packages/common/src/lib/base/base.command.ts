@@ -14,11 +14,15 @@ import { ILogger } from '@interfaces/logger.interface'
 import { removeObjectOtherKeys } from '@src/utils/custom.util'
 import { yamlExtensions } from '@utils/file-tools.constants'
 import { checkExists, createDirIfNotExists, readFile, writeFile } from '@utils/file-tools.util'
+import { isDebug, isSilent, isVerbose } from '@utils/is-debug.util'
 
 export class BaseCommand<Config extends BaseConfig = BaseConfig> extends Command {
   public logger: ILogger
   public message: Message
   public constants: Config
+  public isDebug = isDebug()
+  public isSilent = isSilent()
+  public isVerbose = isVerbose()
   public tasks: Manager<any, 'default'>
   public shortId: string
   public locker: Locker = new Locker(this.id)
@@ -41,6 +45,7 @@ export class BaseCommand<Config extends BaseConfig = BaseConfig> extends Command
     this.message = new Message(this.logger)
 
     this.config.configDir = path.join(this.config.home, config.get('configDir'))
+
     // initiate manager
     this.tasks = new Manager({
       rendererFallback: this.constants?.loglevel === LogLevels.debug,
