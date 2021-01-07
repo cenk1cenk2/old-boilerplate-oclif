@@ -14,7 +14,7 @@ import { ILogger } from '@interfaces/logger.interface'
 import { removeObjectOtherKeys } from '@src/utils/custom.util'
 import { yamlExtensions } from '@utils/file-tools.constants'
 import { checkExists, createDirIfNotExists, readFile, writeFile } from '@utils/file-tools.util'
-import { isDebug, isSilent, isVerbose } from '@utils/is-debug.util'
+import { isDebug, isSilent, isVerbose } from '@utils/is-loglevel.util'
 
 export class BaseCommand<Config extends BaseConfig = BaseConfig> extends Command {
   public logger: ILogger
