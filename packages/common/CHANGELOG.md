@@ -1,3 +1,18 @@
+# [@cenk1cenk2/boilerplate-oclif-v1.6.0](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.5.2...@cenk1cenk2/boilerplate-oclif-v1.6.0) (2021-01-20)
+
+
+### Bug Fixes
+
+* **deps:** update all minor dependency updates ([519e008](https://github.com/cenk1cenk2/boilerplate-oclif/commit/519e0083279fe661e034e068b3a74e7e90e5cf4a))
+* **deps:** update dependency table to ^6.0.6 ([369a874](https://github.com/cenk1cenk2/boilerplate-oclif/commit/369a8744bbfd28029d750a2e587df2fcd984eb3d))
+* **deps:** update dependency table to ^6.0.7 ([6255a76](https://github.com/cenk1cenk2/boilerplate-oclif/commit/6255a766e0e4c0a8c46fbc7a27e68e254f174ce8))
+
+
+### Features
+
+* add isDebug etc constants to command ([31f8bfb](https://github.com/cenk1cenk2/boilerplate-oclif/commit/31f8bfbd6350f8d007f4bb0ca3188388747ae425))
+* rename file for loglevel utils ([767dc1d](https://github.com/cenk1cenk2/boilerplate-oclif/commit/767dc1d18c797131a8221b27b8ebbe9d59e3e0cb))
+
 # [@cenk1cenk2/boilerplate-oclif-v1.5.2](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.5.1...@cenk1cenk2/boilerplate-oclif-v1.5.2) (2020-11-30)
 
 
