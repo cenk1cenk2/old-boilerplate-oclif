@@ -87,7 +87,7 @@
   },
   "devDependencies": {
     "@cenk1cenk2/cz-cc": "^1.3.14",
-    "@cenk1cenk2/eslint-config": "^0.4.35",
+    "@cenk1cenk2/eslint-config": "^0.4.36",
     "@oclif/dev-cli": "^1.26.0",
     "@types/config": "^0.0.38",
     "@types/fs-extra": "^9.0.10",
