@@ -1,3 +1,11 @@
+# [@cenk1cenk2/boilerplate-oclif-v1.6.3](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.6.2...@cenk1cenk2/boilerplate-oclif-v1.6.3) (2021-04-17)
+
+
+### Bug Fixes
+
+* **deps:** update dependency table to ^6.1.0 ([7a081c4](https://github.com/cenk1cenk2/boilerplate-oclif/commit/7a081c4bcace253032f8d49ce24d29e9abad8e5c))
+* **deps:** update dependency tslib to ^2.2.0 ([4668a61](https://github.com/cenk1cenk2/boilerplate-oclif/commit/4668a61fe9d9ff2f366ed998b0ec1dbbfef71cf8))
+
 # [@cenk1cenk2/boilerplate-oclif-v1.6.2](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.6.1...@cenk1cenk2/boilerplate-oclif-v1.6.2) (2021-03-31)
 
 
