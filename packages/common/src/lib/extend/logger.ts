@@ -64,7 +64,7 @@ export class Logger {
   }
 
   private initiateLogger (): void {
-    const logFormat = format.printf(({ level, message, custom }: LoggerFormat) => {
+    const logFormat = format.printf(({ level, message, custom, context }: LoggerFormat) => {
       // parse multi line messages
       try {
         let multiLineMessage = message.split('\n')
@@ -74,7 +74,8 @@ export class Logger {
             return this.logColoring({
               level,
               message: msg,
-              custom
+              custom,
+              context
             })
           }
         })
