@@ -1,3 +1,10 @@
+# [@cenk1cenk2/boilerplate-oclif-v1.7.1](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.7.0...@cenk1cenk2/boilerplate-oclif-v1.7.1) (2021-04-28)
+
+
+### Bug Fixes
+
+* update run script to include in common package ([a843cc5](https://github.com/cenk1cenk2/boilerplate-oclif/commit/a843cc551b7a4a21a2b12259b17496e35b719556))
+
 # [@cenk1cenk2/boilerplate-oclif-v1.7.0](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.6.3...@cenk1cenk2/boilerplate-oclif-v1.7.0) (2021-04-28)
 
 
