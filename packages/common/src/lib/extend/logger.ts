@@ -102,15 +102,17 @@ export class Logger {
     }
   }
 
-  private logColoring ({ level, message, custom }: LoggerFormat): string {
-    let context: string
+  private logColoring ({ level, message, custom, context }: LoggerFormat): string {
+    let ctx: string
     let icon: string
 
     // parse context from custom or module
     if (custom) {
-      context = custom
+      ctx = custom
+    } else if (context) {
+      ctx = context
     } else if (this.id) {
-      context = this.id
+      ctx = this.id
     }
 
     // do the coloring
@@ -158,11 +160,9 @@ export class Logger {
       return message
     } else {
       if (this.logcolor === false) {
-        return `[${level.toUpperCase()}] ` + (context ? `[${context.toUpperCase()}] ` : '') + `${message}`
+        return `[${level.toUpperCase()}] ` + (ctx ? `[${ctx.toUpperCase()}] ` : '') + `${message}`
       } else {
-        return this.logcolorAll
-          ? coloring(`${icon} ` + (context ? `[${context.toUpperCase()}] ` : '') + message)
-          : coloring(`${icon} ` + (context ? `[${context.toUpperCase()}] ` : '')) + message
+        return this.logcolorAll ? coloring(`${icon} ` + (ctx ? `[${ctx.toUpperCase()}] ` : '') + message) : coloring(`${icon} ` + (ctx ? `[${ctx.toUpperCase()}] ` : '')) + message
       }
     }
   }
