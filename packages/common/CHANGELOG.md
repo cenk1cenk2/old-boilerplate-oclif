@@ -1,3 +1,10 @@
+# [@cenk1cenk2/boilerplate-oclif-v1.7.2](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.7.1...@cenk1cenk2/boilerplate-oclif-v1.7.2) (2021-04-28)
+
+
+### Bug Fixes
+
+* update defaults ([34325b6](https://github.com/cenk1cenk2/boilerplate-oclif/commit/34325b6253daad62b8ee9f9056025a9df8846852))
+
 # [@cenk1cenk2/boilerplate-oclif-v1.7.1](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.7.0...@cenk1cenk2/boilerplate-oclif-v1.7.1) (2021-04-28)
 
 ### Bug Fixes
