@@ -10,11 +10,11 @@ interface MergeObjectsOptions {
  * Does not mutate the object */
 export function mergeObjects<T extends Record<string, any>> (target: T, source: Record<string, any>, options?: MergeObjectsOptions): T {
   // array strategy
-  let arrayMergeStrategy: (destinationArray, sourceArray) => any[]
+  let arrayMergeStrategy: (destinationArray: any[], sourceArray: any[]) => any[]
   if (options?.array === 'merge') {
     arrayMergeStrategy = (destinationArray, sourceArray): any[] => [ ...destinationArray, ...sourceArray ]
   } else {
-    arrayMergeStrategy = (destinationArray, sourceArray): any[] => sourceArray
+    arrayMergeStrategy = (_, sourceArray): any[] => sourceArray
   }
 
   return deepmerge(target, source, { arrayMerge: arrayMergeStrategy }) as T
@@ -23,6 +23,7 @@ export function mergeObjects<T extends Record<string, any>> (target: T, source: 
 /** For removing overlapping keys of the source from target. **/
 export function removeObjectOverlappingKeys<T extends Record<string, any>> (target: T, source: Record<string, any>, deleteEmpty?: boolean, nullIt?: boolean): T {
   let newTarget = objectPath.assign({}, '', target)
+
   Object.keys(source).forEach((key) => {
     if (!Array.isArray(source[key]) && typeof source[key] === 'object') {
       // do nothing if else
@@ -67,7 +68,7 @@ export function removeObjectOtherKeys<T extends Record<string, any>> (target: T,
 }
 
 /** Draw a table to the CLI. */
-export function createTable (headers: string[], data: string[][]): table {
+export function createTable (headers: string[], data: string[][]): ReturnType<typeof table> {
   data.unshift(headers)
 
   data = data.map((row) =>
@@ -79,7 +80,7 @@ export function createTable (headers: string[], data: string[][]): table {
   return table(data, { border: getBorderCharacters('norc') })
 }
 
-/** Checks wheter a object is iterable or not */
+/** Checks whether a object is iterable or not */
 export function isIterable (obj: any): boolean {
   // checks for null and undefined
   if (obj == null) {

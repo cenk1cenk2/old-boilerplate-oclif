@@ -7,7 +7,7 @@ export const notFoundHook: Hook<'command_not_found'> = async (opts) => {
   const logger = new Logger(opts.config.name).log
 
   // show info
-  logger.fatal('Command not found. Take a look at help. You can also use -[h]elp flag for subcommands.', { custom: opts.config.name })
+  logger.fatal('Command not found. Take a look at help. You can also use --[h]elp flag for subcommands.', { custom: opts.config.name })
   logger.direct('')
 
   // show help

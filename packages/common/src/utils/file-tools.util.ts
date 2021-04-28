@@ -6,7 +6,7 @@ import { parse as yamlParse, stringify as convertToYaml } from 'yaml'
 import { jsonExtensions, yamlExtensions } from './file-tools.constants'
 import { Logger } from '@extend/logger'
 
-const logger = new Logger('file').log
+const logger = new Logger().log
 
 /** Prompt for overwrite. */
 export async function promptOverwrite (file: string): Promise<void> {
@@ -25,7 +25,7 @@ export async function promptOverwrite (file: string): Promise<void> {
 
   // quit if overwrite permission not given
   if (!reply) {
-    logger.fatal(`Permission to overwrite "${file}" has not been granted. Exiting.`)
+    logger.fatal(`Permission to overwrite "${file}" has not been granted. Exiting.`, { custom: 'file' })
     process.exit(20)
   }
 }
@@ -50,7 +50,7 @@ export async function tasksOverwritePrompt (file: string, task: ListrTaskWrapper
   if (!reply) {
     const message = `Permission to overwrite "${file}" has not been granted.`
     if (quit) {
-      logger.fatal(`${message} Exitting.`)
+      logger.fatal(`${message} Exitting.`, { custom: 'file' })
       process.exit(20)
     } else {
       throw new Error(message)
@@ -73,11 +73,11 @@ export async function createDirIfNotExists (directory: string): Promise<void> {
     if (dirPath) {
       await fs.ensureDir(dirPath)
     } else {
-      logger.debug(`Not a valid dirpath for: ${dirPath}`)
+      logger.debug(`Not a valid dirpath for: ${dirPath}`, { custom: 'file' })
     }
   } catch (e) {
-    logger.fatal(`Unable to create non existing configuration directory at ${directory}. Please check permissions.`)
-    logger.debug(e)
+    logger.fatal(`Unable to create non existing configuration directory at ${directory}. Please check permissions.`, { custom: 'file' })
+    logger.debug(e, { custom: 'file' })
     process.exit(20)
   }
 }
@@ -119,7 +119,7 @@ export async function readFile<T extends Record<string, any>> (file: string): Pr
 
     return parsedFile
   } catch {
-    logger.fatal(`"${file}" is not a valid "${ext}" file.`)
+    logger.fatal(`"${file}" is not a valid "${ext}" file.`, { custom: 'file' })
     process.exit(20)
   }
 }
@@ -127,10 +127,12 @@ export async function readFile<T extends Record<string, any>> (file: string): Pr
 /** Directly read files without parsing. */
 export function readRaw (file: string): Promise<string> {
   try {
-    return fs.readFile(file, 'utf-8')
+    const raw = fs.readFile(file, 'utf-8')
+
+    return raw
   } catch (e) {
-    logger.fatal(`Error reading from "${file}".`)
-    logger.debug(e)
+    logger.fatal(`Error reading from "${file}".`, { custom: 'file' })
+    logger.debug(e, { custom: 'file' })
     process.exit(20)
   }
 }
@@ -163,8 +165,8 @@ export async function writeFile (file: string, data: string | string[] | Record<
       await fs.writeFile(file, data, 'utf-8')
     }
   } catch (e) {
-    logger.fatal(`Unable to generate "${file}". Please check permissions if overwriting over existing one.`)
-    logger.debug(e)
+    logger.fatal(`Unable to generate "${file}". Please check permissions if overwriting over existing one.`, { custom: 'file' })
+    logger.debug(e, { custom: 'file' })
     process.exit(20)
   }
 }
@@ -175,11 +177,11 @@ export async function deleteFile (file: string): Promise<void> {
     if (fs.existsSync(file)) {
       fs.unlinkSync(file)
     } else {
-      logger.info(`"${file}" not found.`)
+      logger.info(`"${file}" not found.`, { custom: 'file' })
     }
   } catch (e) {
-    logger.fatal(`Error deleting file from "${file}".`)
-    logger.debug(e)
+    logger.fatal(`Error deleting file from "${file}".`, { custom: 'file' })
+    logger.debug(e, { custom: 'file' })
     process.exit(20)
   }
 }
@@ -193,11 +195,11 @@ export async function deleteFolder (folder: string): Promise<void> {
     if (fs.existsSync(folder)) {
       fs.emptyDirSync(folder)
     } else {
-      logger.info(`"${folder}" not found.`)
+      logger.info(`"${folder}" not found.`, { custom: 'file' })
     }
   } catch (e) {
-    logger.fatal(`Error deleting folder from "${folder}".`)
-    logger.debug(e)
+    logger.fatal(`Error deleting folder from "${folder}".`, { custom: 'file' })
+    logger.debug(e, { custom: 'file' })
     process.exit(20)
   }
 }
@@ -213,40 +215,13 @@ export function parseYaml<T extends Record<string, any>> (data: string): T {
   try {
     return yamlParse(data)
   } catch (e) {
-    logger.fatal('Can not read yaml file.')
-    logger.debug(e)
-    process.exit(21)
+    logger.fatal('Can not read yaml file.', { custom: 'file' })
+    logger.debug(e, { custom: 'file' })
+    process.exit(20)
   }
 }
 
 /** Stringfy a object to yaml. */
 export function toYaml (data: string | string[] | Record<string, any>): string {
   return convertToYaml(data, {})
-}
-
-/** To leave spaces between comment charachters in the given long string. */
-export function spacesBetweenComments<T extends string | string[]> (data: T, comment: string): T extends string ? string : string[] {
-  let parsedData: string
-
-  if (Array.isArray(data)) {
-    parsedData = data.join('\n')
-  } else {
-    parsedData = data as string
-  }
-
-  const result: string[] = parsedData.split('\n').reduce((o, value, index) => {
-    if (new RegExp(`^[ ]*${comment}.*`).test(value) && index !== 0) {
-      o.push('', value)
-    } else if (value !== '') {
-      o.push(value)
-    }
-
-    return o
-  }, [])
-
-  if (Array.isArray(data)) {
-    return result as any
-  } else {
-    return result.join('\n') as any
-  }
 }

@@ -2,7 +2,7 @@ import { createPrompt, PromptOptions } from 'listr2'
 
 import { Logger } from '@extend/logger'
 
-const logger = new Logger('prompt').log
+const logger = new Logger().log
 
 /** Gets prompt from user. */
 export async function promptUser<T = any> (options: PromptOptions): Promise<T> {

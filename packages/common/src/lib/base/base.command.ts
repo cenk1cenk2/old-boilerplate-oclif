@@ -4,7 +4,6 @@ import { Manager } from 'listr2'
 import path from 'path'
 
 import { Locker } from '@extend/locker'
-import { LockerTypes } from '@extend/locker.interface'
 import { Logger } from '@extend/logger'
 import { LogLevels } from '@extend/logger.constants'
 import { Message } from '@extend/message'
@@ -26,7 +25,6 @@ export class BaseCommand<Config extends BaseConfig = BaseConfig> extends Command
   public tasks: Manager<any, 'default'>
   public shortId: string
   public locker: Locker = new Locker(this.id)
-  public lockerLocal: Locker = new Locker(this.id, LockerTypes.local)
 
   /** Every command needs to implement run for running the command itself. */
   // make run non-abstract for other classes
@@ -38,10 +36,10 @@ export class BaseCommand<Config extends BaseConfig = BaseConfig> extends Command
   // can not override constructor, init function is defined by oclif
   public async init (): Promise<void> {
     // initiate all utilities used
-    this.shortId = this.id.split(':').pop()
+    this.shortId = this.ctor.id.split(':').pop()
     this.constants = config.util.toObject()
 
-    this.logger = new Logger(this.id).log
+    this.logger = new Logger(this.ctor.id !== '' ? this.ctor.id : this.ctor.name).log
     this.message = new Message(this.logger)
 
     this.config.configDir = path.join(this.config.home, config.get('configDir'))
@@ -73,8 +71,6 @@ export class BaseCommand<Config extends BaseConfig = BaseConfig> extends Command
     // lock everything in queue
     await this.locker.unlockAll()
     await this.locker.lockAll()
-    await this.lockerLocal.unlockAll()
-    await this.lockerLocal.lockAll()
 
     return { ctx }
   }
@@ -92,7 +88,7 @@ export class BaseCommand<Config extends BaseConfig = BaseConfig> extends Command
     }
   }
 
-  /** Catch any error occured during command. */
+  /** Catch any error occurred during command. */
   // catch all those errors, not verbose
   public catch (e: Error): Promise<void> {
     // pop all messages in the queue
@@ -106,7 +102,7 @@ export class BaseCommand<Config extends BaseConfig = BaseConfig> extends Command
   }
 
   /**
-   * Clean up unnecassary flags which might throw an error when passing them between commands, say no to parsing errors!
+   * Clean up unecassary flags which might throw an error when passing them between commands, say no to parsing errors!
    * The function will find the second arguments in the first one and match them.abs
    * But the first one must be a valid set arguments because it will get parsed from the command.
    */

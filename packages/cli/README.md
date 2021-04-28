@@ -1,5 +1,4 @@
-@cenk1cenk2/oclif-boilerplate
-========
+# @cenk1cenk2/oclif-boilerplate
 
 # Description
 
@@ -8,14 +7,16 @@ An empty and extended oclif boilerplate.
 # Navigation
 
 <!-- toc -->
-* [Description](#description)
-* [Navigation](#navigation)
-* [Further Development](#further-development)
-* [Usage](#usage)
-* [Commands](#commands)
+
+- [Description](#description)
+- [Navigation](#navigation)
+- [Further Development](#further-development)
+- [Usage](#usage)
+- [Commands](#commands)
 <!-- tocstop -->
 
 # Further Development
+
 For further development you can clone this repository.
 
 While developing you must use `export TS_NODE=1` environment variable, since I did not want to directly extend OCLIF's classes for detecting TS-Node.
@@ -25,6 +26,7 @@ While developing you must use `export TS_NODE=1` environment variable, since I d
 # Usage
 
 <!-- usage -->
+
 ```sh-session
 $ npm install -g @cenk1cenk2/oclif-boilerplate
 $ cenk1cenk2 COMMAND
@@ -36,14 +38,16 @@ USAGE
   $ cenk1cenk2 COMMAND
 ...
 ```
+
 <!-- usagestop -->
 
 # Commands
 
 <!-- commands -->
-* [`cenk1cenk2 config`](#cenk1cenk2-config)
-* [`cenk1cenk2 empty [FILE]`](#cenk1cenk2-empty-file)
-* [`cenk1cenk2 help [COMMAND]`](#cenk1cenk2-help-command)
+
+- [`cenk1cenk2 config`](#cenk1cenk2-config)
+- [`cenk1cenk2 empty [FILE]`](#cenk1cenk2-empty-file)
+- [`cenk1cenk2 help [COMMAND]`](#cenk1cenk2-help-command)
 
 ## `cenk1cenk2 config`
 
@@ -83,4 +87,5 @@ OPTIONS
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.0.1/src/commands/help.ts)_
+
 <!-- commandsstop -->

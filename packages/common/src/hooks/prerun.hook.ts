@@ -4,8 +4,8 @@ import { createInterface } from 'readline'
 
 import { Logger } from '@extend/logger'
 
-export const prerunHook: Hook<'prerun'> = async (opts) => {
-  const logger = new Logger(opts.config.name).log
+export const prerunHook: Hook<'prerun'> = async () => {
+  const logger = new Logger().log
 
   // graceful terminate
   if (os.platform() === 'win32') {

@@ -25,18 +25,19 @@ export class Logger {
   public id?: string
   public loglevel: LogLevels
   public logcolor: boolean
+  public logcolorAll: boolean
 
   constructor (module?: string, public options?: winston.LoggerOptions) {
     this.id = module
-    this.loglevel = config.get<LogLevels>('loglevel')
-    this.logcolor = config.get<boolean>('logcolor')
+    this.loglevel = config.get<LogLevels>('loglevel') ?? LogLevels.module
+    this.logcolor = (config.get<boolean>('logcolor') ?? true) && (chalk.supportsColor as boolean)
+    this.logcolorAll = config.get<boolean>('logcolorAll') ?? true
     this.log = this.getInstance()
   }
 
   public getInstance (): ILogger {
     if (this.id ? !winston.loggers.has(this.id) : !winston.loggers.has(LoggerConstants.DEFAULT_LOGGER)) {
       this.initiateLogger()
-
     }
 
     if (this.id) {
@@ -73,9 +74,11 @@ export class Logger {
       silent: this.loglevel === LogLevels.silent,
       format: format.combine(format.splat(), format.json({ space: 2 }), format.prettyPrint(), logFormat),
       levels: Logger.levels,
-      transports: [ new transports.Console({
-        stderrLevels: [ LogLevels.fail, LogLevels.fatal ]
-      }) ]
+      transports: [
+        new transports.Console({
+          stderrLevels: [ LogLevels.fail, LogLevels.fatal ]
+        })
+      ]
     })
 
     if (process.env.DEBUG === '*') {
@@ -101,11 +104,11 @@ export class Logger {
 
     switch (level) {
     case LogLevels.fatal:
-      coloring = chalk.bgRed.white
+      coloring = chalk.red
       icon = figures.cross
       break
     case LogLevels.fail:
-      coloring = chalk.red
+      coloring = chalk.keyword('orange')
       icon = figures.cross
       break
     case LogLevels.warn:
@@ -138,12 +141,12 @@ export class Logger {
     if (level === LogLevels.direct) {
       return message
     } else {
-      const parsedMessage = `[${context.toUpperCase()}] ${message}`
-
       if (this.logcolor === false) {
-        return `[${level.toUpperCase()}] ${parsedMessage}`
+        return `[${level.toUpperCase()}] ` + (context ? `[${context.toUpperCase()}] ` : '') + `${message}`
       } else {
-        return coloring(`${icon} ${parsedMessage}`)
+        return this.logcolorAll
+          ? coloring(`${icon} ` + (context ? `[${context.toUpperCase()}] ` : '') + message)
+          : coloring(`${icon} ` + (context ? `[${context.toUpperCase()}] ` : '')) + message
       }
     }
   }

@@ -1,6 +1,6 @@
-cli: 'boilerplate-oclif'
 loglevel: module
 logcolor: true
+logcolorAll: true
 configDir: '.config/boilerplate-oclif'
 localConfig: '.boilerplate-oclif.local.yml'
 lock: '.boilerplate-oclif.lock'

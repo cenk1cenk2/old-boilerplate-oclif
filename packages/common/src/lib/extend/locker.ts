@@ -14,7 +14,7 @@ export class Locker {
 
   constructor (private module: string, private type: LockerTypes = LockerTypes.lock, private lockFilePath?: string) {
     this.module = module
-    this.logger = new Logger(this.constructor.name).log
+    this.logger = new Logger().log
   }
 
   public setRoot (root: string): void {
@@ -61,17 +61,17 @@ export class Locker {
           } else if (typeof lock.data === 'object') {
             parsedLockData = mergeObjects(objectPath.get(currentLock, lockPath) || {}, lock.data)
           } else {
-            this.logger.debug(`"${typeof lock.data}" is not mergable.`)
+            this.logger.debug(`"${typeof lock.data}" is not mergable.`, { custom: 'locker' })
             parsedLockData = [ lock.data ]
           }
 
           // set lock data
           currentLock = objectPath.set(currentLock, lockPath, parsedLockData)
-          this.logger.debug(`Merge lock: "${lockPath}"`)
+          this.logger.debug(`Merge lock: "${lockPath}"`, { custom: 'locker' })
         } else {
           // dont merge directly set the data
           currentLock = objectPath.set(currentLock, lockPath, lock.data)
-          this.logger.debug(`Override lock: "${lockPath}"`)
+          this.logger.debug(`Override lock: "${lockPath}"`, { custom: 'locker' })
         }
       })
     )
@@ -114,7 +114,7 @@ export class Locker {
 
     // write data
     if (!currentLock) {
-      this.logger.debug('Lock file not found. Nothing to unlock.')
+      this.logger.debug('Lock file not found. Nothing to unlock.', { custom: 'locker' })
       return
     }
 
@@ -137,12 +137,12 @@ export class Locker {
 
           // set unlock
           currentLock = objectPath.del(currentLock, lockPath)
-          this.logger.debug(`Unlocked: ${lockPath}`)
+          this.logger.debug(`Unlocked: ${lockPath}`, { custom: 'locker' })
         })
       )
     } else {
       currentLock = objectPath.del(currentLock, this.module)
-      this.logger.debug(`Unlocked module: ${this.module}`)
+      this.logger.debug(`Unlocked module: ${this.module}`, { custom: 'locker' })
     }
 
     // write data
@@ -165,7 +165,7 @@ export class Locker {
     } else if (this.type === LockerTypes.local) {
       return config.get('localConfig')
     } else {
-      this.logger.fatal('Lock type is not correct. This should not happenned.')
+      this.logger.fatal('Lock type is not correct. This should not happened.', { custom: 'locker' })
       process.exit(126)
     }
   }
