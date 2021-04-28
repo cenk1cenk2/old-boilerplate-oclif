@@ -1,3 +1,10 @@
+# [@cenk1cenk2/boilerplate-oclif-v1.8.0](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.7.2...@cenk1cenk2/boilerplate-oclif-v1.8.0) (2021-04-28)
+
+
+### Features
+
+* add context as alias to custom for logger ([521e025](https://github.com/cenk1cenk2/boilerplate-oclif/commit/521e0253d8b51ff92ae98937bf2a4d55011560d7))
+
 # [@cenk1cenk2/boilerplate-oclif-v1.7.2](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.7.1...@cenk1cenk2/boilerplate-oclif-v1.7.2) (2021-04-28)
 
 
