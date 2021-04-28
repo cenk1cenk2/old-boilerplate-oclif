@@ -29,9 +29,25 @@ export class Logger {
 
   constructor (module?: string, public options?: winston.LoggerOptions) {
     this.id = module
-    this.loglevel = config.get<LogLevels>('loglevel') ?? LogLevels.module
-    this.logcolor = (config.get<boolean>('logcolor') ?? true) && (chalk.supportsColor as boolean)
-    this.logcolorAll = config.get<boolean>('logcolorAll') ?? true
+
+    try {
+      this.loglevel = config.get<LogLevels>('loglevel') ?? LogLevels.module
+    } catch {
+      this.loglevel = LogLevels.module
+    }
+
+    try {
+      this.logcolor = config.get<boolean>('logcolor') && (chalk.supportsColor as boolean)
+    } catch {
+      this.logcolor = chalk.supportsColor as boolean
+    }
+
+    try {
+      this.logcolorAll = config.get<boolean>('logcolorAll')
+    } catch {
+      this.logcolorAll = true
+    }
+
     this.log = this.getInstance()
   }
 
