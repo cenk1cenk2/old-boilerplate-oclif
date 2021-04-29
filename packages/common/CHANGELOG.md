@@ -1,3 +1,10 @@
+# [@cenk1cenk2/boilerplate-oclif-v1.9.0](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.8.0...@cenk1cenk2/boilerplate-oclif-v1.9.0) (2021-04-29)
+
+
+### Features
+
+* update deep merge capabilities ([411375f](https://github.com/cenk1cenk2/boilerplate-oclif/commit/411375fabba00d7ca7a62ad7289cf8abb30827ec))
+
 # [@cenk1cenk2/boilerplate-oclif-v1.8.0](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.7.2...@cenk1cenk2/boilerplate-oclif-v1.8.0) (2021-04-28)
 
 
