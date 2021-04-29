@@ -7,6 +7,7 @@ interface MergeObjectsOptions {
 }
 
 /** Merge objects deep from overwriting the properties from source to target.
+ * @deprecated
  * Does not mutate the object */
 export function mergeObjects<T extends Record<string, any>> (target: T, source: Record<string, any>, options?: MergeObjectsOptions): T {
   // array strategy
@@ -18,6 +19,49 @@ export function mergeObjects<T extends Record<string, any>> (target: T, source: 
   }
 
   return deepmerge(target, source, { arrayMerge: arrayMergeStrategy }) as T
+}
+
+/**
+ * Merge objects with defaults.
+ *
+ * Mutates the object.
+ * @param t
+ * @param s
+ */
+export function deepMerge<T extends Record<string, any>> (t: T, ...s: Partial<T>[]): T {
+  return s.reduce((o, val) => {
+    return deepmerge(o, val ?? {})
+  }, t) as T
+}
+
+/**
+ * Merge objects with array merge and filtering them uniquely.
+ *
+ * Mutates the object.
+ * @param t
+ * @param s
+ */
+export function deepMergeWithUniqueMergeArray<T extends Record<string, any>> (t: T, ...s: Partial<T>[]): T {
+  return s.reduce((o, val) => {
+    return deepmerge(o, val ?? {}, {
+      arrayMerge: (target, source) => [ ...target, ...source ].filter((item, index, array) => array.indexOf(item) === index)
+    })
+  }, t) as T
+}
+
+/**
+ * Merge objects with overwriting the target array with source array.
+ *
+ * Mutates the object.
+ * @param t
+ * @param s
+ */
+export function deepMergeWithArrayOverwrite<T extends Record<string, any>> (t: T, ...s: Partial<T>[]): T {
+  return s.reduce((o, val) => {
+    return deepmerge(o, val ?? {}, {
+      arrayMerge: (_, source) => source
+    })
+  }, t) as T
 }
 
 /** For removing overlapping keys of the source from target. **/
