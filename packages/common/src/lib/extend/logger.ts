@@ -1,6 +1,7 @@
 import chalk from 'chalk'
 import config from 'config'
 import figures from 'figures'
+import { EOL } from 'node:os'
 import winston, { format, transports } from 'winston'
 
 import { LoggerConstants, LogLevels } from './logger.constants'
@@ -64,25 +65,37 @@ export class Logger {
   }
 
   private initiateLogger (): void {
-    const logFormat = format.printf(({ level, message, custom, context }: LoggerFormat) => {
+    const logFormat = format.printf(({ level, message, custom, context, trimEmptyLines }: LoggerFormat) => {
       // parse multi line messages
-      try {
-        let multiLineMessage = message.split('\n')
-        multiLineMessage = multiLineMessage.map((msg) => {
-          if (msg.trim() !== '') {
-            // format messages
-            return this.logColoring({
-              level,
-              message: msg,
-              custom,
-              context
-            })
-          }
+      let multiLineMessage: string[]
+
+      if (typeof message === 'string') {
+        multiLineMessage = message.split(EOL)
+      } else if (typeof message === 'object') {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        multiLineMessage = message.toString().split(EOL)
+      } else {
+        multiLineMessage = message
+      }
+
+      if (trimEmptyLines) {
+        multiLineMessage = multiLineMessage.filter((msg) => msg.trim() !== '' && msg)
+      }
+
+      multiLineMessage = multiLineMessage.map((msg) => {
+        // format messages
+        return this.logColoring({
+          level,
+          message: msg,
+          custom,
+          context
         })
-        // join back multi line messages
-        message = multiLineMessage.join('\n')
-        // eslint-disable-next-line no-empty
-      } catch {}
+      })
+
+      // join back multi line messages
+      message = multiLineMessage.join(EOL)
+
       return message
     })
 

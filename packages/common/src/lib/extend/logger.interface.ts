@@ -3,4 +3,5 @@ export interface LoggerFormat {
   message: string
   custom?: string
   context?: string
+  trimEmptyLines?: boolean
 }
