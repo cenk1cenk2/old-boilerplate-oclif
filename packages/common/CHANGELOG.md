@@ -1,3 +1,10 @@
+# [@cenk1cenk2/boilerplate-oclif-v1.9.1](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.9.0...@cenk1cenk2/boilerplate-oclif-v1.9.1) (2021-04-30)
+
+
+### Bug Fixes
+
+* logger handling streams etc ([b972b49](https://github.com/cenk1cenk2/boilerplate-oclif/commit/b972b491224f8fd6aa609a6afdc8a8cb07e9b0b7))
+
 # [@cenk1cenk2/boilerplate-oclif-v1.9.0](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.8.0...@cenk1cenk2/boilerplate-oclif-v1.9.0) (2021-04-29)
 
 
