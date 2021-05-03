@@ -5,8 +5,6 @@ import { createInterface } from 'readline'
 import { Logger } from '@extend/logger'
 
 export const prerunHook: Hook<'prerun'> = async () => {
-  const logger = new Logger().log
-
   // graceful terminate
   if (os.platform() === 'win32') {
     createInterface({
@@ -18,6 +16,8 @@ export const prerunHook: Hook<'prerun'> = async () => {
   }
 
   process.on('SIGINT', () => {
+    const logger = new Logger().log
+
     // show that we have understood that
     logger.fail('Caught terminate signal.', { custom: 'exit' })
 
