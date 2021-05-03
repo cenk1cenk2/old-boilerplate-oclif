@@ -1,3 +1,10 @@
+# [@cenk1cenk2/boilerplate-oclif-v1.9.2](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.9.1...@cenk1cenk2/boilerplate-oclif-v1.9.2) (2021-05-03)
+
+
+### Bug Fixes
+
+* update hook for failing ([cae52ab](https://github.com/cenk1cenk2/boilerplate-oclif/commit/cae52abca432126e8f0e6f2e3910762e45652cc5))
+
 # [@cenk1cenk2/boilerplate-oclif-v1.9.1](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.9.0...@cenk1cenk2/boilerplate-oclif-v1.9.1) (2021-04-30)
 
 
