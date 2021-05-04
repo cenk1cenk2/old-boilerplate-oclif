@@ -1,7 +1,7 @@
 import chalk from 'chalk'
 import config from 'config'
 import figures from 'figures'
-import { EOL } from 'node:os'
+import { EOL } from 'os'
 import winston, { format, transports } from 'winston'
 
 import { LoggerConstants, LogLevels } from './logger.constants'
