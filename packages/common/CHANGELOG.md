@@ -1,3 +1,10 @@
+# [@cenk1cenk2/boilerplate-oclif-v1.9.3](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.9.2...@cenk1cenk2/boilerplate-oclif-v1.9.3) (2021-05-04)
+
+
+### Bug Fixes
+
+* fix new node import ([7b22c52](https://github.com/cenk1cenk2/boilerplate-oclif/commit/7b22c520dd858aaa29d976c2e243927e004238ac))
+
 # [@cenk1cenk2/boilerplate-oclif-v1.9.2](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.9.1...@cenk1cenk2/boilerplate-oclif-v1.9.2) (2021-05-03)
 
 
