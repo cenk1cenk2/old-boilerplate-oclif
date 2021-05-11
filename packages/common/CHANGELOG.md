@@ -1,3 +1,15 @@
+# [@cenk1cenk2/boilerplate-oclif-v1.10.0](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.9.3...@cenk1cenk2/boilerplate-oclif-v1.10.0) (2021-05-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency table to ^6.7.0 ([12d8bd0](https://github.com/cenk1cenk2/boilerplate-oclif/commit/12d8bd022bb0c7263fa4493c21a38e78330f4b5d))
+
+
+### Features
+
+* update prerunhook to have options for work ([8a9c49a](https://github.com/cenk1cenk2/boilerplate-oclif/commit/8a9c49a3b807ffcc9316f96ee714354855a1ce1d))
+
 # [@cenk1cenk2/boilerplate-oclif-v1.9.3](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.9.2...@cenk1cenk2/boilerplate-oclif-v1.9.3) (2021-05-04)
 
 ### Bug Fixes
