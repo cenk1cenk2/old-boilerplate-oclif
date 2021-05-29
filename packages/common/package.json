@@ -59,7 +59,7 @@
     "listr2": ">= 2.5.0"
   },
   "devDependencies": {
-    "@cenk1cenk2/eslint-config": "^0.4.38",
+    "@cenk1cenk2/eslint-config": "^0.4.39",
     "@oclif/command": "^1.8.0",
     "@oclif/config": "^1.17.0",
     "@oclif/dev-cli": "^1.26.0",
