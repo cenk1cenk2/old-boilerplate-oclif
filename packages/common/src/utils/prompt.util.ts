@@ -10,7 +10,7 @@ export async function promptUser<T = any> (options: PromptOptions): Promise<T> {
     return createPrompt(options, {
       stdout: process.stdout,
       cancelCallback: () => {
-        logger.fail('Cancelled prompt. Quitting.')
+        logger.fatal('Cancelled prompt. Quitting.')
         process.exit(127)
       }
     })
