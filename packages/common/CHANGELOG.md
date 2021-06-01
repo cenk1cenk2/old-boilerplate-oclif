@@ -1,3 +1,10 @@
+# [@cenk1cenk2/boilerplate-oclif-v1.10.2](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.10.1...@cenk1cenk2/boilerplate-oclif-v1.10.2) (2021-06-01)
+
+
+### Bug Fixes
+
+* error message from prompt ([d57f2a2](https://github.com/cenk1cenk2/boilerplate-oclif/commit/d57f2a23bc8aa469e55629e506a231d7279482c4))
+
 # [@cenk1cenk2/boilerplate-oclif-v1.10.1](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.10.0...@cenk1cenk2/boilerplate-oclif-v1.10.1) (2021-05-24)
 
 
