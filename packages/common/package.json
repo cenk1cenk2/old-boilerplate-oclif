@@ -44,7 +44,7 @@
     "figures": "^3.2.0",
     "object-path-immutable": "^4.1.1",
     "table": "^6.7.1",
-    "tslib": "^2.3.0",
+    "tslib": "^2.3.1",
     "types": "^0.1.1",
     "winston": "^3.3.3",
     "yaml": "^1.10.2"
