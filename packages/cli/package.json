@@ -86,7 +86,7 @@
     "@oclif/dev-cli": "^1.26.0",
     "@types/config": "^0.0.39",
     "@types/fs-extra": "^9.0.12",
-    "@types/jest": "^26.0.24",
+    "@types/jest": "^27.0.1",
     "@types/node": "^15.3.0",
     "eslint": "^7.32.0",
     "husky": "^7.0.1",
