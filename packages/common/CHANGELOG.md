@@ -1,3 +1,11 @@
+# [@cenk1cenk2/boilerplate-oclif-v1.10.4](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.10.3...@cenk1cenk2/boilerplate-oclif-v1.10.4) (2021-08-31)
+
+
+### Bug Fixes
+
+* **deps:** update dependency chalk to ^4.1.2 ([e9d2857](https://github.com/cenk1cenk2/boilerplate-oclif/commit/e9d285748102e7925a6659defe2dab61ec782423))
+* **deps:** update dependency tslib to ^2.3.1 ([e6d1ff7](https://github.com/cenk1cenk2/boilerplate-oclif/commit/e6d1ff7d0fa9c35d7127819da8d58497277dce51))
+
 # [@cenk1cenk2/boilerplate-oclif-v1.10.3](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.10.2...@cenk1cenk2/boilerplate-oclif-v1.10.3) (2021-07-22)
 
 
