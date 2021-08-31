@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "commitizen": "^4.2.4",
-    "@cenk1cenk2/cz-cc": "^1.4.2",
+    "@cenk1cenk2/cz-cc": "^1.4.3",
     "husky": "^7.0.1",
     "lerna": "^4.0.0"
   },
