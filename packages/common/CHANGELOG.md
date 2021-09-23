@@ -1,3 +1,10 @@
+# [@cenk1cenk2/boilerplate-oclif-v1.10.5](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.10.4...@cenk1cenk2/boilerplate-oclif-v1.10.5) (2021-09-23)
+
+
+### Bug Fixes
+
+* **deps:** update dependency object-path-immutable to ^4.1.2 ([f6cbcbd](https://github.com/cenk1cenk2/boilerplate-oclif/commit/f6cbcbdd150cee0a72a5164eed7b5828efd9f034))
+
 # [@cenk1cenk2/boilerplate-oclif-v1.10.4](https://github.com/cenk1cenk2/boilerplate-oclif/compare/@cenk1cenk2/boilerplate-oclif-v1.10.3...@cenk1cenk2/boilerplate-oclif-v1.10.4) (2021-08-31)
 
 
