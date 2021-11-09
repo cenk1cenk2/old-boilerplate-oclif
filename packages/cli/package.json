@@ -14,9 +14,9 @@
     "start": "./bin/run.js",
     "prebuild": "rimraf tsconfig*.tsbuildinfo && rimraf dist/",
     "build": "tsc -p tsconfig.build.json",
-    "postbuild": "tscpaths -p tsconfig.paths.json -s ./dist -o ./dist",
+    "postbuild": "tsconfig-replace-paths --project tsconfig.json",
     "dev:build": "yarn prebuild && tsc -p tsconfig.json && yarn postbuild",
-    "dev:start": "yarn dev:build && TS_NODE_PROJECT='tsconfig.paths.json' tsc-watch --noClear --onSuccess \"yarn postbuild\"",
+    "dev:start": "yarn dev:build && tsc-watch --noClear --onSuccess \"yarn postbuild\"",
     "lint": "prettier --write src/ --loglevel warn && eslint --ext .json,.ts,.js --fix src/",
     "lint:check": "eslint --ext .json,.ts,.js src/",
     "lint:staged": "lint-staged",
@@ -27,10 +27,8 @@
     "test:cov": "NODE_ENV=test jest --coverage --config ./tests/jest.config.js",
     "dev:test": "NODE_ENV=test jest --verbose --runInBand --forceExit --watchAll --config ./tests/jest.config.js"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
+  "simple-git-hooks": {
+    "pre-commit": "lint-staged"
   },
   "lint-staged": {
     "./*.{ts,js,tsx,jsx}": [
@@ -89,16 +87,16 @@
     "@types/jest": "^27.0.2",
     "@types/node": "^16.11.6",
     "eslint": "^8.2.0",
-    "husky": "^7.0.4",
     "jest": "^27.3.1",
     "lint-staged": "^11.2.6",
     "prettier": "^2.4.1",
+    "simple-git-hooks": "^2.7.0",
     "source-map-support": "^0.5.20",
     "ts-jest": "^27.0.7",
     "ts-node": "^10.4.0",
     "tsc-watch": "^4.5.0",
     "tsconfig-paths": "^3.11.0",
-    "tscpaths": "^0.0.9",
+    "tsconfig-replace-paths": "^0.0.11",
     "typescript": "^4.4.4"
   },
   "config": {

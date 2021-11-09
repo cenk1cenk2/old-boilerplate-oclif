@@ -79,7 +79,7 @@ export class Message {
    */
   public pop (): void {
     this.messages.forEach((message) => {
-      this.logger[message.level](message.message, ...message?.args)
+      this.logger[message.level](message.message, ...message.args)
     })
 
     this.messages = []
