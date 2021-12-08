@@ -1450,6 +1450,18 @@
     eslint-plugin-unicorn "^37.0.1"
     eslint-plugin-vue "^7.20.0"
 
+"@oclif/command@^1.8.10":
+  version "1.8.10"
+  resolved "https://registry.yarnpkg.com/@oclif/command/-/command-1.8.10.tgz#417683d0d52a9acefe9e119a149544295bef2c8a"
+  integrity sha512-GHL3Cdmabg2VAt5DL2GmRwmlROsN+Ma0JfxWlAhsKjxsa5vdWZ7BG82+A1NJQFgElm808z22Pldb7A4OJCq1pw==
+  dependencies:
+    "@oclif/config" "^1.18.2"
+    "@oclif/errors" "^1.3.5"
+    "@oclif/parser" "^3.8.6"
+    "@oclif/plugin-help" "3.2.14"
+    debug "^4.1.1"
+    semver "^7.3.2"
+
 "@oclif/command@^1.8.9":
   version "1.8.9"
   resolved "https://registry.yarnpkg.com/@oclif/command/-/command-1.8.9.tgz#9a3cf897b1b83ef9e116657577324987c2d7f063"
@@ -1519,7 +1531,7 @@
     chalk "^4.1.0"
     tslib "^2.0.0"
 
-"@oclif/plugin-help@^3.2.13":
+"@oclif/plugin-help@3.2.14", "@oclif/plugin-help@^3.2.13":
   version "3.2.14"
   resolved "https://registry.yarnpkg.com/@oclif/plugin-help/-/plugin-help-3.2.14.tgz#7149eb322d36abc6cbf09f205bad128141e7eba4"
   integrity sha512-NP5qmE2YfcW3MmXjcrxiqKe9Hf3G0uK/qNc0zAMYKU4crFyIsWj7dBfQVFZSb28YXGioOOpjMzG1I7VMxKF38Q==
