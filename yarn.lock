@@ -1450,7 +1450,7 @@
     eslint-plugin-unicorn "^37.0.1"
     eslint-plugin-vue "^7.20.0"
 
-"@oclif/command@1.8.10", "@oclif/command@^1.8.10", "@oclif/command@^1.8.9":
+"@oclif/command@1.8.10", "@oclif/command@^1.8.9":
   version "1.8.10"
   resolved "https://registry.yarnpkg.com/@oclif/command/-/command-1.8.10.tgz#417683d0d52a9acefe9e119a149544295bef2c8a"
   integrity sha512-GHL3Cdmabg2VAt5DL2GmRwmlROsN+Ma0JfxWlAhsKjxsa5vdWZ7BG82+A1NJQFgElm808z22Pldb7A4OJCq1pw==
