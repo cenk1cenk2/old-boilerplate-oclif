@@ -85,7 +85,7 @@
     "@types/config": "^0.0.40",
     "@types/fs-extra": "^9.0.13",
     "@types/jest": "^27.0.3",
-    "@types/node": "^16.11.14",
+    "@types/node": "^16.11.17",
     "eslint": "^8.5.0",
     "jest": "^27.4.5",
     "lint-staged": "^11",
