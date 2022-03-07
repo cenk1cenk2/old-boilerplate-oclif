@@ -59,7 +59,7 @@
   "devDependencies": {
     "@cenk1cenk2/eslint-config": "^1.0.11",
     "@oclif/command": "^1.8.16",
-    "@oclif/config": "^1.18.2",
+    "@oclif/config": "^1.18.3",
     "@oclif/dev-cli": "^1.26.10",
     "@oclif/errors": "^1.3.5",
     "@types/config": "^0.0.41",
@@ -69,8 +69,8 @@
     "@types/node": "^16.11.21",
     "@types/object-path": "^0.11.1",
     "eslint": "^8.7.0",
-    "execa": "^6.0.0",
-    "fs-extra": "^10.0.0",
+    "execa": "^6.1.0",
+    "fs-extra": "^10.0.1",
     "globby": "^12.2.0",
     "jest": "^27.4.7",
     "lint-staged": "^11",
@@ -78,10 +78,10 @@
     "listr2": "^4.0.1",
     "prettier": "^2.5.1",
     "ts-jest": "^27.1.3",
-    "ts-node": "^10.4.0",
+    "ts-node": "^10.7.0",
     "tsc-watch": "^4.6.0",
-    "tsconfig-paths": "^3.12.0",
+    "tsconfig-paths": "^3.13.0",
     "tsconfig-replace-paths": "^0.0.11",
-    "typescript": "^4.5.5"
+    "typescript": "^4.6.2"
   }
 }
